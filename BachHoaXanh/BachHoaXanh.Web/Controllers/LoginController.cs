@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using BachHoaXanh.Data.Services;
+
+
+namespace BachHoaXanh.Web.Controllers
+{
+    public class LoginController : Controller
+    {
+        // GET: Login
+        public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
+        private readonly ILoginData db;
+        
+        [HttpGet]
+        public ActionResult SignIn()
+        {
+          
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SignIn(Data.Models.Login account)
+        {
+
+            if (String.IsNullOrEmpty(account.Email))
+            {
+                ModelState.AddModelError(nameof(account.Email), "Email is required");      //yeu cau nhap email
+            }
+            if (String.IsNullOrEmpty(account.PassWord))
+            {
+                ModelState.AddModelError(nameof(account.PassWord), "Password is required");      //yeu cau nhap email
+            }
+            FormCollection f = new FormCollection();
+            string sodienthoai = f["SDT"];
+            string matkhau = f["password"];
+            Data.Models.Customer us = bhx.Customers.SingleOrDefault(n => n.PhoneNumber == sodienthoai && n.Password == matkhau);
+            if (us != null)
+                return Content("/Main/Index");
+            else
+            {
+                var us1 = (from u in bhx.Employees
+                           where u.Password  == matkhau && u.Email == sodienthoai //******DÒNG Email = sodienthoai NÀY DÙNG TẠM, CHƯA THÍCH HỢP
+                           select u).SingleOrDefault();// FirstOrDefault();
+                if (us1 != null)
+                    return Content("/NhanViens/Index");  //******CHỖ NÀY CHƯA CHỈNH
+            }
+            return Content("false");
+
+         //   return View();
+           
+        }
+
+       
+        [HttpGet]
+        public ActionResult LoginSuccessfully()
+        {
+            return View();
+        }
+
+    }
+}

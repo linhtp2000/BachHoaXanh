@@ -1,0 +1,417 @@
+﻿@model IEnumerable<BachHoaXanh.Data.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<link href="~/Content/css/style.css" rel="stylesheet" />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    @Html.Partial("ProductSummary", item);
+}
+<!--CHI TIẾT SẢN PHẨM-->
+@*<aside class="colcontent">
+        <ul class="breadcrumb"><li><a href="/" title="Trang chủ">Trang chủ</a></li><li><a href="/nuoc-suoi-khoang">Nước suối, nước khoáng </a></li><li><a href="/nuoc-suoi-khoang-good-mood">Nước uống Good Mood</a></li></ul><div class="rowdetail"><aside class="slide" data-cate="2563" data-id="200781" data-combo="0"><div id="bhxgallery"><div class="gallery-main"><div class="owl-carousel owl-theme pgallery owl-loaded owl-drag" id="gallery"><div class="owl-stage-outer owl-height" style="height: 405px;"><div class="owl-stage" style="transition: all 0.25s ease 0s; width: 3240px; transform: translate3d(-540px, 0px, 0px);"><div class="owl-item" style="width: 540px;"><div><img width="540" height="304" src="https://i.ytimg.com/vi/whZjgt3aZEU/sddefault.jpg" alt="" data-type="2" data-index="0" class="videomax"><div class="videobhx" data-video="whZjgt3aZEU"></div></div></div><div class="owl-item active center" style="width: 540px;"><div><img class="owl-lazy" width="540" height="304" data-src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905031107259344.jpg" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 1" data-type="1" data-index="1" src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905031107259344.jpg" style="opacity: 1;"></div></div><div class="owl-item" style="width: 540px;"><div><img class="owl-lazy" width="540" height="304" data-src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934081883.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 2" data-type="1" data-index="2"></div></div><div class="owl-item" style="width: 540px;"><div><img class="owl-lazy" width="540" height="304" data-src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934082934.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 3" data-type="1" data-index="3"></div></div><div class="owl-item" style="width: 540px;"><div><img class="owl-lazy" width="540" height="304" data-src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934083964.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 4" data-type="1" data-index="4"></div></div><div class="owl-item" style="width: 540px;"><div><img class="owl-lazy" width="540" height="304" data-src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934084745.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 5" data-type="1" data-index="5" src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934084745.JPG" style="opacity: 1;"></div></div></div></div><div class="owl-nav"><button type="button" role="presentation" aria-label="nav" class="owl-prev">next</button><button type="button" role="presentation" aria-label="nav" class="owl-next">prev</button></div><div class="owl-dots disabled"></div></div><div class="number-ga">1/5</div></div><div class="listthums owl-carousel owl-theme"><div class="thumbpro" data-index="0"><img width="90" height="60" src="https://i.ytimg.com/vi/whZjgt3aZEU/sddefault.jpg" alt=""> <span></span></div><div class="thumbpro choosed" data-index="1"><img width="90" height="60" src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905031107259344.jpg" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 1"></div><div class="thumbpro" data-index="2"><img width="90" height="60" src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934081883.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 2"></div><div class="thumbpro" data-index="3"><img width="90" height="60" src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934082934.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 3"></div><div class="thumbpro" data-index="4"><img width="90" height="60" src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934083964.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 4"></div><div class="thumbpro" data-index="5"><img width="90" height="60" src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201905020934084745.JPG" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml 5"></div></div></div></aside><aside class="infosell" data-product="200781" data-exp_store="0"><h1 class="nameproduct">Thùng 24 chai nước uống Good Mood vị sữa chua 455ml</h1><div class="expireddate"><span>HSD còn 4 tháng</span></div><div class="ratinglist-price"><div class="boxprice"><strong>144.000₫</strong> <span class="strike">188.000₫</span> <label>-23%</label></div></div><div class="chonloai"><a href="/nuoc-suoi-khoang/nuoc-uong-good-mood-vi-sua-chua-455ml" data-productid="200778" data-productcode="1063025000106"> <img src="https://cdn.tgdd.vn/Products/Images/2563/200778/bhx/nuoc-uong-good-mood-vi-sua-chua-455ml-201904061457477431_300x300.JPG" width="32" height="32" alt="Nước uống Good Mood vị sữa chua 455ml"><div class="info-product"><i class="bhx-opt"></i> <b>Chai</b> <strong>6.500₫</strong> <span class="strike">8.500₫</span></div></a> <a href="/nuoc-suoi-khoang/6-chai-nuoc-uong-good-mood-vi-sua-chua-455ml" data-productid="200780" data-productcode="1063025000108"> <img src="https://cdn.tgdd.vn/Products/Images/2563/200780/bhx/6-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201908121410045023_300x300.JPG" width="32" height="32" alt="6 chai nước uống Good Mood vị sữa chua 455ml"><div class="info-product"><i class="bhx-opt"></i> <b>6 chai</b> <strong>36.000₫</strong> <span class="strike">49.000₫</span></div></a> <a href="/nuoc-suoi-khoang/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml" class="chon" data-productid="200781" data-productcode="1063025000109"> <img src="https://cdn.tgdd.vn/Products/Images/2563/200781/bhx/24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml-201907261046281274_300x300.jpg" width="32" height="32" alt="Thùng 24 chai nước uống Good Mood vị sữa chua 455ml"><div class="info-product"><i class="bhx-opt"></i> <b>Thùng 24 chai</b> <strong>144.000₫</strong> <span class="strike">188.000₫</span></div></a></div><a href="javascript:" class="choosebuy" data-id="200781">Chọn mua</a><div class="updown hide" data-id="200781" data-maxqtyonbill="0" data-price="144.000₫"><div class="down"><span></span></div><input class="number" value="0" pattern="[0-9]*" type="number" maxlength="50"><div class="up"><span></span> <span></span></div></div><div class="shipping"><div><i class="bhx-sship"></i> <span> Đặt online giao tận nhà ĐÚNG GIỜ (nếu trễ đền 50.000₫)</span></div><div><i class="bhx-swap"></i> <span> Đổi, trả sản phẩm trong 7 ngày </span> <a href="/kinh-nghiem-hay/chinh-sach-doi-tra-1230736" id="detailReturn">(Xem chi tiết)</a></div></div><div class="boxbanner"><a href="https://www.bachhoaxanh.com/khuyen-mai" class="item" title="HÓA ĐƠN 50.000Đ ĐƯỢC MUA SẢN PHẨM GIÁ SỐC TỪ 6/11 ĐẾN 19/11"> <img src="https://cdn.tgdd.vn/bachhoaxanh/banners/2516/hoa-don-50000d-duoc-mua-san-pham-gia-soc-tu-6-11-den-19-11-1311202012512.jpg" width="450" height="80"> </a></div></aside></div>    <div class="relative">
+            <h3 class="titledt">Sản phẩm liên quan</h3>
+            <div class="boxscroll">
+                <div class="cate boxrelative owl-carousel owl-theme owl-loaded owl-drag" id="boxrelative">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2400px;">
+                            <div class="owl-item active" style="width: 240px;">
+                                <div class=" product " data-product="200786" data-sku="1063025000111" data-maxqtyonbill="0" data-priceonbill="144.000₫">
+                                    <a href="/nuoc-suoi-khoang/thung-24-chai-nuoc-uong-good-mood-vi-cam-455ml" title="Thùng 24 chai nước uống Good Mood vị cam 455ml">
+                                        <div class="boximg" title="Thùng 24 chai nước uống Good Mood vị cam 455ml">
+                                            <img class="lazy initial loaded" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/200786/bhx/24-chai-nuoc-uong-good-mood-vi-cam-455ml-201907261045257358_300x300.jpg" alt="Thùng 24 chai nước uống Good Mood vị cam 455ml" src="https://cdn.tgdd.vn/Products/Images/2563/200786/bhx/24-chai-nuoc-uong-good-mood-vi-cam-455ml-201907261045257358_300x300.jpg" data-was-processed="true">
+                                        </div>
+                                        <div class="product-name">Thùng 24 chai nước uống Good Mood vị cam 455ml</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 6 tháng</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>144.000₫</strong>
+                                            <span>188.000₫</span>                <label>-23%</label>
+                                        </div>
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+                                </div>
+                            </div><div class="owl-item active" style="width: 240px;">
+                                <div class=" product " data-product="209502" data-sku="1064174000063" data-maxqtyonbill="0" data-priceonbill="130.000₫">
+                                    <a href="/nuoc-suoi-khoang/6-chai-nuoc-uong-sua-chua-yobick-vi-hoa-anh-dao-310ml" title="6 chai nước uống sữa chua Yobick vị hoa anh đào 310ml">
+                                        <div class="boximg" title="6 chai nước uống sữa chua Yobick vị hoa anh đào 310ml">
+                                            <img class="lazy initial loaded" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/209502/bhx/6-chai-nuoc-uong-sua-chua-yobick-vi-hoa-anh-dao-310ml-201908151317002885_300x300.jpg" alt="6 chai nước uống sữa chua Yobick vị hoa anh đào 310ml" src="https://cdn.tgdd.vn/Products/Images/2563/209502/bhx/6-chai-nuoc-uong-sua-chua-yobick-vi-hoa-anh-dao-310ml-201908151317002885_300x300.jpg" data-was-processed="true">
+                                        </div>
+                                        <div class="product-name">6 chai nước uống sữa chua Yobick vị hoa anh đào 310ml</div>
+                                        <div class="removepoint">
+                                        </div>
+                                        <div class="price">
+                                            <strong>130.000₫</strong>
+                                        </div>
+
+
+                                    </a>
+
+                                    <a class="buy nobuy ">Tạm Hết hàng</a>
+
+                                </div>
+                            </div><div class="owl-item active" style="width: 240px;">
+                                <div class=" product " data-product="209505" data-sku="1064174000065" data-maxqtyonbill="0" data-priceonbill="130.000₫">
+                                    <a href="/nuoc-suoi-khoang/6-chai-nuoc-uong-sua-chua-yobick-310ml" title="6 chai nước uống sữa chua Yobick 310ml">
+                                        <div class="boximg" title="6 chai nước uống sữa chua Yobick 310ml">
+                                            <img class="lazy initial loaded" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/209505/bhx/6-chai-nuoc-uong-sua-chua-yobick-310ml-201908151306004542_300x300.jpg" alt="6 chai nước uống sữa chua Yobick 310ml" src="https://cdn.tgdd.vn/Products/Images/2563/209505/bhx/6-chai-nuoc-uong-sua-chua-yobick-310ml-201908151306004542_300x300.jpg" data-was-processed="true">
+                                        </div>
+                                        <div class="product-name">6 chai nước uống sữa chua Yobick 310ml</div>
+                                        <div class="removepoint">
+                                        </div>
+                                        <div class="price">
+                                            <strong>130.000₫</strong>
+                                        </div>
+                                    </a>
+                                    <a class="buy nobuy ">Tạm Hết hàng</a>
+                                </div>
+                            </div><div class="owl-item active" style="width: 240px;">
+                                <div class=" product " data-product="90815" data-sku="9892850000446" data-maxqtyonbill="0" data-priceonbill="164.000₫">
+                                    <a href="/nuoc-suoi-khoang/thung-24-chai-nuoc-khoang-co-ga-vinh-hao-500ml" title="Thùng 24 chai nước khoáng có ga Vĩnh Hảo 500ml">
+                                        <div class="boximg" title="Thùng 24 chai nước khoáng có ga Vĩnh Hảo 500ml">
+                                            <img class="lazy initial loaded" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/90815/bhx/thung-24-chai-nuoc-khoang-co-ga-vinh-hao-500ml-201907291448228499_300x300.jpg" alt="Thùng 24 chai nước khoáng có ga Vĩnh Hảo 500ml" src="https://cdn.tgdd.vn/Products/Images/2563/90815/bhx/thung-24-chai-nuoc-khoang-co-ga-vinh-hao-500ml-201907291448228499_300x300.jpg" data-was-processed="true">
+                                        </div>
+                                        <div class="product-name">Thùng 24 chai nước khoáng có ga Vĩnh Hảo 500ml</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 7 tháng</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>164.000₫</strong>
+                                        </div>
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+                                </div>
+                            </div><div class="owl-item" style="width: 240px;">
+                                <div class=" product " data-product="213124" data-sku="1063025000130" data-maxqtyonbill="0" data-priceonbill="122.000₫">
+                                    <a href="/nuoc-suoi-khoang/thung-4-chai-nuoc-khoang-i-on-life-45-lit" title="Thùng 4 chai nước uống i-on kiềm Akaline I-on Life 4.5 lít">
+                                        <div class="boximg" title="Thùng 4 chai nước uống i-on kiềm Akaline I-on Life 4.5 lít">
+                                            <img class="lazy initial loaded" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/213124/bhx/thung-4-chai-nuoc-khoang-i-on-life-45-lit-201912120846340950_300x300.jpg" alt="Thùng 4 chai nước uống i-on kiềm Akaline I-on Life 4.5 lít" src="https://cdn.tgdd.vn/Products/Images/2563/213124/bhx/thung-4-chai-nuoc-khoang-i-on-life-45-lit-201912120846340950_300x300.jpg" data-was-processed="true">
+                                        </div>
+                                        <div class="product-name">Thùng 4 chai nước uống i-on kiềm Akaline I-on Life 4.5 lít</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 1 năm</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>122.000₫</strong>
+                                        </div>
+
+
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+
+                                </div>
+                            </div><div class="owl-item" style="width: 240px;">
+                                <div class=" product " data-product="79245" data-sku="48934588063068" data-maxqtyonbill="0" data-priceonbill="121.000₫">
+                                    <a href="/nuoc-suoi-khoang/thung-12-chai-nuoc-tinh-khiet-aquafina-15-lit" title="Thùng 12 chai nước tinh khiết Aquafina 1.5 lít">
+                                        <div class="boximg" title="Thùng 12 chai nước tinh khiết Aquafina 1.5 lít">
+                                            <img class="owl-lazy" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/79245/bhx/thung-12-chai-nuoc-tinh-khiet-aquafina-15-lit-202005290854442855_300x300.jpg" alt="Thùng 12 chai nước tinh khiết Aquafina 1.5 lít">
+
+
+
+
+                                        </div>
+                                        <div class="product-name">Thùng 12 chai nước tinh khiết Aquafina 1.5 lít</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 1 năm</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>121.000₫</strong>
+                                        </div>
+
+
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+
+                                </div>
+                            </div><div class="owl-item" style="width: 240px;">
+                                <div class=" product " data-product="83571" data-sku="28938503000028" data-maxqtyonbill="0" data-priceonbill="120.000₫">
+                                    <a href="/nuoc-suoi-khoang/nuoc-i-on-life-chai-1250-ml" title="Thùng 12 chai nước uống i-on kiềm Akaline I-on Life 1.25 lít">
+                                        <div class="boximg" title="Thùng 12 chai nước uống i-on kiềm Akaline I-on Life 1.25 lít">
+                                            <img class="owl-lazy" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/83571/bhx/thung-12-chai-nuoc-khoang-i-on-life-125-lit-202002222146118248_300x300.jpg" alt="Thùng 12 chai nước uống i-on kiềm Akaline I-on Life 1.25 lít">
+
+
+
+
+                                        </div>
+                                        <div class="product-name">Thùng 12 chai nước uống i-on kiềm Akaline I-on Life 1.25 lít</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 1 năm</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>120.000₫</strong>
+                                        </div>
+
+
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+
+                                </div>
+                            </div><div class="owl-item" style="width: 240px;">
+                                <div class=" product " data-product="83578" data-sku="18938503000014" data-maxqtyonbill="0" data-priceonbill="120.000₫">
+                                    <a href="/nuoc-suoi-khoang/nuoc-khoang-i-on-life-chai-450-ml" title="Thùng 24 chai nước uống i-on kiềm Akaline I-on Life 450ml">
+                                        <div class="boximg" title="Thùng 24 chai nước uống i-on kiềm Akaline I-on Life 450ml">
+                                            <img class="owl-lazy" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/83578/bhx/thung-24-chai-nuoc-khoang-i-on-life-450ml-202002222142523458_300x300.jpg" alt="Thùng 24 chai nước uống i-on kiềm Akaline I-on Life 450ml">
+
+
+
+
+                                        </div>
+                                        <div class="product-name">Thùng 24 chai nước uống i-on kiềm Akaline I-on Life 450ml</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 1 năm</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>120.000₫</strong>
+                                        </div>
+
+
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+
+                                </div>
+                            </div><div class="owl-item" style="width: 240px;">
+                                <div class=" product " data-product="194307" data-sku="1063025000024" data-maxqtyonbill="0" data-priceonbill="117.000₫">
+                                    <a href="/nuoc-suoi-khoang/thung-24-chai-nuoc-khoang-vivant-500ml" title="Thùng 24 chai nước khoáng Vivant 500ml">
+                                        <div class="boximg" title="Thùng 24 chai nước khoáng Vivant 500ml">
+                                            <img class="owl-lazy" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/194307/bhx/thung-24-chai-nuoc-khoang-vivant-500ml-201908190943093055_300x300.jpg" alt="Thùng 24 chai nước khoáng Vivant 500ml">
+
+
+
+
+                                        </div>
+                                        <div class="product-name">Thùng 24 chai nước khoáng Vivant 500ml</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 1 năm</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>117.000₫</strong>
+                                        </div>
+
+
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+
+                                </div>
+                            </div><div class="owl-item" style="width: 240px;">
+                                <div class=" product " data-product="87416" data-sku="9892850000406" data-maxqtyonbill="0" data-priceonbill="180.000₫">
+                                    <a href="/nuoc-suoi-khoang/24-chai-nuoc-khoang-leo-vi-chanh-day-350ml" title="24 chai nước khoáng có ga Leo vị chanh dây 350ml">
+                                        <div class="boximg" title="24 chai nước khoáng có ga Leo vị chanh dây 350ml">
+                                            <img class="owl-lazy" width="160" height="160" data-src="https://cdn.tgdd.vn/Products/Images/2563/87416/bhx/thung-24-chai-nuoc-khoang-co-ga-leo-vi-chanh-day-350ml-201908051014192343_300x300.jpg" alt="24 chai nước khoáng có ga Leo vị chanh dây 350ml">
+
+
+
+
+                                        </div>
+                                        <div class="product-name">24 chai nước khoáng có ga Leo vị chanh dây 350ml</div>
+                                        <div class="removepoint">
+                                            <span>HSD còn 3 tháng</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>180.000₫</strong>
+                                        </div>
+
+
+                                    </a>
+
+                                    <a class="buy ">Chọn mua</a>
+                                    <div class="updown ">
+                                        <div class="down"><span></span></div>
+                                        <input class="number" value="0" maxlength="50" pattern="[0-9]*" type="number">
+                                        <div class="up"><span></span><span></span></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class="owl-nav"><button type="button" role="presentation" aria-label="nav" class="owl-prev disabled hint"></button><button type="button" role="presentation" aria-label="nav" class="owl-next hint"></button></div><div class="owl-dots disabled"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="rowinfo">
+            <aside class="leftcolrelate">
+
+
+                <div class="details">
+                    <strong class="textinfpro" id="specification">Thông tin sản phẩm</strong>
+                    <div class="short-description"></div>
+                    <ul class="infoproduct nospeci">
+                        <li>
+                            <span>Thương hiệu</span>
+                            <div>Good Mood (Nhật Bản)</div>
+                        </li>
+                        <li>
+                            <span> Sản xuất tại</span>
+                            <div>Việt Nam</div>
+                        </li>
+                        <li>
+                            <span> Loại sản phẩm</span>
+                            <div>Nước uống</div>
+                        </li>
+                        <li>
+                            <span> Hương vị</span>
+                            <div>Vị sữa chua</div>
+                        </li>
+                        <li>
+                            <span> Số lượng</span>
+                            <div>Thùng 24 chai</div>
+                        </li>
+                        <li>
+                            <span> Thể tích</span>
+                            <div>455ml</div>
+                        </li>
+                        <li>
+                            <span> Hướng dẫn sử dụng</span>
+                            <div>Lắc nhẹ trước khi uống, dùng ngay sau khi mở nắp. Ngon hơn khi uống lạnh.</div>
+                        </li>
+                        <li>
+                            <span> Bảo quàn</span>
+                            <div>Để nơi khô ráo, thoáng mát, tránh ánh sáng trực tiếp hoặc nơi có nhiệt độ cao.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="vote-Product">
+                    <div class="main">
+                        <div class="messageConfirm"><span data-us="gender">Bạn</span> có hài lòng với thông tin sản phẩm này không? </div>
+                        <div class="icon_Product">
+                            <a class="bl-vote" onclick="Page_Product(1)">
+                                <i class="icon-smile-s"></i>Hài lòng
+                            </a>
+                            <a class="bl-vote" onclick="Page_Product(2)">
+                                <i class="icon-cry-s"></i>Không hài lòng
+
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="dialog2 hidden">
+                        <div class="message">BachhoaXANH.com mong nhận đánh giá của <span data-us="gender">Bạn</span> để cải tiến chất lượng dịch vụ tốt hơn.</div>
+                        <textarea class="showBtnSend" onclick="showBtnSend()" placeholder="Mời {gender} nhập nội dung góp ý!"></textarea>
+                        <div class="message-error hidden">Vui lòng nhập nội dung góp ý</div>
+                        <button class="Btn-Send hidden" onclick="SendVoteProduct()">GỬI </button>
+                    </div>
+                    <div class="message-done hidden">Cảm ơn <span data-us="gender">Bạn</span> đã đóng góp để giúp BachhoaXANH.com cải tiến chất lượng dịch vụ tốt hơn!</div>
+                    <div class="message-thanks hidden"><div class="icon_Product"> <i class="icon-smile-s"></i> Cảm ơn <span data-us="gender">Bạn</span> đã đánh giá thông tin sản phẩm</div> </div>
+                </div>
+
+                <div class="comment" id="boxcomment">
+                    <div class="comment-rating wrapcomrat">
+
+                        <div class="boxrating"><div class="title"><h4>Đánh giá sản phẩm</h4></div><div class="ratingbox"><input type="number" value="5" class="hide" disabled="" id="totalRating"><div class="lrb"><div class="average-rating orange"><div><b>4.4</b></div><div><i class="bhx-p-star-large grayscale4"></i></div><div><span>5 đánh giá</span></div></div></div><div class="rrb"><ul class="totalrating"><li><span>5★</span><div class="ratingbar"><div class="ratingbar-in" style="width:40%"></div></div><label>2 <span>đánh giá</span></label></li><li><span>4★</span><div class="ratingbar"><div class="ratingbar-in" style="width:60%"></div></div><label>3 <span>đánh giá</span></label></li><li><span>3★</span><div class="ratingbar"><div class="ratingbar-in" style="width:0"></div></div><label>0 <span>đánh giá</span></label></li><li><span>2★</span><div class="ratingbar"><div class="ratingbar-in" style="width:0"></div></div><label>0 <span>đánh giá</span></label></li><li><span>1★</span><div class="ratingbar"><div class="ratingbar-in" style="width:0"></div></div><label>0 <span>đánh giá</span></label></li></ul></div><div class="sendrating"><div class="chooserate rating-chosebhx" style="display:block"><span class="s">Gửi đánh giá của bạn</span> <span class="star"> <a href="javascript:void(0)" data-index="1"><i class="bhx-starblack medium"></i></a> <a href="javascript:void(0)" data-index="2"><i class="bhx-starblack medium"></i></a> <a href="javascript:void(0)" data-index="3"><i class="bhx-starblack medium"></i></a> <a href="javascript:void(0)" data-index="4"><i class="bhx-starblack medium"></i></a> <a href="javascript:void(0)" data-index="5"><i class="bhx-starblack medium"></i></a> </span> <span class="rstar"></span></div></div></div></div>
+                        <div class="clr"></div>
+                        <form id="frmCommentRating" class="formrating hden" onsubmit="return SubmitRating(this)" data-istet="False"><div class="ratinfo"><div class="js-float-label-wrapper"><label class="cmt-content">Mời bạn đánh giá về sản phẩm...</label> <textarea rows="4" id="txtContent" name="txtContent" maxlength="1000" placeholder="Mời bạn đánh giá về sản phẩm..." class="extend"></textarea></div><div class="info"><div class="row"><div class="gender"><label data-gender="1"><i class="bhx-radio"></i> Anh</label> <label data-gender="0"><i class="bhx-radio"></i> Chị</label></div><i id="UpLoadImgRating" href="javascript:;" class="upimage"><i class="bhx-p-iconask"></i><label>Đính kèm ảnh</label></i><div class="clearfix"></div></div><input id="upNotTitleRating" type="file" hidden="" accept="image/x-png, image/gif,image/jpeg" class="hide"><div class="js-float-label-wrapper"><label class="cmt-name">Họ tên</label> <input data-rder="name" class="inline txtFullName" type="text" name="txtFullName" maxlength="50" placeholder="Họ tên (bắt buộc)"></div><div class="js-float-label-wrapper"><label class="cmt-phone">Số điện thoại</label> <input data-rder="txtPhone" class="inline txtPhone" type="number" name="txtPhone" maxlength="11" placeholder="Số điện thoại (bắt buộc)"></div><div class="js-float-label-wrapper"><label class="cmt-email">Email</label> <input data-rder="email" class="txtEmail" type="email" name="txtEmail" maxlength="50" placeholder="Email" aria-label="Email"></div><button type="submit">GỬI ĐÁNH GIÁ</button> <input data-rder="gender" name="hdGender" value="-1" type="hidden"> <input type="hidden" name="hdObjectId" value="200781"> <input type="hidden" name="hdObjectType" value="2"> <input type="hidden" name="hdObjectTypeRef" value="0"> <input type="hidden" name="hdUrl" value="/nuoc-suoi-khoang/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml"> <input type="hidden" id="hdTypeOf" name="hdTypeOf" value="1"> <input type="hidden" id="hdSroce" name="hdScore" value="0"> <input type="hidden" id="hdExProductId" name="hdExProductId" value="200781"></div><ul class="lstImgCom"></ul></div></form><div id="comment-list1" class="comment-list child"><div data-id="43473289" onclick="selCmt(43473289)" class="item" data-parentid="43473289"><b> Ngọc Khuê <span class="liststar"> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-starblack"></em> </span> <span class="purchase"> <em class="bhx-purchase"></em>Đã mua </span> </b><div class="infocustomer" style="display: none;"><a href="javascript:" onclick="closeInfoBuyed(this)" class="close-inforating">✖</a><p><b>Ngọc Khuê</b></p><p>Đã mua hàng 1 tháng trước</p></div><div>mua thùng nguyên giảm hơn 40 chục ngàn dại gì không mua. Mấy đứa nhỏ nhà mình thích uống lắm, thùng vậy chứ vài bữa cũng hết à</div><div><a href="javascript:void(0)" data-name="Ngọc Khuê" data-parent="43473289" data-iscomment="1" onclick="ReplyComment($(this))" data-parentid="43473289"> Thảo luận </a><span class="com-dot"> • </span> <a href="javascript:void(0)" onclick="LikeComment($(this),43473289)"><i class="bhx-p-ulike"></i><span class="hide"><b>0</b></span> Thích</a><span class="com-dot"> • </span> <span class="comment-time">1 tháng trước</span></div></div><div data-id="43380276" onclick="selCmt(43380276)" class="item" data-parentid="43380276"><b> Trần Quỳnh Anh <span class="liststar"> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-starblack"></em> </span> <span class="purchase"> <em class="bhx-purchase"></em>Đã mua </span> </b><div class="infocustomer" style="display: none;"><a href="javascript:" onclick="closeInfoBuyed(this)" class="close-inforating">✖</a><p><b>Trần Quỳnh Anh</b></p><p>Đã mua hàng 2 tháng trước</p></div><div>bữa mình mơi thử thì nước này lạ kinh khủng. Kiểu vị chua chua, không bằng sữa chua nhưng vẫn ngọt ngọt, uống ướp lạnh ngon lắm á</div><div><a href="javascript:void(0)" data-name="Trần Quỳnh Anh" data-parent="43380276" data-iscomment="1" onclick="ReplyComment($(this))" data-parentid="43380276"> Thảo luận </a><span class="com-dot"> • </span> <a href="javascript:void(0)" onclick="LikeComment($(this),43380276)"><i class="bhx-p-ulike"></i><span class="hide"><b>0</b></span> Thích</a><span class="com-dot"> • </span> <span class="comment-time">1 tháng trước</span></div></div><div data-id="43246435" onclick="selCmt(43246435)" class="item" data-parentid="43246435"><b> Quế Thu <span class="liststar"> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-star"></em> <em class="bhx-starblack"></em> </span> <span class="purchase"> <em class="bhx-purchase"></em>Đã mua </span> </b><div class="infocustomer" style="display: none;"><a href="javascript:" onclick="closeInfoBuyed(this)" class="close-inforating">✖</a><p><b>Quế Thu</b></p><p>Đã mua hàng 2 tháng trước</p></div><div>từ lúc mua nước này để nhà mấy bé nhà mình siêng uống nước hẳ. Giống nước lọc nhưng chua chua, thơm, cũng ngọt nên dễ uống</div><div><a href="javascript:void(0)" data-name="Quế Thu" data-parent="43246435" data-iscomment="1" onclick="ReplyComment($(this))" data-parentid="43246435"> Thảo luận </a><span class="com-dot"> • </span> <a href="javascript:void(0)" onclick="LikeComment($(this),43246435)"><i class="bhx-p-ulike"></i><span class="hide"><b>0</b></span> Thích</a><span class="com-dot"> • </span> <span class="comment-time">2 tháng trước</span></div></div><div class="pagination"><span class="curpage" title="Trang 1">1</span> <span onclick="ViewMoreComment(1,1)" title="Trang 2">2</span> <span onclick="ViewMoreComment(1,1)" title="Trang 2"> » </span></div></div>
+                    </div>
+                    <div id="comment-list0" class="comment-list full wrapcomrat"><div class="topcmt"><h4><b> Hỏi đáp sản phẩm </b> <span class="regulation">Quy định</span></h4><div class="s_comment"><em class="bhx-search"></em> Tìm bình luận</div><div class="seach" style="display: none;"><input id="txtSearch" data-rder="txtSearch" type="text" name="txtSearch" placeholder="Tìm theo nội dung"> <em class="bhx-search bhx-searchcom"></em></div></div><form id="frmAddComment" class="form formrating" data-istet="False"><div class="cmtinfo"><div class="js-float-label-wrapper"><label class="cmt-content">Mời bạn bình luận hoặc đặt câu hỏi...</label> <textarea name="txtContent" rows="4" maxlength="1000" placeholder="Mời bạn bình luận hoặc đặt câu hỏi..." aria-label="Mời bạn bình luận hoặc đặt câu hỏi...."></textarea></div><div class="info hide"><span class="errornoti"></span><div class="verify hide"><div><span class="cmt-verify">Mã xác nhận</span><div id="mainCaptcha"></div><div class="js-float-label-wrapper"><label class="cmt-captcha">Mã xác nhận</label> <input data-rder="captcha" class="inline txtCaptcha" type="tel" name="txtCaptcha" maxlength="5" placeholder="Mã xác nhận (bắt buộc)"></div></div></div><div class="row"><div class="gender"><label data-gender="1"><i class="bhx-radio"></i> Anh</label> <label data-gender="0"><i class="bhx-radio"></i> Chị</label></div><i id="UpLoadImgCmt" href="javascript:;" class="upimage"><i class="bhx-p-iconask"></i><label>Đính kèm ảnh</label></i><div class="clearfix"></div></div><input id="upNotTitleCmt" type="file" hidden="" accept="image/x-png, image/gif,image/jpeg" class="hide"> <input name="hdGender" data-rder="gender" value="-1" class="hide"><div class="name js-float-label-wrapper"><label class="cmt-name">Họ tên</label> <input data-rder="name" name="txtFullName" type="text" class="txtFullName" maxlength="50" placeholder="Họ tên (bắt buộc)" aria-label="Họ tên (bắt buộc)"></div><div class="phone js-float-label-wrapper"><label class="cmt-phone">Số điện thoại</label> <input type="number" class="txtPhone" name="txtPhone" placeholder="Số điện thoại" aria-label="Số điện thoại"></div><div class="email js-float-label-wrapper"><label class="cmt-email">Email</label> <input data-rder="email" name="txtEmail" type="email" class="txtEmail" maxlength="50" placeholder="Email" aria-label="Email"></div><button type="submit" class="submit">GỬI</button> <input type="hidden" name="hdObjectId" value="200781"> <input type="hidden" name="hdObjectType" value="2"> <input type="hidden" name="hdObjectTypeRef" value="0"> <input type="hidden" name="hdUrl" value="/nuoc-suoi-khoang/thung-24-chai-nuoc-uong-good-mood-vi-sua-chua-455ml"> <input type="hidden" name="hdParentId" value="0"> <input type="hidden" name="hdTypeOf" value="0"></div><ul class="lstImgCom"></ul></div></form></div>
+                </div>
+            </aside>
+            <aside class="rightcolrelate">
+
+                <div class="groupcate"><div class="namegroup">Nhóm hàng thường mua</div><div class="listgroup"><a href="/sua-tuoi"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/2386/bhx/sua-tuoi-202006021003313572.png" alt="Sữa tươi" src="//cdn.tgdd.vn/Products/Images/2386/bhx/sua-tuoi-202006021003313572.png" data-was-processed="true"> <span>Sữa tươi</span> </a> <a href="/nuoc-ngot"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/2443/bhx/nuoc-ngot-giai-khat-202006020939383550.png" alt="Nước ngọt" src="//cdn.tgdd.vn/Products/Images/2443/bhx/nuoc-ngot-giai-khat-202006020939383550.png" data-was-processed="true"> <span>Nước ngọt</span> </a> <a href="/mi"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/2565/bhx/mi-an-lien-202006021031087048.png" alt="Mì ăn liền" src="//cdn.tgdd.vn/Products/Images/2565/bhx/mi-an-lien-202006021031087048.png" data-was-processed="true"> <span>Mì ăn liền</span> </a> <a href="/dau-an"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/2286/bhx/dau-an-202006021043512663.png" alt="Dầu ăn" src="//cdn.tgdd.vn/Products/Images/2286/bhx/dau-an-202006021043512663.png" data-was-processed="true"> <span>Dầu ăn</span> </a> <a href="/khan-giay-uot"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/3003/bhx/khan-giay-uot-202006010858420776.png" alt="Khăn giấy ướt" src="//cdn.tgdd.vn/Products/Images/3003/bhx/khan-giay-uot-202006010858420776.png" data-was-processed="true"> <span>Khăn giấy ướt</span> </a> <a href="/dau-goi"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/2483/bhx/dau-goi-202006021004286121.png" alt="Dầu gội" src="//cdn.tgdd.vn/Products/Images/2483/bhx/dau-goi-202006021004286121.png" data-was-processed="true"> <span>Dầu gội</span> </a> <a href="/gao-gao-nep"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/2513/bhx/gao-202006021334297507.png" alt="Gạo" src="//cdn.tgdd.vn/Products/Images/2513/bhx/gao-202006021334297507.png" data-was-processed="true"> <span>Gạo</span> </a> <a href="/hai-san-dong-lanh"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/7172/bhx/thit-hai-san-dong-lanh-201910311114302141.png" alt="Thịt, hải sản, rau củ đông lạnh" src="//cdn.tgdd.vn/Products/Images/7172/bhx/thit-hai-san-dong-lanh-201910311114302141.png" data-was-processed="true"> <span>Thịt, hải sản, rau củ đông lạnh</span> </a> <a href="/trai-cay-nhap-khau"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/7578/bhx/trai-cay-nhap-khau-202006020855231684.png" alt="Trái cây nhập khẩu" src="//cdn.tgdd.vn/Products/Images/7578/bhx/trai-cay-nhap-khau-202006020855231684.png" data-was-processed="true"> <span>Trái cây nhập khẩu</span> </a> <a href="/bia"> <img width="45" class="lazy initial loaded" height="45" data-src="//cdn.tgdd.vn/Products/Images/2282/bhx/bia-nuoc-uong-co-con-202006020920461409.png" alt="Bia, nước uống có cồn" src="//cdn.tgdd.vn/Products/Images/2282/bhx/bia-nuoc-uong-co-con-202006020920461409.png" data-was-processed="true"> <span>Bia, nước uống có cồn</span> </a></div></div><div class="homehews"><div class="bartitle"><h2 class="hometitle">Mẹo hay trong gia đình</h2><a href="/kinh-nghiem-hay" class="viewother">Xem các tin bài khác »</a></div><a href="/kinh-nghiem-hay/vi-sao-aquafina-co-mui-nuoc-dua-1305228" title="Vì sao Aquafina có mùi nước dừa?"> <img width="65" height="40" data-src="https://cdn.tgdd.vn/Files/2020/11/06/1305228/vi-sao-aquafina-co-mui-nuoc-dua-202011061605587259.jpg" alt="Vì sao Aquafina có mùi nước dừa?" class="lazy initial loaded" data-id="1305228" src="https://cdn.tgdd.vn/Files/2020/11/06/1305228/vi-sao-aquafina-co-mui-nuoc-dua-202011061605587259.jpg" data-was-processed="true"><p>Vì sao Aquafina có mùi nước dừa?</p></a> <a href="/kinh-nghiem-hay/nuoc-suoi-lama-cua-nuoc-nao-nuoc-suoi-lama-co-gi-dac-biet-1303669" title="Nước suối Lama của nước nào? Nước suối Lama có gì đặc biệt?"> <img width="65" height="40" data-src="https://cdn.tgdd.vn/Files/2020/10/31/1303669/nuoc-suoi-lama-cua-nuoc-nao-nuoc-suoi-lama-co-gi-dac-biet-202011011938311876.jpg" alt="Nước suối Lama của nước nào? Nước suối Lama có gì đặc biệt?" class="lazy initial loaded" data-id="1303669" src="https://cdn.tgdd.vn/Files/2020/10/31/1303669/nuoc-suoi-lama-cua-nuoc-nao-nuoc-suoi-lama-co-gi-dac-biet-202011011938311876.jpg" data-was-processed="true"><p>Nước suối Lama của nước nào? Nước suối Lama có gì đặc biệt?</p></a> <a href="/kinh-nghiem-hay/them-6-thu-nay-vao-coc-nuoc-uong-moi-ngay-giup-danh-tan-mo-bung-thai-doc-gan-than-1291708" title="Thêm 6 thứ này vào cốc nước uống mỗi ngày giúp đánh tan mỡ bụng, thải độc gan thận"> <img width="65" height="40" data-src="https://cdn.tgdd.vn/Files/2020/09/19/1291708/them-6-thu-nay-vao-coc-nuoc-uong-moi-ngay-giup-danh-tan-mo-bung-thai-doc-gan-than-202009192301100672.jpg" alt="Thêm 6 thứ này vào cốc nước uống mỗi ngày giúp đánh tan mỡ bụng, thải độc gan thận" class="lazy initial loaded" data-id="1291708" src="https://cdn.tgdd.vn/Files/2020/09/19/1291708/them-6-thu-nay-vao-coc-nuoc-uong-moi-ngay-giup-danh-tan-mo-bung-thai-doc-gan-than-202009192301100672.jpg" data-was-processed="true"><p>Thêm 6 thứ này vào cốc nước uống mỗi ngày giúp đánh tan mỡ bụng, thải độc gan thận <i class="bhx-view"></i><span>130</span></p></a> <a href="/kinh-nghiem-hay/cac-loai-nuoc-giup-bu-nuoc-bu-khoang-nhanh-chong-trong-mua-nong-1245462" title="Các loại nước giúp bù nước, bù khoáng nhanh chóng cho cơ thể mùa nắng nóng"> <img width="65" height="40" data-src="https://cdn.tgdd.vn/Files/2020/03/30/1245462/cac-loai-nuoc-giup-bu-nuoc-bu-khoang-nhanh-chong-cho-co-the-mua-nang-nong-202007231552359642.jpg" alt="Các loại nước giúp bù nước, bù khoáng nhanh chóng cho cơ thể mùa nắng nóng" class="lazy initial loaded" data-id="1245462" src="https://cdn.tgdd.vn/Files/2020/03/30/1245462/cac-loai-nuoc-giup-bu-nuoc-bu-khoang-nhanh-chong-cho-co-the-mua-nang-nong-202007231552359642.jpg" data-was-processed="true"><p>Các loại nước giúp bù nước, bù khoáng nhanh chóng cho cơ thể mùa nắng nóng <i class="bhx-view"></i><span>665</span></p></a> <a href="/kinh-nghiem-hay/tim-hieu-ve-nuoc-uong-the-thao-so-1-the-gioi-gatorade-1270718" title="Tìm hiểu về nước uống thể thao số 1 thế giới Gatorade"> <img width="65" height="40" data-src="https://cdn.tgdd.vn/Files/2020/07/14/1270718/tim-hieu-ve-nuoc-uong-the-thao-so-1-the-gioi-gatorade-202007151128156600.jpg" alt="Tìm hiểu về nước uống thể thao số 1 thế giới Gatorade" class="lazy initial loaded" data-id="1270718" src="https://cdn.tgdd.vn/Files/2020/07/14/1270718/tim-hieu-ve-nuoc-uong-the-thao-so-1-the-gioi-gatorade-202007151128156600.jpg" data-was-processed="true"><p>Tìm hiểu về nước uống thể thao số 1 thế giới Gatorade</p></a> <a href="/kinh-nghiem-hay/tong-hop-cac-cong-thuc-pha-che-thuc-uong-vua-dep-vua-ngon-1272180" title="Tổng hợp các công thức pha chế thức uống vừa đẹp vừa ngon"> <img width="65" height="40" data-src="https://cdn.tgdd.vn/Files/2020/07/20/1272180/tong-hop-cac-cong-thuc-pha-che-thuc-uong-vua-dep-vua-ngon-202007201502599391.jpg" alt="Tổng hợp các công thức pha chế thức uống vừa đẹp vừa ngon" class="lazy initial loaded" data-id="1272180" src="https://cdn.tgdd.vn/Files/2020/07/20/1272180/tong-hop-cac-cong-thuc-pha-che-thuc-uong-vua-dep-vua-ngon-202007201502599391.jpg" data-was-processed="true"><p>Tổng hợp các công thức pha chế thức uống vừa đẹp vừa ngon <i class="bhx-view"></i><span>258</span></p></a> <a href="/kinh-nghiem-hay/uong-nuoc-truoc-khi-ngu-co-tot-khong-1158569" title="Uống nước trước khi ngủ giúp ngủ ngon và giảm cân hiệu quả"> <img width="65" height="40" data-src="https://cdn.tgdd.vn/Files/2019/04/03/1158569/uong-nuoc-truoc-khi-ngu-co-tot-khong-thumb_760x367-600x400.jpg" alt="Uống nước trước khi ngủ giúp ngủ ngon và giảm cân hiệu quả" class="lazy initial loaded" data-id="1158569" src="https://cdn.tgdd.vn/Files/2019/04/03/1158569/uong-nuoc-truoc-khi-ngu-co-tot-khong-thumb_760x367-600x400.jpg" data-was-processed="true"><p>Uống nước trước khi ngủ giúp ngủ ngon và giảm cân hiệu quả <i class="bhx-view"></i><span>1K</span></p></a></div>
+            </aside>
+        </div>
+    </aside>*@
+
+<div class="agileinfo_single">
+    <h5>charminar pulao basmati rice 5 kg</h5>
+    <div class="col-md-4 agileinfo_single_left">
+        <img id="example" src="images/76.png" alt=" " class="img-responsive">
+    </div>
+    <div class="col-md-8 agileinfo_single_right">
+        <div class="rating1">
+            <span class="starRating">
+                <input id="rating5" type="radio" name="rating" value="5">
+                <label for="rating5">5</label>
+                <input id="rating4" type="radio" name="rating" value="4">
+                <label for="rating4">4</label>
+                <input id="rating3" type="radio" name="rating" value="3" checked="">
+                <label for="rating3">3</label>
+                <input id="rating2" type="radio" name="rating" value="2">
+                <label for="rating2">2</label>
+                <input id="rating1" type="radio" name="rating" value="1">
+                <label for="rating1">1</label>
+            </span>
+        </div>
+        <div class="w3agile_description">
+            <h4>Description :</h4>
+            <p>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                officia deserunt mollit anim id est laborum.Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.
+            </p>
+        </div>
+        <div class="snipcart-item block">
+            <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                <h4>$21.00 <span>$25.00</span></h4>
+                <div class="_19lAw4 shopee-input-quantity"><button class="_1zT8xu"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon "><polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon></svg></button><input class="_1zT8xu _18Y8Ul" type="text" value="1"><button class="_1zT8xu"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon icon-plus-sign"><polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon></svg></button></div>
+            </div>
+            <div class="snipcart-details agileinfo_single_right_details">
+                <form action="#" method="post">
+                    <fieldset>
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="add" value="1">
+                        <input type="hidden" name="business" value=" ">
+                        <input type="hidden" name="item_name" value="pulao basmati rice">
+                        <input type="hidden" name="amount" value="21.00">
+                        <input type="hidden" name="discount_amount" value="1.00">
+                        <input type="hidden" name="currency_code" value="USD">
+                        <input type="hidden" name="return" value=" ">
+                        <input type="hidden" name="cancel_return" value=" ">
+                        <input type="submit" name="submit" value="Add to cart" class="button">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
