@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,15 @@ namespace BachHoaXanh.Data.Services
 {
     public partial class BachHoaXanhDbContext: DbContext
     {
-        public BachHoaXanhDbContext() : base("name=BachHoaXanhDbContext") { }
+        public BachHoaXanhDbContext() : base("BachHoaXanhDbContext")
+        {
+            var initializer = new MigrateDatabaseToLatestVersion<BachHoaXanhDbContext, Migrations.Configration>();
+            Database.SetInitializer(initializer);
+        }
         public DbSet<Area> Areas { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Category> Catalogues { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Branch> Branchs { get; set; }
         public DbSet<Classify> Classifys { get; set; }
@@ -25,7 +31,7 @@ namespace BachHoaXanh.Data.Services
         public DbSet<DetailsOfInvoice> DetailsOfInvoices { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Rating> Ratings { get; set; }
-        public DbSet<User> Users { get; set; }
+      
         public DbSet<Authorize> Authorizes { get; set; }
         public DbSet<User_Authorize> User_Authorizes { get; set; }
         public DbSet<WorkAt> WorkAts { get; set; }

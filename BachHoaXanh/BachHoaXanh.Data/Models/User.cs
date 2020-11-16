@@ -16,17 +16,18 @@ namespace BachHoaXanh.Data.Models
         [Key]
         [Column(Order = 1)]
         public string Id { get; set; }
-        public virtual Employee Employee { get; set; }
-
+        // public virtual Employee Employee { get; set; }
+        public string Name { get; set; }
         [MaxLength(255)]
         [Key]
         [Column(Order = 2)]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-        //  public virtual Employee EmployeeEmail { get; set; }
-        [MaxLength(255)]
-        public string PassWord { get; set; }
+        // [DataType(DataType.EmailAddress)]
+        //public string Email { get; set; }
+        ////  public virtual Employee EmployeeEmail { get; set; }
+        //[MaxLength(255)]
+        //public string PassWord { get; set; }
 
         public virtual ICollection<User_Authorize> User_Authorizes { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

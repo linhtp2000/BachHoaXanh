@@ -10,13 +10,13 @@ namespace BachHoaXanh.Data.Services
     public class InMemoryUserData: IUserData
     {
         List<User> users;
-        public InMemoryUserData()
-        {
-            users = new List<User>()
-            {
-                new User{Id="NV01",Email="linh@gmail.com", PassWord="123" }
-            };
-        }
+        //public InMemoryUserData()
+        //{
+        //    users = new List<User>()
+        //    {
+        //        new User{Id="NV01",Email="linh@gmail.com", PassWord="123" }
+        //    };
+        //}
         public void Add(User user)
         {
             users.Add(user);
@@ -26,7 +26,7 @@ namespace BachHoaXanh.Data.Services
             var existing = Get(user.Id);
             if (existing != null)
             {
-                existing.PassWord = user.PassWord;
+                existing.Name = user.Name;
             }
 
         }

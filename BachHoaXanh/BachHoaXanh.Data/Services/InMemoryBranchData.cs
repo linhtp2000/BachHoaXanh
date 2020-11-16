@@ -14,7 +14,7 @@ namespace BachHoaXanh.Data.Services
         {
             branches = new List<Branch>()
             {
-                new Branch{Id="CN01N", Name="Chi nhanh Quan 9", AreaId="KV01",ManagerId="NV01",Address="Quan 9" }
+                new Branch{Id="CN01N", Name="Chi nhanh Quan 9", AreaId="KV01",Address="Quan 9" }
             };
         }
         public void Add(Branch branch)
@@ -29,7 +29,7 @@ namespace BachHoaXanh.Data.Services
             {
                 existing.Name = branch.Name;
                 existing.AreaId = branch.AreaId;
-                existing.ManagerId = branch.AreaId;
+               // existing.ManagerId = branch.AreaId;
                 existing.Address = branch.Address;
             }
 

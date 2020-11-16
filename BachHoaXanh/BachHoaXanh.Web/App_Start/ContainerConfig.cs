@@ -31,16 +31,22 @@ namespace BachHoaXanh.Web.App_Start
                    .InstancePerRequest();
             builder.RegisterType<SqlBranchData>()
                    .As<IBranchData>()
-                   .InstancePerRequest();
+                  .InstancePerRequest();            
             builder.RegisterType<SqlClassifyData>()
                    .As<IClassifyData>()
                    .InstancePerRequest();
+            builder.RegisterType<SqlUserData>()
+                  .As<IUserData>()
+                  .InstancePerRequest();
             builder.RegisterType<SqlEmployeeData>()
                    .As<IEmployeesData>()
                    .InstancePerRequest();
             builder.RegisterType<SqlProviderData>()
                    .As<IProvidersData>()
                    .InstancePerRequest();
+            builder.RegisterType<SqlProductData>()
+                  .As<IProductData>()
+                  .InstancePerRequest();
             builder.RegisterType<SqlInvoicesData>()
                    .As<IInvoiceData>()
                     .InstancePerRequest();
@@ -64,10 +70,7 @@ namespace BachHoaXanh.Web.App_Start
                    .InstancePerRequest();
             builder.RegisterType<SqlAuthorizeData>()
                    .As<IAuthorizeData>()
-                   .InstancePerRequest();
-            builder.RegisterType<SqlUserData>()
-                   .As<IUserData>()
-                   .InstancePerRequest();
+                   .InstancePerRequest();          
             builder.RegisterType<SqlUser_AuthData>()
                    .As<IUser_AuthData>()
                    .InstancePerRequest();

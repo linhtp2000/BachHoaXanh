@@ -34,10 +34,15 @@ namespace BachHoaXanh.Data.Models
       // [ForeignKey("Employee")]
         public string AdminId { get; set; }
         public virtual Employee Administrator { get; set; }
-        
+
+        [MaxLength(255)]
+        // [ForeignKey("Employee")]
+        public string UserdId { get; set; }
+        public virtual User User { get; set; }
+
         public double Salary { get; set; }
 
-        public virtual Branch ManageBranch { get; set; }
+     //   public virtual Branch ManageBranch { get; set; }
        // public virtual List<Bill> Bills { get; set; }
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual ICollection<Employee> Manage { get; set; }
