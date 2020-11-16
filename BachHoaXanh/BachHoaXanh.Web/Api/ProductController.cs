@@ -21,5 +21,22 @@ namespace BachHoaXanh.Web.Api
                 var model = db.GetAll();
                 return model;
             }
+        [HttpPut]
+        public bool UpdateProduct(string id, string name, double price, int discount, int amount)
+        {
+            try
+            {
+                BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
+                Product sp = bhx.Products.FirstOrDefault(x => x.Id == id);
+                if (sp == null) return false;
+                sp.Id = id;
+                sp.Name = name;
+                sp.Price = price;
+                sp.Discount = discount;
+                sp.Amount = amount;
+                return true;
+            }
+            catch { return false; }
+        }
     }
 }

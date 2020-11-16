@@ -23,6 +23,7 @@ namespace BachHoaXanh.Data.Services
         }
         public void Delete(string id)
         {
+
             var product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
@@ -34,7 +35,7 @@ namespace BachHoaXanh.Data.Services
         }
 
         public IEnumerable<Product> GetAll()
-        {
+        {           
             return from r in db.Products
                    orderby r.Name
                    select r;
