@@ -284,7 +284,6 @@ E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.D
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.CopyComplete
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.dll
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.pdb
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.dll.config
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.dll
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.pdb

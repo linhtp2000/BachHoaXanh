@@ -17,25 +17,25 @@ namespace BachHoaXanh.Data.Services
         }
         public void Add(Category category)
         {
-            db.Catalogues.Add(category);
+            db.Categories.Add(category);
             db.SaveChanges();
 
         }
         public void Delete(string id)
         {
-            var catagory = db.Catalogues.Find(id);
-            db.Catalogues.Remove(catagory);
+            var catagory = db.Categories.Find(id);
+            db.Categories.Remove(catagory);
             db.SaveChanges();
         }
 
         public Category Get(string id)
         {
-            return db.Catalogues.FirstOrDefault(r => r.Id == id);
+            return db.Categories.FirstOrDefault(r => r.Id == id);
         }
 
         public IEnumerable<Category> GetAll()
         {
-            return from r in db.Catalogues
+            return from r in db.Categories
                    orderby r.Name
                    select r;
         }

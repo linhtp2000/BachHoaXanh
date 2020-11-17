@@ -15,13 +15,13 @@ namespace BachHoaXanh.Data.Models
         [Key]
         [Column(Order = 1)]
         public string UserId { get; set; }
-      // public virtual User User { get; set; }
+       public virtual User User { get; set; }
 
         [MaxLength(255)]
         [Key]
         [Column(Order = 2)]
         public string AuthId { get; set; }
-      //  public virtual Authorize Authorize { get; set; }
+        public virtual Authorize Authorize { get; set; }
         [MaxLength(255)]
         public string Note { get; set; }        
     }

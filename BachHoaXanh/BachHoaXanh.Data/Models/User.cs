@@ -18,9 +18,9 @@ namespace BachHoaXanh.Data.Models
         public string Id { get; set; }
         // public virtual Employee Employee { get; set; }
         public string Name { get; set; }
-        [MaxLength(255)]
-        [Key]
-        [Column(Order = 2)]
+        //[MaxLength(255)]
+        //[Key]
+        //[Column(Order = 2)]
         // [DataType(DataType.EmailAddress)]
         //public string Email { get; set; }
         ////  public virtual Employee EmployeeEmail { get; set; }

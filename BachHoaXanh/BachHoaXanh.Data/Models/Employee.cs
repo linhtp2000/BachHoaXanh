@@ -42,7 +42,7 @@ namespace BachHoaXanh.Data.Models
 
         public double Salary { get; set; }
 
-     //   public virtual Branch ManageBranch { get; set; }
+        public virtual ICollection<Branch> ManageBranch { get; set; }
        // public virtual List<Bill> Bills { get; set; }
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual ICollection<Employee> Manage { get; set; }

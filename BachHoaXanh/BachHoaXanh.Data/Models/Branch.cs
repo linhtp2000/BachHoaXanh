@@ -17,10 +17,10 @@ namespace BachHoaXanh.Data.Models
         [MaxLength(255)]
         public string Name { get; set; }
         public string Address { get; set; }
-       // [MaxLength(255)]
-       //// [ForeignKey("Employee")]
-       // public string ManagerId { get; set; }
-       // public virtual Employee Manager { get; set; }     //foreign key Manager' id
+        [MaxLength(255)]
+        // [ForeignKey("Employee")]
+        public string ManagerId { get; set; }
+        public virtual Employee Manager { get; set; }     //foreign key Manager' id
         [MaxLength(255)]
        // [ForeignKey("Area")]
         public string AreaId { get; set; }     

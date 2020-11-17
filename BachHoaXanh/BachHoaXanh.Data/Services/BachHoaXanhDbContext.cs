@@ -18,7 +18,7 @@ namespace BachHoaXanh.Data.Services
         }
         public DbSet<Area> Areas { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Category> Catalogues { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Branch> Branchs { get; set; }
