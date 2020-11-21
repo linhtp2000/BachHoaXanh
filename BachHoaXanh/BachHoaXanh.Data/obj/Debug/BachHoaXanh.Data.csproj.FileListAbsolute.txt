@@ -373,3 +373,6 @@ D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.dll
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.pdb
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.InitialCreate.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.GenerateResource.cache

@@ -20,7 +20,7 @@ namespace BachHoaXanh.Data.Models
         [MaxLength(255)]
         // [ForeignKey("Employee")]
         public string ManagerId { get; set; }
-        public virtual Employee Manager { get; set; }     //foreign key Manager' id
+        public virtual Employee Employee { get; set; }     //foreign key Manager' id
         [MaxLength(255)]
        // [ForeignKey("Area")]
         public string AreaId { get; set; }     
@@ -31,7 +31,7 @@ namespace BachHoaXanh.Data.Models
        // public virtual List<Employee> Employees { get; set; }// list Employees are working at Branch
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; }// list Employees are working at Branch
+      //  public virtual ICollection<Employee> Employees { get; set; }// list Employees are working at Branch
         public virtual ICollection<WorkAt> WorkAts { get; set; }
     }
 }

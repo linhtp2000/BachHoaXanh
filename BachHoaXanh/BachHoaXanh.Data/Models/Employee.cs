@@ -22,32 +22,38 @@ namespace BachHoaXanh.Data.Models
         public string Password { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-       // [MaxLength(255)]
-       // [ForeignKey("Branch")]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+        // [MaxLength(255)]
+        // [ForeignKey("Branch")]
         //public string BranchId { get; set; }
         //public virtual Branch WorkAtBranch { get; set; }
         [MaxLength(255)]
-      // [ForeignKey("Employee")]
+    //  [ForeignKey("ManageId")]
         public string ManagerId { get; set; }
-        public virtual Employee Manager { get; set; }
+        public virtual Employee Manage { get; set; }
         [MaxLength(255)]
-      // [ForeignKey("Employee")]
+      // [ForeignKey("AdminId")]
         public string AdminId { get; set; }
-        public virtual Employee Administrator { get; set; }
+        public virtual Employee Admin { get; set; }
 
         [MaxLength(255)]
         // [ForeignKey("Employee")]
-        public string UserdId { get; set; }
+        public string UserId { get; set; }
         public virtual User User { get; set; }
 
         public double Salary { get; set; }
 
-        public virtual ICollection<Branch> ManageBranch { get; set; }
+        public virtual ICollection<Branch> Branch { get; set; }
        // public virtual List<Bill> Bills { get; set; }
         public virtual ICollection<Bill> Bills { get; set; }
-        public virtual ICollection<Employee> Manage { get; set; }
-        public virtual ICollection<Employee> Admin { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+      //  [ForeignKey("ManagerId")]
+        //[ForeignKey("AdminId")]
+        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Employee> Employee1s { get; set; }
+        //  public virtual ICollection<Employee> Employees{ get; set; }
+
+        // public virtual ICollection<User> Users { get; set; }
 
         public virtual ICollection<WorkAt> WorkAts { get; set; }
 

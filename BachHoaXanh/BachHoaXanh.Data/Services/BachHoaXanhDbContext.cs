@@ -11,11 +11,11 @@ namespace BachHoaXanh.Data.Services
 {
     public partial class BachHoaXanhDbContext: DbContext
     {
-        public BachHoaXanhDbContext() : base("BachHoaXanhDbContext")
-        {
-            var initializer = new MigrateDatabaseToLatestVersion<BachHoaXanhDbContext, Migrations.Configration>();
-            Database.SetInitializer(initializer);
-        }
+        //public BachHoaXanhDbContext() : base("BachHoaXanhDbContext")
+        //{
+        //    //var initializer = new MigrateDatabaseToLatestVersion<BachHoaXanhDbContext, Migrations.Configuration>();
+        //    //Database.SetInitializer(initializer);
+        //}
         public DbSet<Area> Areas { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Category> Categories { get; set; }

@@ -19,7 +19,7 @@ namespace BachHoaXanh.Data.Models
 
         [MaxLength(255)]
         public string Password { get; set; }
-        [MaxLength(255)]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [MaxLength(255)]
