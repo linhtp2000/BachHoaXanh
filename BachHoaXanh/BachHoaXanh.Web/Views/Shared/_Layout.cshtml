@@ -122,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="w3ls_logo_products_left1">
                 <ul class="phone_email">
-                    <li><i class="fa fa-phone" aria-hidden="true"></i>Liên hệ tới 1900.1908 - 028.3622.9900 (7:00 - 21:30)</li>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i> 028.3622.9900 (7:00 - 21:30)</li>
                     <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">bachhoaxanh@grocery.com</a></li>
                 </ul>
             </div>
@@ -245,11 +245,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h3>Thông tin cửa hàng</h3>
                 <ul class="w3_footer_grid_list">
 
-                    <h5>Hệ thống 1.670 của hàng Bách hóa XANH</h5>
+                    <h5 style="color:white">Hệ thống 1.670 của hàng Bách hóa XANH</h5>
                     <br />
-                    <h5>5 cửa hàng mới khai trương</h5>
+                    <h5 style="color:white">5 cửa hàng mới khai trương</h5>
                     <br />
-                    <h5>9 cửa hàng sắp khai trương</h5>
+                    <h5 style="color:white">9 cửa hàng sắp khai trương</h5>
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
@@ -263,12 +263,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 w3_footer_grid">
                 <h3>Cam đoan</h3>
                 <ul class="w3_footer_grid_list">
-                    <h5>
+                    <h5 style="color:white">
                         Đặt online giao tận nhà ĐÚNG GIỜ
                         (nếu trễ đền 50.000₫)
                     </h5>
                     <br />
-                    <h5>Đổi trả trong vòng 7 ngày</h5>
+                    <h5 style="color:white">Đổi trả trong vòng 7 ngày</h5>
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
@@ -486,7 +486,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         password: $("#password").val()
                     };
                     $.ajax({
-                        url: '/DangNhap/DangNhap',
+                        url: '/Login/SignIn',
                         type: 'POST',
                         async: true,
                         data: form_data_login,
@@ -545,7 +545,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         SDT: $("#SDT1").val(),
                         Email: $("#email").val(),
                         MatKhau: $("#password1").val()
-                        NhapLaiMatKhau: $("#retypepassword").val(),
+                            NhapLaiMatKhau: $("#retypepassword").val(),
                     };
                     $.ajax({
                         url: '/User/DangKy',
