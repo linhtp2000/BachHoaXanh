@@ -46,21 +46,10 @@
                         AdminId = c.String(maxLength: 255),
                         UserId = c.String(maxLength: 255),
                         Salary = c.Double(nullable: false),
-                        Employee_Id = c.String(maxLength: 255),
-                        Employee_Id1 = c.String(maxLength: 255),
-                        Manage_Id = c.String(maxLength: 255),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Employees", t => t.AdminId)
-                .ForeignKey("dbo.Employees", t => t.Employee_Id)
-                .ForeignKey("dbo.Employees", t => t.Employee_Id1)
-                .ForeignKey("dbo.Employees", t => t.Manage_Id)
                 .ForeignKey("dbo.Users", t => t.UserId)
-                .Index(t => t.AdminId)
-                .Index(t => t.UserId)
-                .Index(t => t.Employee_Id)
-                .Index(t => t.Employee_Id1)
-                .Index(t => t.Manage_Id);
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Bills",
@@ -284,9 +273,6 @@
             DropForeignKey("dbo.User_Authorize", "UserId", "dbo.Users");
             DropForeignKey("dbo.User_Authorize", "Authorize_Id", "dbo.Authorizes");
             DropForeignKey("dbo.Employees", "UserId", "dbo.Users");
-            DropForeignKey("dbo.Employees", "Manage_Id", "dbo.Employees");
-            DropForeignKey("dbo.Employees", "Employee_Id1", "dbo.Employees");
-            DropForeignKey("dbo.Employees", "Employee_Id", "dbo.Employees");
             DropForeignKey("dbo.Branches", "Employee_Id", "dbo.Employees");
             DropForeignKey("dbo.Bills", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Ratings", "ProductId", "dbo.Products");
@@ -304,7 +290,6 @@
             DropForeignKey("dbo.Products", "BranchId", "dbo.Branches");
             DropForeignKey("dbo.Carts", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Bills", "CustomerId", "dbo.Customers");
-            DropForeignKey("dbo.Employees", "AdminId", "dbo.Employees");
             DropForeignKey("dbo.Branches", "AreaId", "dbo.Areas");
             DropIndex("dbo.WorkAts", new[] { "BranchId" });
             DropIndex("dbo.WorkAts", new[] { "EmployeeId" });
@@ -326,11 +311,7 @@
             DropIndex("dbo.Carts", new[] { "ProductId" });
             DropIndex("dbo.Bills", new[] { "EmployeeId" });
             DropIndex("dbo.Bills", new[] { "CustomerId" });
-            DropIndex("dbo.Employees", new[] { "Manage_Id" });
-            DropIndex("dbo.Employees", new[] { "Employee_Id1" });
-            DropIndex("dbo.Employees", new[] { "Employee_Id" });
             DropIndex("dbo.Employees", new[] { "UserId" });
-            DropIndex("dbo.Employees", new[] { "AdminId" });
             DropIndex("dbo.Branches", new[] { "Employee_Id" });
             DropIndex("dbo.Branches", new[] { "AreaId" });
             DropTable("dbo.WorkAts");

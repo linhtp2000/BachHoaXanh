@@ -11,13 +11,13 @@ namespace BachHoaXanh.Data.Services
     {
 
         List<Employee> employees;
-        public InMemoryEmployeeData()
-        {
-            employees = new List<Employee>()
-            {
-                new Employee{Id="NV01", Name="Linh", Password="123", ManagerId="NV01",AdminId="NV01",Salary=500000,Email="linh@gmailcom" }
-            };
-        }
+        //public InMemoryEmployeeData()
+        //{
+        //    employees = new List<Employee>()
+        //    {
+        //        new Employee{Id="NV01", Name="Linh", Password="123", ManagerId="NV01",AdminId="NV01",Salary=500000,Email="linh@gmailcom" }
+        //    };
+        //}
         public void Add(Employee employee)
         {
             employees.Add(employee);

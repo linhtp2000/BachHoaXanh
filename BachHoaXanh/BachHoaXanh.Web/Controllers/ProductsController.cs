@@ -127,5 +127,17 @@ namespace BachHoaXanh.Web.Controllers
             db.Delete(id);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ActionResult Drinks()
+        {
+           
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Vegetables_Fruits()
+        {
+
+            return View();
+        }
     }
 }
