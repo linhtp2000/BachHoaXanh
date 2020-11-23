@@ -183,9 +183,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202011210056479_InitialCreate.cs" />
-    <Compile Include="Migrations\202011210056479_InitialCreate.designer.cs">
-      <DependentUpon>202011210056479_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202011230437095_InitialCreate.cs" />
+    <Compile Include="Migrations\202011230437095_InitialCreate.designer.cs">
+      <DependentUpon>202011230437095_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Area.cs" />
@@ -286,8 +286,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011210056479_InitialCreate.resx">
-      <DependentUpon>202011210056479_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011230437095_InitialCreate.resx">
+      <DependentUpon>202011230437095_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

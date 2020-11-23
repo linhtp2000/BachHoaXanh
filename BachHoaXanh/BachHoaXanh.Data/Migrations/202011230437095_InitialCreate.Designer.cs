@@ -13,7 +13,7 @@ namespace BachHoaXanh.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202011210056479_InitialCreate"; }
+            get { return "202011230437095_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
