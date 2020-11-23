@@ -45,7 +45,7 @@ namespace BachHoaXanh.Web.Controllers
                            where u.Password  == matkhau && u.Email == sodienthoai //******DÒNG Email = sodienthoai NÀY DÙNG TẠM, CHƯA THÍCH HỢP
                            select u).SingleOrDefault();// FirstOrDefault();
                 if (us1 != null)
-                    return Content("/NhanViens/Index");  //******CHỖ NÀY CHƯA CHỈNH
+                    return Content("/Products/Drinks");  //******CHỖ NÀY CHƯA CHỈNH
             }
             return Content("false");
 
