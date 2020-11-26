@@ -23,7 +23,11 @@ namespace BachHoaXanh.Data.Models
         [MaxLength(255)]
         public string Details { get; set; }
         [MaxLength(255)]
-        public string Image { get; set; }
+        public string Image1 { get; set; }
+        [MaxLength(255)]
+        public string Image2 { get; set; }
+        [MaxLength(255)]
+        public string Image3 { get; set; }
         [MaxLength(255)]
        // [ForeignKey("Classify")]
         public string ClassifyId { get; set; }

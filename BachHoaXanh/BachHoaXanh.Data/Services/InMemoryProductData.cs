@@ -14,7 +14,7 @@ namespace BachHoaXanh.Data.Services
         {
             products = new List<Product>()
             {
-                new Product{Id="SP01", Name="Sua", Price=10000,Discount=0,Amount=100,Details="",BranchId="CN01N",ProviderId="NCC01",ClassifyId="NH01",Image="Hinh01" }
+               // new Product{Id="SP01", Name="Sua", Price=10000,Discount=0,Amount=100,Details="",BranchId="CN01N",ProviderId="NCC01",ClassifyId="NH01",Image="Hinh01" }
             };
         }
         public void Add(Product product)
@@ -34,7 +34,9 @@ namespace BachHoaXanh.Data.Services
                 existing.BranchId = product.BranchId;
                 existing.ProviderId = product.ProviderId;
                 existing.ClassifyId = product.ClassifyId;
-                existing.Image = product.Image;
+                existing.Image1 = product.Image1;
+                existing.Image2 = product.Image2;
+                existing.Image3 = product.Image3;
             }
         }
 

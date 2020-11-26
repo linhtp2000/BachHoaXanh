@@ -451,11 +451,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     @*@Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "frm-reg", @id = "email" } })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
                     <div>Mật Khẩu</div>
-                    <input type="text" class="frm-reg" name="password1" id="pasword1" />
+                    <input type="password" class="frm-reg" name="password1" id="pasword1" />
                     @*@Html.EditorFor(m => m.MatKhau, new { htmlAttributes = new { @class = "frm-reg", @id = "password", Type = "password" } })
                         @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })*@
                     <div>Nhập Lại mật Khẩu</div>
-                    <input type="text" class="frm-reg" name="retypepassword1" id="retypepassword" />
+                    <input type="password" class="frm-reg" name="retypepassword1" id="retypepassword" />
                     @*@Html.EditorFor(m => m.NhapLaiMatKhau, new { htmlAttributes = new { @class = "frm-reg", @id = "retypepassword", Type = "password" } })
                         @Html.ValidationMessageFor(m => m.NhapLaiMatKhau, "", new { @class = "text-danger" })*@
 
@@ -493,7 +493,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         success: function (msg_login) {
                             //alert(msg);
                             if (msg_login == 'false') {
-                                $('#err_login').html('<div class="alert alert-danger">Tên hoặc mật khẩu không chính xác</div>');
+                                $('#err_login').html('<div class="alert alert-danger">Số điện thoại hoặc mật khẩu không chính xác</div>');
                                 $("#password").val("");
                                 $("#password").focus();
                                 return false;
@@ -548,14 +548,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             NhapLaiMatKhau: $("#retypepassword").val(),
                     };
                     $.ajax({
-                        url: '/User/DangKy',
+                        url: '/Register/SignUp',
                         type: 'POST',
                         async: true,
                         data: form_data_login,
                         success: function (msg_login) {
                             //alert(msg);
                             if (msg_login == 'false') {
-                                $('#err_login').html('<div class="alert alert-danger">Tên hoặc mật khẩu không chính xác</div>');
+                                $('#err_login').html('<div class="alert alert-danger">Số điện thoại hoặc mật khẩu không hợp lệ</div>');
                                 $("#password1").val("");
                                 $("#password1").focus();
                                 return false;
@@ -567,7 +567,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 $("#login_here").hide();
                                 $(".modal-footer").hide();
 
-                                $('#err_login').html('<div class="alert alert-success"><strong>Đăng nhập thành công</strong><span> Hệ thống tự chuyển sau vài giây ...</span></div>');
+                                $('#err_login').html('<div class="alert alert-success"><strong>Đăng kí thành công</strong><span> Hệ thống tự chuyển sau vài giây ...</span></div>');
                                 setTimeout(
                                     //chuyển đến địa chỉ msg_login của controler gửi qua
                                     function () {

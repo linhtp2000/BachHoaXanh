@@ -199,6 +199,14 @@
     <Compile Include="Migrations\202011230700054_up2.designer.cs">
       <DependentUpon>202011230700054_up2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011250457190_ThemAnh.cs" />
+    <Compile Include="Migrations\202011250457190_ThemAnh.designer.cs">
+      <DependentUpon>202011250457190_ThemAnh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011261440573_upEmpBranch.cs" />
+    <Compile Include="Migrations\202011261440573_upEmpBranch.designer.cs">
+      <DependentUpon>202011261440573_upEmpBranch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Authorize.cs" />
@@ -309,6 +317,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011230700054_up2.resx">
       <DependentUpon>202011230700054_up2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011250457190_ThemAnh.resx">
+      <DependentUpon>202011250457190_ThemAnh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011261440573_upEmpBranch.resx">
+      <DependentUpon>202011261440573_upEmpBranch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

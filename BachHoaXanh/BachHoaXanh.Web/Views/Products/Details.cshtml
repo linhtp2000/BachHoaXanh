@@ -1,39 +1,8 @@
-﻿
-@*<h2>Details for @Html.DisplayFor(model => model.Name) </h2>
-
-    <div>
-        <h4>Products</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
-@model IEnumerable<BachHoaXanh.Data.Models.Product>
-
+﻿@model BachHoaXanh.Data.Models.Product
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Detail";
 }
 <link href="~/Content/css/style.css" rel="stylesheet" />
-
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
-
-@foreach (var item in Model)
-{
-    @Html.DisplayFor(modelItem => item.Id)
-    @*@Html.Partial("ProductSummary", item);*@
-}
 <!--CHI TIẾT SẢN PHẨM-->
 <!--
 Au<!--
@@ -132,43 +101,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="single-left">
                                 <div class="flexslider">
                                     <ul class="slides">
-                                        <li data-thumb="     ">
-                                            <div class="thumb-image"> <img src="~/Image/1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                                        <li data-thumb="@Url.Content(Model.Image1)">
+                                            <div class="thumb-image"> <img src="@Url.Content(Model.Image1)"  data-imagezoom="true" class="img-responsive"> </div>
                                         </li>
 
-                                        <li data-thumb="     ">
-                                            <div class="thumb-image"> <img src="    " data-imagezoom="true" class="img-responsive"> </div>
+                                        <li data-thumb="@Url.Content(Model.Image2)">
+                                            <div class="thumb-image"> <img src="@Url.Content(Model.Image2)"   data-imagezoom="true" class="img-responsive"> </div>
                                         </li>
-                                        <li data-thumb="      ">
-                                            <div class="thumb-image"> <img src="       " data-imagezoom="true" class="img-responsive"> </div>
+                                        <li data-thumb="@Url.Content(Model.Image3)">
+                                            <div class="thumb-image"> <img src="@Url.Content(Model.Image3)" data-imagezoom="true" class="img-responsive"> </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="single-right simpleCart_shelfItem">
-                                @foreach (var sp in Model)
-                                {
-                                    <h4>@sp.Name</h4>
-                                    <div class="block">
-                                        <div class="starbox small ghosting"> </div>
-                                    </div>
-                                    <p class="price item_price">$ 14.00</p>
-                                    <div class="description">
-                                        <p><span>Mô tả sản phẩm : </span>@sp.Details </p>
-                                    </div>
-                                    <div class="color-quality">
-                                        <h6>Số lượng:</h6>
-                                        <div class="quantity">
-                                            <div class="quantity-select">
-                                                <div class="entry value-minus1">&nbsp;</div>
-                                                <div class="entry value1"><span>1</span></div>
-                                                <div class="entry value-plus1 active">&nbsp;</div>
-                                                <br>
-                                                <div>Còn @sp.Amount sản phẩm</div>
-                                            </div>
+
+                                <h4> @Html.DisplayFor(model => model.Name)</h4>
+                                <div class="block">
+                                    <div class="starbox small ghosting"> </div>
+                                </div>
+                                <p class="price item_price">@Html.DisplayFor(model => model.Price)</p>
+                                <div class="description">
+                                    <p><span>Mô tả sản phẩm : </span>@Html.DisplayFor(model => model.Details) </p>
+                                </div>
+                                <div class="color-quality">
+                                    <h6>Số lượng:</h6>
+                                    <div class="quantity">
+                                        <div class="quantity-select">
+                                            <div class="entry value-minus1">&nbsp;</div>
+                                            <div class="entry value1"><span>1</span></div>
+                                            <div class="entry value-plus1 active">&nbsp;</div>
+                                            <br>
+                                            <div>Còn @Html.DisplayFor(model => model.Amount) sản phẩm</div>
                                         </div>
-                                        <!--quantity-->
-                                        <script>
+                                    </div>
+                                    <!--quantity-->
+                                    <script>
                                         $('.value-plus1').on('click', function () {
                                             var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) + 1;
                                             divUpd.text(newVal);
@@ -178,20 +146,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) - 1;
                                             if (newVal >= 1) divUpd.text(newVal);
                                         });
-                                        </script>
-                                        <!--quantity-->
-                                    </div>
-                                    <div class="women">
+                                    </script>
+                                    <!--quantity-->
+                                </div>
+                                <div class="women">
 
-                                        <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Thêm vào Giỏ hàng</a>
-                                    </div>
-                                    <div class="social-icon">
-                                        <a href="#"><i class="icon"></i></a>
-                                        <a href="#"><i class="icon1"></i></a>
-                                        <a href="#"><i class="icon2"></i></a>
-                                        <a href="#"><i class="icon3"></i></a>
-                                    </div>
-                                }
+                                    <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Thêm vào Giỏ hàng</a>
+                                </div>
+                                <div class="social-icon">
+                                    <a href="#"><i class="icon"></i></a>
+                                    <a href="#"><i class="icon1"></i></a>
+                                    <a href="#"><i class="icon2"></i></a>
+                                    <a href="#"><i class="icon3"></i></a>
+                                </div>
+
                             </div>
                             <div class="clearfix"> </div>
                         </div>

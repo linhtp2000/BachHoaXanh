@@ -380,4 +380,6 @@ D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.pdb
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.update1.resources
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.up2.resources
+D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.ThemAnh.resources
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache
+D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.upEmpBranch.resources
