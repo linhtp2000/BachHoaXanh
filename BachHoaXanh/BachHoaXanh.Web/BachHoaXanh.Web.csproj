@@ -765,10 +765,16 @@
     <Content Include="Views\Products\Vegetables_Fruits.cshtml" />
     <Content Include="Views\Products\Drinks.cshtml" />
     <Content Include="Views\Register\SignUpForEmp.cshtml" />
+    <Content Include="Views\Shared\_ManagerOrEmployee.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ListEmployee.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Authorize\" />
     <Folder Include="Views\Classify\" />
     <Folder Include="Views\Employee\" />

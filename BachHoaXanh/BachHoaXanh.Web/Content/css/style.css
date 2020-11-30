@@ -21,7 +21,7 @@ p {
 h1, h2, h3, h4, h5, h6, a {
     font-family: 'Ubuntu', sans-serif !important;
     margin: 0;
-    color: #fff;
+    /*color: #fff;*/
 }
 
 ul, label {
@@ -47,7 +47,7 @@ span.glyphicon.glyphicon-shopping-cart.my-cart-icon.my-cart-icon-affix {
 }
 
 .btn-danger {
-    color: #fff;
+    /*color: #fff;*/
     background-color: #FA1818;
     border-color: #FA1818;
 }
