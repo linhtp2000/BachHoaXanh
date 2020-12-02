@@ -757,3 +757,7 @@ D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.W
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.Web.csproj.CopyComplete
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.Web.dll
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.Web.pdb
+D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\bin\PagedList.dll
+D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\bin\PagedList.Mvc.dll
+D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\bin\PagedList.xml
+D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Web\bin\PagedList.Mvc.xml

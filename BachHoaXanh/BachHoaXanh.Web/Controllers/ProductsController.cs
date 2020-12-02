@@ -11,16 +11,50 @@ namespace BachHoaXanh.Web.Controllers
     public class ProductsController : Controller
     {
         //GET: Products
+        public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
         private readonly IProductData db;
        
         public ProductsController(IProductData db)
         {
             this.db = db;
         }
-        [HttpGet]
-        public ActionResult Index()
+     //   private readonly IClassifyData cdb;
+      
+        // GET: Classify
+        public ActionResult Category()
         {
-            var model = db.GetAll();
+            var model = from category in bhx.Categories
+                        select category;
+            //ViewBag.danhmuc = model;
+            return View("_Category",model);
+        }
+        public ActionResult Classify(string CategoryID)
+        {
+            var model = from classify in bhx.Classifys
+                        where classify.CategoryId == CategoryID
+                        select classify;
+            ViewBag.classify = model;
+            if (model != null)
+                return View("DanhMuc_NhomHang", model);
+            else
+                return View("DanhMuc_NhomHang", model);
+        }
+        //public ActionResult GetAbout(string id)
+        //{
+        //    var model = db.Get(id);
+        //    return View("Index");
+        //}
+
+        [HttpGet]
+        public ActionResult Index(string id)
+        {
+            var model = from sp in bhx.Products
+                        where sp.ClassifyId == id
+                        select sp;
+            var tinhtien = from sp in bhx.Products
+                           where sp.ClassifyId == id
+                           select sp.Discount;
+
             return View(model);
         }
         [HttpGet]

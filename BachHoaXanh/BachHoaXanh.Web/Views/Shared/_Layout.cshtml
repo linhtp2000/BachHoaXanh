@@ -1,4 +1,5 @@
 ﻿@*@model BachHoaXanh.Data.Models.Category*@
+@*@model IEnumerable<BachHoaXanh.Data.Models.Category>*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="logo_products">
         <div class="container">
             <div class="w3ls_logo_products_left">
-                <h1><a href="index.html"><span>Bách hóa</span> XANH</a></h1>
+                <h1><a href="/Main/Index"><span>Bách hóa</span> XANH</a></h1>
             </div>
             <div class="w3ls_logo_products_left1">
                 <ul class="special_items">
@@ -143,56 +144,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span class="icon-bar"></span>
                     </button>
                 </div>
+                <!--THANH DANH MỤC GÓC BÊN TRÁI TRANG CHỦ-->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                    @*<ul class="nav navbar-nav nav_1">*@
+                        @Html.Action("Category", "Classify")
+                        @*<li><a href="household.html">Households</a></li>*@
+                        @*<li class="dropdown mega-dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">;<span class="caret"></span></a>
+                            <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                                <div class="w3ls_vegetables">
+                                    <ul>
+                                        @Html.Action("Classify", "Classify");
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>*@
+
+                    @*</ul>*@
                     @*<ul class="nav navbar-nav nav_1">
-                            <li><a href="products.html">Branded Foods</a></li>
-                            <li><a href="household.html">Households</a></li>
-                            <li class="dropdown mega-dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>
-                                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                    <div class="w3ls_vegetables">
-                                        <ul>
-                                            <li><a href="vegetables.html">Vegetables</a></li>
-                                            <li><a href="vegetables.html">Fruits</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="kitchen.html">Kitchen</a></li>
-                            <li><a href="short-codes.html">Short Codes</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<span class="caret"></span></a>
-                                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                    <div class="w3ls_vegetables">
-                                        <ul>
-                                            <li><a href="drinks.html">Soft Drinks</a></li>
-                                            <li><a href="drinks.html">Juices</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="pet.html">Pet Food</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
-                                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                    <div class="w3ls_vegetables">
-                                        <ul>
-                                            <li><a href="frozen.html">Frozen Snacks</a></li>
-                                            <li><a href="frozen.html">Frozen Nonveg</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="bread.html">Bread & Bakery</a></li>
-                        </ul>*@
-                    <ul class="nav navbar-nav nav_1">
-                        <!--THANH DANH MỤC GÓC BÊN TRÁI TRANG CHỦ-->
-                        @*@foreach (var sp in ViewBag.danhmuc)
-                            {
-                                <li><a href="">@sp.TenDM</a></li>}*@
-                    </ul>
-                </div><!-- /.navbar-collapse -->
+                        @Html.Action("Category", "Classify");
+
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu" style="display: none;">
+                            <div class="w3ls_vegetables">
+                                <ul>
+                                    @Html.Action("Classify", "Classify");
+
+                                </ul>
+                            </div>
+                        </div>
+                      </ul>*@
+                       
+                </div>              <!-- /.navbar-collapse -->
             </nav>
         </div>
         <div class="w3l_banner_nav_right">
@@ -545,7 +528,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         SDT: $("#SDT1").val(),
                         Email: $("#email").val(),
                         MatKhau: $("#password1").val()
-                            NhapLaiMatKhau: $("#retypepassword").val(),
+                                NhapLaiMatKhau: $("#retypepassword").val(),
                     };
                     $.ajax({
                         url: '/Register/SignUp',

@@ -47,7 +47,7 @@
                                 <figure>
                                     <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
                                         <div class="grid-img">
-                                            <img src="images/p6.jpg" class="img-responsive" alt="">
+                                            <img src="@Url.Content(item.Image1)" class="img-responsive" alt="">
                                         </div>
                                         <div class="grid-img">
                                             <img src="images/p5.jpg" class="img-responsive" alt="">
@@ -65,7 +65,7 @@
                             <h6><a href="Details.html">@Html.DisplayFor(modelItem => item.Name)</a></h6>
                             <span class="size">XL / XXL / S </span>
 
-                            <p><del>@Html.DisplayFor(modelItem => item.Price)</del><em class="item_price"> @Html.DisplayFor(modelItem => item.Discount)</em></p>
+                            <p><del>@Html.DisplayFor(modelItem => item.Price)</del><em class="item_price"> @Html.DisplayFor(modelItem => item.Discount) </em></p>
                             <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
                         </div>
                                 @*@Html.DisplayFor(modelItem => item.Id)*@
