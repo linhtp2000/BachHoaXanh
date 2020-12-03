@@ -1,0 +1,522 @@
+﻿
+@{
+    Layout = null;
+}
+
+@*@model BachHoaXanh.Data.Models.Category*@
+@*@model IEnumerable<BachHoaXanh.Data.Models.Category>*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>*@
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/easy-responsive-tabs.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Bách Hóa Xanh - Bạn của mọi nhà:: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Grocery Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- font-awesome icons -->
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="~/Content/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Content/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Content/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+</head>
+
+<body>
+    <!-- header -->
+    <div class="agileits_header">
+        <div class="w3l_offers">
+            <a href="products.html">Today's special Offers !</a>
+        </div>
+        <div class="w3l_search">
+            <form action="#" method="post">
+                <input type="text" name="Product" value="Bạn cần tìm gì..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
+                <input type="submit" value="TÌM">
+            </form>
+        </div>
+        <div class="product_list_header">
+            <form action="#" method="post" class="last">
+                <fieldset>
+                    <input type="hidden" name="cmd" value="_cart" />
+                    <input type="hidden" name="display" value="1" />
+                    <input type="submit" name="submit" value="Giỏ hàng" class="button" />
+                </fieldset>
+            </form>
+        </div>
+        <div class="w3l_header_right">
+            <ul>
+                <li class="dropdown profile_details_drop">
+                    <a href=" " class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="caret"></span>
+                    </a>
+
+                    <div class="mega-dropdown-menu">
+                        <div class="w3ls_vegetables">
+                            <ul class="dropdown-menu drp-mnu">
+                                @*<li><a href="login.html">Login</a></li>*@
+                                <li><a data-toggle="modal" href="#dang_nhap"> Đăng nhập</a></li>
+                                <li> <a data-toggle="modal" href="#dang_ky">Đăng Ký</a></li>
+                                @*<li><a href="login.html">Sign Up</a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="w3l_header_right1">
+            <h2><a href="mail.html">Đơn hàng của bạn</a></h2>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <!-- script-for sticky-nav -->
+    <script>
+        $(document).ready(function () {
+            var navoffeset = $(".agileits_header").offset().top;
+            $(window).scroll(function () {
+                var scrollpos = $(window).scrollTop();
+                if (scrollpos >= navoffeset) {
+                    $(".agileits_header").addClass("fixed");
+                } else {
+                    $(".agileits_header").removeClass("fixed");
+                }
+            });
+
+        });
+    </script>
+    <!-- //script-for sticky-nav -->
+    <div class="logo_products">
+        <div class="container">
+            <div class="w3ls_logo_products_left">
+                <h1><a href="/Main/Index"><span>Bách hóa</span> XANH</a></h1>
+            </div>
+            <div class="w3ls_logo_products_left1">
+                <ul class="special_items">
+                    <li><a href="events.html">Sự kiện</a><i>/</i></li>
+                    <li><a href="products.html">Deals sốc</a><i>/</i></li>
+                    <li><a href="services.html">Dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="w3ls_logo_products_left1">
+                <ul class="phone_email">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i> 028.3622.9900 (7:00 - 21:30)</li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">bachhoaxanh@grocery.com</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>    
+    <div class="privacy about">
+        <h3>Quản lý <span>Đơn hàng</span></h3>
+
+        <div class="checkout-right">
+            <!--Horizontal Tab-->
+            <div id="parentHorizontalTab" style="display: block; width: 100%; margin: 0px;">               
+                      @RenderBody()
+            </div>
+
+            <!--Plug-in Initialisation-->
+            <!-- // Pay -->
+
+        </div>
+
+    </div>
+    <div class="newsletter">
+        <div class="container">
+            <div class="w3agile_newsletter_left">
+                <h3>sign up for our newsletter</h3>
+            </div>
+            <div class="w3agile_newsletter_right">
+                <form action="#" method="post">
+                    <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                    <input type="submit" value="subscribe now">
+                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //newsletter -->
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-3 w3_footer_grid">
+                <h3>Thông tin cửa hàng</h3>
+                <ul class="w3_footer_grid_list">
+
+                    <h5 style="color:white">Hệ thống 1.670 của hàng Bách hóa XANH</h5>
+                    <br />
+                    <h5 style="color:white">5 cửa hàng mới khai trương</h5>
+                    <br />
+                    <h5 style="color:white">9 cửa hàng sắp khai trương</h5>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>Chính sách</h3>
+                <ul class="w3_footer_grid_list">
+                    <li><a href="faqs.html">Giao hàng</a></li>
+                    <li><a href="privacy.html">Đổi trả</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>Cam đoan</h3>
+                <ul class="w3_footer_grid_list">
+                    <h5 style="color:white">
+                        Đặt online giao tận nhà ĐÚNG GIỜ
+                        (nếu trễ đền 50.000₫)
+                    </h5>
+                    <br />
+                    <h5 style="color:white">Đổi trả trong vòng 7 ngày</h5>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>twitter posts</h3>
+                <ul class="w3_footer_grid_list1">
+                    <li>
+                        <label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>
+                            Non numquam <a href="#">http://sd.ds/13jklf#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://sd.ds/1389kjklf#</a>quo nulla.
+                        </span>
+                    </li>
+                    <li>
+                        <label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>
+                            Con numquam <a href="#">http://fd.uf/56hfg#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://fd.uf/56hfg#</a>quo nulla.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+            <div class="agile_footer_grids">
+                <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                    <div class="w3_footer_grid_bottom">
+                        <h4>100% secure payments</h4>
+                        <img src="images/card.png" alt=" " class="img-responsive" />
+                    </div>
+                </div>
+                <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                    <div class="w3_footer_grid_bottom">
+                        <h5>connect with us</h5>
+                        <ul class="agileits_social_icons">
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="wthree_footer_copy">
+                <p>© 2016 Grocery Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <script src="~/Content/js/minicart.js"></script>
+    <script>
+        paypal.minicart.render();
+
+        paypal.minicart.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
+
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
+
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
+
+    </script>
+    <!-- ############################ Đăng nhập ############################## -->
+    <div class="modal fade" id="dang_nhap">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 style="float:right; color:black" class="modal-title">Đăng nhập</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                </div>
+                @Html.ValidationSummary(true)
+                <form method="post" action="/Login/SignIn" id="frm-login">
+                    <div class="modal-body">
+                        <div id="err_login"></div>
+                        <div id="login_here">
+                            <div>Số điện thoại</div>
+                            <input type="text" class="frm-login" name="SDT" id="SDT" />
+                            @*@Html.EditorFor(m => m.SDT, new { htmlAttributes = new { @class = "frm-login", @id = "SDT" } })
+                                @Html.ValidationMessageFor(m => m.SDT, "", new { @class = "text-danger", @id = "SDT" })*@
+                            <div>Mật khẩu</div>
+                            <input type="password" class="frm-login" name="password" id="password" />
+                            @*@Html.EditorFor(m => m.MatKhau, new { htmlAttributes = new { @class = "frm-login", @id = "MatKhau", Type = "password" } })
+                                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger", @id = "MatKhau" })*@
+                            @*<label>Số điện thoại : </label>
+                                <input type="text" class="form-control" name="SDT" id="SDT" />
+                                <label>Mật Khẩu: </label>
+                                <input type="password" class="form-control" name="MatKhau" id="MatKhau" />*@
+                            <br />
+                            <a href="/Home/QuenMatKhau" class="text-danger">Quên mật khẩu</a>
+                        </div>
+                        <br />
+                        <div id="waiting" style="display: none;">
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="login_btn">Đăng nhập</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    @*DANG KY*@
+    <div class="modal fade" id="dang_ky">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="float:right; color:black">Đăng ký</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                </div>
+                @Html.ValidationSummary(true)
+                <form action="/Register/SignUp" method="post" id="frm-reg">
+                    @*class="form" role="form">*@
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div> Họ và tên </div>
+                            <input type="text" class="frm-reg" name="name" id="name" />
+                            @*@Html.EditorFor(m => m.HoTen, new { htmlAttributes = new { @class = "frm-reg", @id = "name" } })
+                                @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })*@
+
+                        </div>
+
+                        <div class="col-xs-6 col-md-6">
+                            <div>Số điện thoại</div>
+                            <input type="text" class="frm-reg" name="SDT1" id="SDT1" />
+                            @*@Html.EditorFor(m => m.SDT, new { htmlAttributes = new { @class = "frm-reg", @id = "SDT" } })
+                                @Html.ValidationMessageFor(m => m.SDT, "", new { @class = "text-danger" })*@
+
+                        </div>
+                    </div>
+                    <div>Email</div>
+                    <input type="text" class="frm-reg" name="email" id="email" />
+                    @*@Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "frm-reg", @id = "email" } })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+                    <div>Mật Khẩu</div>
+                    <input type="password" class="frm-reg" name="password1" id="pasword1" />
+                    @*@Html.EditorFor(m => m.MatKhau, new { htmlAttributes = new { @class = "frm-reg", @id = "password", Type = "password" } })
+                        @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })*@
+                    <div>Nhập Lại mật Khẩu</div>
+                    <input type="password" class="frm-reg" name="retypepassword1" id="retypepassword" />
+                    @*@Html.EditorFor(m => m.NhapLaiMatKhau, new { htmlAttributes = new { @class = "frm-reg", @id = "retypepassword", Type = "password" } })
+                        @Html.ValidationMessageFor(m => m.NhapLaiMatKhau, "", new { @class = "text-danger" })*@
+
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit"> Đăng ký</button>
+                </form>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- ===================================Ajax Login=========================-->
+    <script>
+        $(document).ready(function () {
+            $("#frm-login").submit(function (e) {
+                if ($("#SDT").val() == '') {
+                    $('#err_login').html('<div class="alert alert-danger">Số điện thoại chưa nhập</div>');
+                    $("#SDT").focus();
+                    return false;
+                }
+                else if ($("#password").val() == '') {
+                    $('#err_login').html('<div class="alert alert-danger">Password chưa nhập</div>');
+                    $("#password").focus();
+                    return false;
+                }
+                else {
+                    var form_data_login = {
+                        SDT: $("#SDT").val(),
+                        password: $("#password").val()
+                    };
+                    $.ajax({
+                        url: '/Login/SignIn',
+                        type: 'POST',
+                        async: true,
+                        data: form_data_login,
+                        success: function (msg_login) {
+                            //alert(msg);
+                            if (msg_login == 'false') {
+                                $('#err_login').html('<div class="alert alert-danger">Số điện thoại hoặc mật khẩu không chính xác</div>');
+                                $("#password").val("");
+                                $("#password").focus();
+                                return false;
+                            }
+                            else if (msg_login == 'er_block') {
+                                $('#err_login').html('<div class="alert alert-danger">Tài khoản đang bị khóa</div>');
+                            }
+                            else {
+                                $("#login_here").hide();
+                                $(".modal-footer").hide();
+
+                                $('#err_login').html('<div class="alert alert-success"><strong>Đăng nhập thành công</strong><span> Hệ thống tự chuyển sau vài giây ...</span></div>');
+                                setTimeout(
+                                    //chuyển đến địa chỉ msg_login của controler gửi qua
+                                    function () {
+                                        window.location.href = '' + msg_login + '';
+                                    }, 2000);
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        })
+        //Load wating bar
+        $(document).ajaxStart(function () {
+            $("#waiting").show();
+        }).ajaxStop(function () {
+            $("#waiting").hide();
+        });
+    </script>
+    <!--DANG KY-->
+    <script>
+        $(document).ready(function () {
+            $("#frm-reg").submit(function (e) {
+                if ($("#SDT1").val() == '') {
+                    $('#err_login').html('<div class="alert alert-danger">SDT chưa nhập</div>');
+                    $("#SDT1").focus();
+                    return false;
+                }
+                else if ($("#password").val() == '') {
+                    $('#err_login').html('<div class="alert alert-danger">Password chưa nhập</div>');
+                    $("#password1").focus();
+                    return false;
+                }
+                else {
+                    var form_data_login = {
+                        HoTen: $("#name").val(),
+                        SDT: $("#SDT1").val(),
+                        Email: $("#email").val(),
+                        MatKhau: $("#password1").val()
+                                    NhapLaiMatKhau: $("#retypepassword").val(),
+                    };
+                    $.ajax({
+                        url: '/Register/SignUp',
+                        type: 'POST',
+                        async: true,
+                        data: form_data_login,
+                        success: function (msg_login) {
+                            //alert(msg);
+                            if (msg_login == 'false') {
+                                $('#err_login').html('<div class="alert alert-danger">Số điện thoại hoặc mật khẩu không hợp lệ</div>');
+                                $("#password1").val("");
+                                $("#password1").focus();
+                                return false;
+                            }
+                            else if (msg_login == 'er_block') {
+                                $('#err_login').html('<div class="alert alert-danger">Tài khoản đang bị khóa</div>');
+                            }
+                            else {
+                                $("#login_here").hide();
+                                $(".modal-footer").hide();
+
+                                $('#err_login').html('<div class="alert alert-success"><strong>Đăng kí thành công</strong><span> Hệ thống tự chuyển sau vài giây ...</span></div>');
+                                setTimeout(
+                                    //chuyển đến địa chỉ msg_login của controler gửi qua
+                                    function () {
+                                        window.location.href = '' + msg_login + '';
+                                    }, 2000);
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        })
+        //Load wating bar
+        $(document).ajaxStart(function () {
+            $("#waiting").show();
+        }).ajaxStop(function () {
+            $("#waiting").hide();
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryvalidate")
+</body>
+</html>
+

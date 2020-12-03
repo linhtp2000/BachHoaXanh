@@ -213,6 +213,10 @@
     <Compile Include="Migrations\202011261440573_upEmpBranch.designer.cs">
       <DependentUpon>202011261440573_upEmpBranch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012021445174_upstatus.cs" />
+    <Compile Include="Migrations\202012021445174_upstatus.designer.cs">
+      <DependentUpon>202012021445174_upstatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Authorize.cs" />
@@ -338,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011261440573_upEmpBranch.resx">
       <DependentUpon>202011261440573_upEmpBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012021445174_upstatus.resx">
+      <DependentUpon>202012021445174_upstatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

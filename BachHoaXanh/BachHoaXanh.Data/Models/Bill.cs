@@ -25,8 +25,8 @@ namespace BachHoaXanh.Data.Models
         public virtual Employee Employee { get; set; }
         public double Price { get; set; }
         public int Points { get; set; }
-
-       // public virtual List<DetailsOfBill> DetailsOfBill { get; set; }
+        public string Status { get; set; }
+        // public virtual List<DetailsOfBill> DetailsOfBill { get; set; }
         public virtual ICollection<DetailsOfBill> DetailsOfBill { get; set; }
     }
 }

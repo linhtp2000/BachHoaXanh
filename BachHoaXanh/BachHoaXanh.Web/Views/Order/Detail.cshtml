@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BachHoaXanh.Data.Models.DetailsOfBill>
+@*@model IEnumerable<BachHoaXanh.Data.Models.Product>*@
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_ManagerOrder.cshtml";
+}
+
+<h2>Detail</h2>
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<link href="~/Content/css/easy-responsive-tabs.css" rel="stylesheet" />
+<link href="~/Content/web/css/style.css" rel="stylesheet" />
+<table class="table">
+    <tr>
+        <th>
+            BillId
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            ProductId
+        </th>
+        <th>
+            Tên Sản Phẩm
+        </th>
+        <th> Ảnh</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Id)*@
+                @Html.DisplayFor(modelItem => item.BillId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.BranchId)*@
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @*<img src="@Url.Content(item.Image1)"> Hình*@
+                @*@Html.Action("PictureProduct","Order")*@ @*Partial("PictureProduct", item)*@;
+                @*@ViewBag.PictureProduct*@
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+
+            </td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Back to List", "Declined")

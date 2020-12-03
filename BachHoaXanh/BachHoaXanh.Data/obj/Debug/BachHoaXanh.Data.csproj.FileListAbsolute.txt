@@ -386,4 +386,5 @@ D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\PagedList.dl
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\PagedList.Mvc.dll
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\PagedList.xml
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\PagedList.Mvc.xml
+D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.upstatus.resources
 D:\ĐỒ ÁN WEB\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache

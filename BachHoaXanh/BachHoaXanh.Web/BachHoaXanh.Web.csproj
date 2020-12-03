@@ -294,6 +294,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -782,6 +783,11 @@
     <Content Include="Views\Shared\DanhMuc_NhomHang.cshtml" />
     <Content Include="Views\Shared\_Category.cshtml" />
     <Content Include="Views\Classify\Classify.cshtml" />
+    <Content Include="Views\Shared\_ManagerOrder.cshtml" />
+    <Content Include="Views\Order\Deliveried.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="Views\Order\Declined.cshtml" />
+    <Content Include="Views\Order\PictureProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
