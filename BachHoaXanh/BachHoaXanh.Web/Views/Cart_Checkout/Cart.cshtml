@@ -1,0 +1,151 @@
+﻿@model IEnumerable<BachHoaXanh.Data.Models.Cart>
+
+@{
+    ViewBag.Title = "Cart";
+    decimal TotalAmount = 0;
+    int stt = 1;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using BachHoaXanh.Data.Models
+
+@*<script>
+        paypal.minicart.render();
+
+        paypal.minicart.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
+
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
+
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
+
+    </script>*@
+
+<div class="privacy about">
+    <h3>Ca<span>rt</span></h3>
+
+    <div class="cart-right">
+        @*<h4>Your shopping cart contains: <span></span></h4>*@
+        <table class="timetable_sub">
+            <thead>
+                <tr>
+                    <th>SL No.</th>
+                    <th>Product</th>
+                    <th>Quality</th>
+                    <th>Product Name</th>
+
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+
+                @foreach (Cart item in Model)
+                    {
+                        TotalAmount += (item.Amount * item.Price);
+                <tbody>
+                    <tr class="rem">
+                        <td class="invert">@stt++</td>
+                        <td class="invert-image"><a href="single.html"><img src="@item.Image" />alt=" " class="img-responsive"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>@item.Amount</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">@item.ProductName</td>
+
+                        <td class="invert">@item.Amount*@item.Price</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close"> </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    @*<tr class="rem2">
+                        <td class="invert">2</td>
+                        <td class="invert-image"><a href="single.html"><img src="images/3.png" alt=" " class="img-responsive"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>1</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">Basmati Rise (5 Kg)</td>
+
+                        <td class="invert">$250.00</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close2"> </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr class="rem3">
+                        <td class="invert">3</td>
+                        <td class="invert-image"><a href="single.html"><img src="images/2.png" alt=" " class="img-responsive"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>1</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">Pepsi Soft Drink (2 Ltr)</td>
+
+                        <td class="invert">$15.00</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close3"> </div>
+                            </div>
+
+                        </td>
+                    </tr>*@
+
+                </tbody>
+            }
+
+                @*}*@
+            </table>
+            @foreach (Cart item in Model)
+            {
+                TotalAmount -= item.Product.Price * item.Product.Discount;
+                <div class="col-md-4 checkout-left-basket">
+                    <h4>Continue to basket</h4>
+                    <ul>
+                        <li>@item.ProductName <i>-</i> <span>@item.Product.Price*@item.Product.Discount </span></li>
+                    </ul>
+                </div>
+            }
+            @*<li>Total <i>-</i> <span>$84.00</span></li>*@
+            <tr style="border-top: 2px solid maroon">
+                <td colspan=" 4" style=" text-align: right">
+                    <h3>Total</h3>
+                </td>
+                <td style=" text-align:right">
+                    <h3>@TotalAmount</h3>
+                </td>
+
+            </tr>
+
+
+        </div>
+
+</div>
+

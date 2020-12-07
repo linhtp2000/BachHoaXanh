@@ -15,13 +15,13 @@
 <!--Horizontal Tab-->
 <div id="parentHorizontalTab" style="display: block; width: 100%; margin: 0px;">
     <ul class="resp-tabs-list hor_1">
-        <li class="resp-tab-item hor_1 " aria-controls="hor_1_tab_item-0" role="tab" style="background-color: rgb(245, 245, 245);">Tất cả các đơn</li>
-        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-1" role="tab" style="background-color: rgb(245, 245, 245);">Chờ xác nhận</li>
-        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-2" role="tab" style="background-color: rgb(245, 245, 245); ">Chờ lấy hàng</li>
-        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-3" role="tab" style="background-color: rgb(245, 245, 245);">Đang giao</li>
+        <li class="resp-tab-item hor_1 " aria-controls="hor_1_tab_item-0" role="tab" style="background-color: rgb(245, 245, 245);"><a href="/Order/AllOfBills">Tất cả các đơn</a></li>
+        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-1" role="tab" style="background-color: rgb(245, 245, 245);"><a href="/Order/Confirm">Chờ xác nhận</a></li>
+        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-2" role="tab" style="background-color: rgb(245, 245, 245); "><a href="/Order/Prepair">Chờ lấy hàng</a></li>
+        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-3" role="tab" style="background-color: rgb(245, 245, 245);"><a href="/Order/Delivering">Đang giao</a></li>
         <li class="resp-tab-item hor_1 resp-tab-content-active" aria-controls="hor_1_tab_item-4" role="tab" style="background-color: white; border-color: rgb(193, 193, 193);"><a href="/Order/Deliveried">Đã giao</a></li>
         <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-5" role="tab" style="background-color: rgb(245, 245, 245);"><a href="/Order/Declined">Đã hủy</a></li>
-        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-6" role="tab" style="background-color: rgb(245, 245, 245);"><a href="/Order/BackMoney">Hoàn tiền/Trả hàng</a></li>
+        <li class="resp-tab-item hor_1" aria-controls="hor_1_tab_item-6" role="tab" style="background-color: rgb(245, 245, 245);"><a href="/Order/Payment_Refund">Hoàn tiền/Trả hàng</a></li>
         
     </ul>
     <div class="resp-tabs-container hor_1" style="border-color: rgb(193, 193, 193);">
@@ -39,15 +39,12 @@
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.CustomerId)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.EmployeeId)
-                        </th>
+                        </th>                       
                         <th>
                             @Html.DisplayNameFor(model => model.Datetime)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Price)
+                            @Html.DisplayNameFor(model => model.Total)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Points)
@@ -60,14 +57,12 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.CustomerId)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EmployeeId)
-                            </td>
+                           
                             <td>
                                 @Html.DisplayFor(modelItem => item.Datetime)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Price)
+                                @Html.DisplayFor(modelItem => item.Total)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Points)

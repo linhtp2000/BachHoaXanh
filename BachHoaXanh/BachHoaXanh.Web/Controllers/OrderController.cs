@@ -12,20 +12,44 @@ namespace BachHoaXanh.Web.Controllers
         BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
         private readonly IBillData dbBill;
         private readonly IDetailsOfBillData dbDetail;
+ 
         public OrderController(IDetailsOfBillData db)
         {
             this.dbDetail = db;
         }
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Confirm()
         {
-            return View();
+            var model = from bill in bhx.Bills
+                        where bill.Status == "Confirm"
+                        select bill;
+            return View(model);          
+        }
+        public ActionResult AllOfBills()
+        {
+            var model = from bill in bhx.Bills                       
+                        select bill;
+            return View(model);
+        }
+        public ActionResult Prepare()
+        {
+            var model = from bill in bhx.Bills
+                        where bill.Status == "Prepare"
+                        select bill;
+            return View(model);
+        }
+        public ActionResult Delivering()
+        {
+            var model = from bill in bhx.Bills
+                        where bill.Status == "Delivering"
+                        select bill;
+            return View(model);
         }
         public ActionResult Deliveried()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Dagiao"
-                       select bill;
+                        where bill.Status == "Deliveried"
+                        select bill;
             return View(model);
         }
         [HttpGet]
@@ -56,15 +80,15 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Declined ()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Dahuy"
+                        where bill.Status == "Declined"
                         select bill;
             return View(model);
         }
 
-        public ActionResult BackMoney()
+        public ActionResult Payment_Refund()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Hoantien"
+                        where bill.Status == "Payment" || bill.Status == "Refund"
                         select bill;
             return View(model);
         }

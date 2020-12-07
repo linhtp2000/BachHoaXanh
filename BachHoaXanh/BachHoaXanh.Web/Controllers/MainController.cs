@@ -13,25 +13,6 @@ namespace BachHoaXanh.Web.Controllers
         {
             return View();
         }
-        public ActionResult Milks()
-        {
-            return View();
-        }
-        public ActionResult Snacks()
-        {
-            return View();
-        }
-        public ActionResult Noodles()
-        {
-            return View();
-        }
-        public ActionResult Spices()
-        {
-            return View();
-        }
-        //public ActionResult Spices()
-        //{
-        //    return View();
-        //}
+       
     }
 }

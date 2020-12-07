@@ -23,14 +23,14 @@ namespace BachHoaXanh.Data.Services
         }
         public void Delete(string user, string auth)
         {
-            var user_auth = db.User_Authorizes.SingleOrDefault(r => (r.UserId == user && r.AuthId == auth));
+            var user_auth = db.User_Authorizes.SingleOrDefault(r => (r.UserId == user && r.AuthorizeId == auth));
             db.User_Authorizes.Remove(user_auth);
             db.SaveChanges();
         }
 
         public User_Authorize Get(string user, string auth)
         {
-            return  db.User_Authorizes.SingleOrDefault(r => (r.UserId == user && r.AuthId == auth));
+            return  db.User_Authorizes.SingleOrDefault(r => (r.UserId == user && r.AuthorizeId== auth));
         }
 
         //public IEnumerable<Invoice> GetAll()

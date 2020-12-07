@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BachHoaXanh.Data.Models
 {
@@ -17,16 +18,16 @@ namespace BachHoaXanh.Data.Models
         public string Id { get; set; }
         [MaxLength(255)]
         public string Name { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public int Discount { get; set; }
         public int Amount { get; set; }
         [MaxLength(255)]
         public string Details { get; set; }
-        [MaxLength(255)]
+       // [NotMapped]
         public string Image1 { get; set; }
-        [MaxLength(255)]
+       // [NotMapped]
         public string Image2 { get; set; }
-        [MaxLength(255)]
+       // [NotMapped]
         public string Image3 { get; set; }
         [MaxLength(255)]
        // [ForeignKey("Classify")]
@@ -35,7 +36,7 @@ namespace BachHoaXanh.Data.Models
         [MaxLength(255)]
       //  [ForeignKey("Branch")]
         public string BranchId { get; set; }
-        public virtual Branch Branch { get; set; }
+       // public virtual Branch Branch { get; set; }
         [MaxLength(255)]
       //  [ForeignKey("Provider")]
         public string ProviderId { get; set; }

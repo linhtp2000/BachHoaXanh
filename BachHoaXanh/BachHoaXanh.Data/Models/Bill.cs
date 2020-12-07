@@ -20,10 +20,12 @@ namespace BachHoaXanh.Data.Models
         public string CustomerId { get; set; }
         public virtual Customer Customers { get; set; }
         [MaxLength(255)]
-      //  [ForeignKey("Employee")]
-        public string EmployeeId { get; set; }
-        public virtual Employee Employee { get; set; }
-        public double Price { get; set; }
+        //  [ForeignKey("Employee")]
+        public string CustomerName { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public decimal ServiceCharge { get; set; }
+        public decimal Total { get; set; }
         public int Points { get; set; }
         public string Status { get; set; }
         // public virtual List<DetailsOfBill> DetailsOfBill { get; set; }

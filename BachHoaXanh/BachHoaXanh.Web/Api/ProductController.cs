@@ -22,7 +22,7 @@ namespace BachHoaXanh.Web.Api
                 return model;
             }
         [HttpPut]
-        public bool UpdateProduct(string id, string name, double price, int discount, int amount)
+        public bool UpdateProduct(string id, string name, decimal price, int discount, int amount)
         {
             try
             {

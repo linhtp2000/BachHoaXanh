@@ -9,8 +9,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
             ContextKey = "BachHoaXanh.Data.Services.BachHoaXanhDbContext";
         }
 

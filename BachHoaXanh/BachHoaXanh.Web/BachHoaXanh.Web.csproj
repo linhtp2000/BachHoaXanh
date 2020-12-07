@@ -289,6 +289,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Cart_CheckoutController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ClassifyController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -770,8 +772,6 @@
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
-    <Content Include="Views\Products\Vegetables_Fruits.cshtml" />
-    <Content Include="Views\Products\Drinks.cshtml" />
     <Content Include="Views\Register\SignUpForEmp.cshtml" />
     <Content Include="Views\Shared\_ManagerOrEmployee.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -788,6 +788,14 @@
     <Content Include="Views\Order\Detail.cshtml" />
     <Content Include="Views\Order\Declined.cshtml" />
     <Content Include="Views\Order\PictureProduct.cshtml" />
+    <Content Include="Views\Cart_Checkout\Cart.cshtml" />
+    <Content Include="Views\Order\Confirm.cshtml" />
+    <Content Include="Views\Order\Prepare.cshtml" />
+    <Content Include="Views\Order\Delivering.cshtml" />
+    <Content Include="Views\Order\Payment_Refund.cshtml" />
+    <Content Include="Views\Order\AllOfBills.cshtml" />
+    <Content Include="Views\Cart_Checkout\Payment.cshtml" />
+    <Content Include="Views\Cart_Checkout\AddressAndPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,8 +13,8 @@ namespace BachHoaXanh.Data.Services
     {
         //public BachHoaXanhDbContext() : base("BachHoaXanhDbContext")
         //{
-        //    //var initializer = new MigrateDatabaseToLatestVersion<BachHoaXanhDbContext, Migrations.Configuration>();
-        //    //Database.SetInitializer(initializer);
+        //    var initializer = new MigrateDatabaseToLatestVersion<BachHoaXanhDbContext, Migrations.Configuration>();
+        //    Database.SetInitializer(initializer);
         //}
         public DbSet<Area> Areas { get; set; }
         public DbSet<Customer> Customers { get; set; }

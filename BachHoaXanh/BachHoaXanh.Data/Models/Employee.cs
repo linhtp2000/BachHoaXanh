@@ -33,7 +33,7 @@ namespace BachHoaXanh.Data.Models
         public virtual User User { get; set; }
         public double Salary { get; set; }
         public virtual ICollection<Branch> Branch { get; set; }
-        public virtual ICollection<Bill> Bills { get; set; }
+       // public virtual ICollection<Bill> Bills { get; set; }
        // public virtual ICollection<Employee> Employees { get; set; }
        // public virtual ICollection<Employee> Employee1s { get; set; }
         public virtual ICollection<WorkAt> WorkAts { get; set; }

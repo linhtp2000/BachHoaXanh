@@ -19,8 +19,8 @@ namespace BachHoaXanh.Data.Models
         public string Address { get; set; }
         [MaxLength(255)]
         // [ForeignKey("Employee")]
-       // public string ManagerId { get; set; }
-        public virtual Employee Manage { get; set; }     //foreign key Manager' id
+        public string ManagerId { get; set; }
+      //  public virtual Employee Manage { get; set; }     //foreign key Manager' id
         [MaxLength(255)]
        // [ForeignKey("Area")]
         public string AreaId { get; set; }     

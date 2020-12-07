@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BachHoaXanh.Data.Models
 {
@@ -26,8 +27,11 @@ namespace BachHoaXanh.Data.Models
         public virtual Customer Customer { get; set; }
         [MaxLength(255)]
         public string ProductName { get; set; }      
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public int Amount { get; set; }
+        public decimal Total { get; set; }
+    
+        public string Image { get; set; }
 
     }
 }

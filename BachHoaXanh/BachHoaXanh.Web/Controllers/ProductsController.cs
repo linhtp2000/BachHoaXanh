@@ -1,7 +1,9 @@
 ﻿using BachHoaXanh.Data.Models;
+using BachHoaXanh.Data.ModelView;
 using BachHoaXanh.Data.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,9 +20,10 @@ namespace BachHoaXanh.Web.Controllers
         {
             this.db = db;
         }
-     //   private readonly IClassifyData cdb;
-      
+        //   private readonly IClassifyData cdb;
+
         // GET: Classify
+        [HttpGet]
         public ActionResult Category()
         {
             var model = from category in bhx.Categories
@@ -28,6 +31,7 @@ namespace BachHoaXanh.Web.Controllers
             //ViewBag.danhmuc = model;
             return View("_Category",model);
         }
+        [HttpGet]
         public ActionResult Classify(string CategoryID)
         {
             var model = from classify in bhx.Classifys
@@ -69,52 +73,69 @@ namespace BachHoaXanh.Web.Controllers
         }
         [HttpGet]   // use to edit, create restaurant
         public ActionResult Create()
-        {
+        {          
             return View();
         }
 
         [HttpPost]  //use to post, write restaurant
         [ValidateAntiForgeryToken] //thuoc tinh ngan chan mot yeu cau gia mao
-        public ActionResult Create(Product product)
+        public ActionResult Create(ItemProduct item)
         {
-            if (String.IsNullOrEmpty(product.Id))
+            if (String.IsNullOrEmpty(item.Id))
             {
-                ModelState.AddModelError(nameof(product.Id), "Product's ID is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.Id), "Product's ID is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(product.Name))
+            if (String.IsNullOrEmpty(item.Name))
             {
-                ModelState.AddModelError(nameof(product.Name), "The name is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.Name), "The name is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(product.Price.ToString()))
+            if (String.IsNullOrEmpty(item.Price.ToString()))
             {
-                ModelState.AddModelError(nameof(product.Price), "Product's price is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.Price), "Product's price is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(product.Amount.ToString()))
+            if (String.IsNullOrEmpty(item.Amount.ToString()))
             {
-                ModelState.AddModelError(nameof(product.Amount), "Amount is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.Amount), "Amount is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(product.BranchId))
+            if (String.IsNullOrEmpty(item.BranchId))
             {
-                ModelState.AddModelError(nameof(product.BranchId), "Branch's ID is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.BranchId), "Branch's ID is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(product.ClassifyId))
+            if (String.IsNullOrEmpty(item.ClassifyId))
             {
-                ModelState.AddModelError(nameof(product.ClassifyId), "Classify's ID is required");              
+                ModelState.AddModelError(nameof(item.ClassifyId), "Classify's ID is required");              
                 //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(product.ProviderId))
+            if (String.IsNullOrEmpty(item.ProviderId))
             {
-                ModelState.AddModelError(nameof(product.ProviderId), "Provider's ID is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(product.BranchId))
-            {
-                ModelState.AddModelError(nameof(product.BranchId), "Branch's ID is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-          
+                ModelState.AddModelError(nameof(item.ProviderId), "Provider's ID is required");      //thong bao loi khi Name co gia tri null/ rong
+            }            
+
+
             if (ModelState.IsValid)     //Name hop le
             {
-                db.Add(product);
-                return RedirectToAction("Details", new { id = product.Id });
+                Product p = new Product();
+                p.Id = item.Id;
+                p.Name = item.Name;
+                p.BranchId = item.BranchId;
+                p.Amount = item.Amount;
+                p.ClassifyId = item.ClassifyId;
+                p.ProviderId = item.ProviderId;
+                p.Details = item.Details;
+                p.Discount = item.Discount;
+                p.Price = item.Price;
+
+                string image1 = Guid.NewGuid() + Path.GetExtension(item.Image1.FileName);
+                item.Image1.SaveAs(filename: Server.MapPath("~/Images" + image1));
+                p.Image1 = item.Image1.ToString();
+                string image2 = Guid.NewGuid() + Path.GetExtension(item.Image2.FileName);
+                item.Image2.SaveAs(filename: Server.MapPath("~/Images" + image1));
+                p.Image2 = item.Image2.ToString();
+                string image3 = Guid.NewGuid() + Path.GetExtension(item.Image3.FileName);
+                item.Image3.SaveAs(filename: Server.MapPath("~/Images" + image1));
+                p.Image3 = item.Image3.ToString();
+                db.Add(p);
+                return RedirectToAction("Details", new { id = p.Id });
             }
             return View();
         }
@@ -161,17 +182,6 @@ namespace BachHoaXanh.Web.Controllers
             db.Delete(id);
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public ActionResult Drinks()
-        {
-           
-            return View();
-        }
-        [HttpGet]
-        public ActionResult Vegetables_Fruits()
-        {
-
-            return View();
-        }
+        
     }
 }
