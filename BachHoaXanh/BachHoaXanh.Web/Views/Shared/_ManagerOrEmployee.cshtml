@@ -84,11 +84,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!--<div class="mega-dropdown-menu">
                         <div class="w3ls_vegetables">
                             <ul class="dropdown-menu drp-mnu">-->
-                                @*<li><a href="login.html">Login</a></li>*@
-                                <!--<li><a data-toggle="modal" href="#dang_nhap"> Đăng nhập</a></li>
-                                <li> <a data-toggle="modal" href="#dang_ky">Đăng Ký</a></li>-->
-                                @*<li><a href="login.html">Sign Up</a></li>*@
-                            <!--</ul>
+                    @*<li><a href="login.html">Login</a></li>*@
+                    <!--<li><a data-toggle="modal" href="#dang_nhap"> Đăng nhập</a></li>
+                    <li> <a data-toggle="modal" href="#dang_ky">Đăng Ký</a></li>-->
+                    @*<li><a href="login.html">Sign Up</a></li>*@
+                    <!--</ul>
                         </div>
                     </div>-->
                 </li>
@@ -152,8 +152,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="nav navbar-nav nav_1">
                         <!--THANH DANH MỤC GÓC BÊN TRÁI TRANG CHỦ-->
                         <li> @Html.ActionLink("Danh sách Nhân Viên của bạn", "ListEmployee", "Admin")@*<a href="events.html"></a><i>/</i>*@</li>
-                        <li> @Html.ActionLink("Thêm Nhân viên", "Create", "Admin")</li>                       
+                        <li> @Html.ActionLink("Thêm Nhân viên", "Create", "Admin")</li>
                         <li><a href="events.html">Doanh thu theo tuần</a><i></i></li>
+                        <li> @Html.ActionLink("Thêm Sản phẩm", "Create", "Products")</li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </nav>
@@ -186,10 +187,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- fresh-vegetables -->
     <!-- //fresh-vegetables -->
     <!-- newsletter -->
-    
     <!-- //newsletter -->
     <!-- footer -->
-    
     <!-- //footer -->
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Content/js/bootstrap.min.js"></script>
@@ -247,7 +246,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     </script>
 
-    
+
 
     @Scripts.Render("~/bundles/jqueryvalidate")
 </body>

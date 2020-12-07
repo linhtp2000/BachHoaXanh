@@ -215,17 +215,9 @@
     <Compile Include="Migrations\202012040316481_InitialCreate.designer.cs">
       <DependentUpon>202012040316481_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202012060423104_up.cs" />
-    <Compile Include="Migrations\202012060423104_up.designer.cs">
-      <DependentUpon>202012060423104_up.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012060545497_upd.cs" />
-    <Compile Include="Migrations\202012060545497_upd.designer.cs">
-      <DependentUpon>202012060545497_upd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012070328424_update.cs" />
-    <Compile Include="Migrations\202012070328424_update.designer.cs">
-      <DependentUpon>202012070328424_update.cs</DependentUpon>
+    <Compile Include="Migrations\202012071446430_modelup.cs" />
+    <Compile Include="Migrations\202012071446430_modelup.designer.cs">
+      <DependentUpon>202012071446430_modelup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelView\AddressForOrder.cs" />
@@ -323,14 +315,8 @@
     <EmbeddedResource Include="Migrations\202012040316481_InitialCreate.resx">
       <DependentUpon>202012040316481_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012060423104_up.resx">
-      <DependentUpon>202012060423104_up.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012060545497_upd.resx">
-      <DependentUpon>202012060545497_upd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012070328424_update.resx">
-      <DependentUpon>202012070328424_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012071446430_modelup.resx">
+      <DependentUpon>202012071446430_modelup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -87,10 +87,40 @@ namespace BachHoaXanh.Web.Controllers
 
         public ActionResult Payment_Refund()
         {
+            //var model = from bill in bhx.Bills
+            //            where bill.Status == "Payment" || bill.Status == "Refund"
+            //            select bill;
+
             var model = from bill in bhx.Bills
-                        where bill.Status == "Payment" || bill.Status == "Refund"
+                        where bill.Status.Contains("Refund")
+                        select bill;
+            
+            return View(model);
+        }
+        public ActionResult Payment_Refund_ChuaXuLy()
+        {
+            var model = from bill in bhx.Bills
+                        where bill.Status == "Refund_Chua"
                         select bill;
             return View(model);
+        }
+
+        public ActionResult Payment_Refund_DaXuLy()
+        {
+            var model = from bill in bhx.Bills
+                        where bill.Status == "Refund_Roi"
+                        select bill;
+            return View(model);
+        }
+        public ActionResult AgreeBackMoney(string id)
+        {
+            var model = (from bill in bhx.Bills
+                         where bill.Id == id
+                         select bill).FirstOrDefault();
+
+            model.Status = "Refund_Roi";
+            bhx.SaveChanges();            
+            return RedirectToAction("Payment_Refund_ChuaXuLy");
         }
     }
 }

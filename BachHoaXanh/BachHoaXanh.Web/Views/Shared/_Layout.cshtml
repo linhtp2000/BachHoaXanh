@@ -14,7 +14,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
 
-    <title>Bách Hóa Xanh - Bạn của mọi nhà:: w3layouts</title>
+    <title>Bách Hóa Xanh - Bạn của mọi nhà</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="products.html">Today's special Offers !</a>
         </div>
         <div class="w3l_search">
-            <form action="#" method="post">
+            <form action="/Products/Search" method="post">
                 <input type="text" name="Product" value="Bạn cần tìm gì..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
                 <input type="submit" value="TÌM">
             </form>
@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 @*<li><a href="login.html">Login</a></li>*@
                                 <li><a data-toggle="modal" href="#dang_nhap"> Đăng nhập</a></li>
                                 <li> <a data-toggle="modal" href="#dang_ky">Đăng Ký</a></li>
-                                @*<li><a href="login.html">Sign Up</a></li>*@
+                                <li><a href="   ">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -138,19 +138,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="w3l_banner_nav_left">
             <nav class="navbar nav_bottom">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header nav_2">
-                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
+                @*<div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>*@
                 <!--THANH DANH MỤC GÓC BÊN TRÁI TRANG CHỦ-->
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                     @*<ul class="nav navbar-nav nav_1">*@
-                    @Html.ActionLink("Category", "Classify")
+                    @Html.Action("Category", "Classify")
                     @*<li><a href="household.html">Households</a></li>*@
                     @*<li class="dropdown mega-dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">;<span class="caret"></span></a>
@@ -181,7 +181,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </nav>
         </div>
         <div class="w3l_banner_nav_right">
+
             <section class="slider">
+                <ul>
+                    <li class="dropdown profile_details_drop">
+                        <i class="fa fa-user" aria-hidden="true">
+                            Sắp xếp
+                        </i>
+                        @*<a href=" " class="dropdown-toggle" data-toggle="dropdown">*@
+                        @*<span class="caret"></span>*@
+                        @*</a>*@
+
+                        <div class="mega-dropdown-menu">
+                            <div class="w3ls_vegetables">
+                                <ul class="dropdown-menu drp-mnu" style="display: none;">
+
+                                    <li><a data-toggle="dropdown" href="/Products/SortPriceDown">Giá giảm dần</a></li>
+                                    <li> <a data-toggle="dropdown" href="/Products/SortPriceUp">Giá tăng dần</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
                 @RenderBody()
             </section>
             <!-- flexSlider -->
@@ -337,7 +359,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //here ends scrolling icon -->
     <script src="~/Content/js/minicart.js"></script>
-   
+
     @*<script>
             paypal.minicart.render();
 
@@ -531,7 +553,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         SDT: $("#SDT1").val(),
                         Email: $("#email").val(),
                         MatKhau: $("#password1").val()
-                                    NhapLaiMatKhau: $("#retypepassword").val(),
+                                        NhapLaiMatKhau: $("#retypepassword").val(),
                     };
                     $.ajax({
                         url: '/Register/SignUp',
