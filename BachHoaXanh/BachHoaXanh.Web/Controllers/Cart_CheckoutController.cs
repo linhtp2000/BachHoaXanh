@@ -231,11 +231,24 @@ namespace BachHoaXanh.Web.Controllers
                 return Content("/Order/Confirm");
             }
 
-            return View("AddressAndPayment");
+            return PartialView("AddressAndPayment", modeladdress);
         }
         //
         // GET: /Checkout/Complete
-       
+        public ActionResult Complete(string id)
+        {
+            // Validate customer owns this order
+            bool isValid = db.Bills.Any(b => b.Id == id && b.CustomerId == User.Identity.Name);
+
+            if (isValid)
+            {
+                return View(id);
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
 
     }
 }
