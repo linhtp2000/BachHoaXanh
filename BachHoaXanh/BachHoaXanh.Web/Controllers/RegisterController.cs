@@ -20,15 +20,15 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult SignUp(FormCollection model)//(Register model)
         {
             //FormCollection dk = new FormCollection();
-           /* BachHoaXanh.Data.Models.Login tk = new BachHoaXanh.Data.Models.Login();*/ //Request.Form;   
-                                   //string password = model.MatKhau;
-                                   //string youremail = model.Email;
-                                   //string phone = model.SDT;
-                                   //string name = model.HoTen;
-                                   //string retypepassword = model.NhapLaiMatKhau;
-                                   //m.SDT = model.SDT;
-                                   //m.Email = model.Email;
-                                   //m.MatKhau = model.MatKhau;
+            /* BachHoaXanh.Data.Models.Login tk = new BachHoaXanh.Data.Models.Login();*/ //Request.Form;   
+                                                                                         //string password = model.MatKhau;
+                                                                                         //string youremail = model.Email;
+                                                                                         //string phone = model.SDT;
+                                                                                         //string name = model.HoTen;
+                                                                                         //string retypepassword = model.NhapLaiMatKhau;
+                                                                                         //m.SDT = model.SDT;
+                                                                                         //m.Email = model.Email;
+                                                                                         //m.MatKhau = model.MatKhau;
             string password = model["password1"];
             string youremail = model["email"];
             string phone = model["SDT1"];
@@ -41,11 +41,11 @@ namespace BachHoaXanh.Web.Controllers
             kh.Email = youremail;
             var u = (from id in bhx.Customers
                      select id.Id).ToList().Last();
-            int IdKH = Convert.ToInt32(u) + 1;                          
+            int IdKH = Convert.ToInt32(u) + 1;
             kh.Id = IdKH.ToString();
-        //    tk. = phone;
-         //   tk.Email = youremail;
-         //   tk.MatKhau = password;
+            //    tk. = phone;
+            //   tk.Email = youremail;
+            //   tk.MatKhau = password;
             if (ModelState.IsValid)
             {
                 bhx.Configuration.ValidateOnSaveEnabled = false;
@@ -80,7 +80,7 @@ namespace BachHoaXanh.Web.Controllers
                      select id.Id).ToList().Last();
             int IdNV = Convert.ToInt32(u) + 1;
             nv.Id = IdNV.ToString();
-  
+
             if (ModelState.IsValid)
             {
                 bhx.Configuration.ValidateOnSaveEnabled = false;

@@ -14,7 +14,7 @@ namespace BachHoaXanh.Data.Services
         //SqlCartData GetCart(Controller controller);
         //SqlCartData GetCart(HttpContextBase context);
         Cart GetCartItem(string productid);
-        void AddToCart(Product product);
+        bool AddToCart(Product product);
         int RemoveAmountOfCartItem(string productid);
         void RemoveCartItem(string productid);
         void EmptyCart();

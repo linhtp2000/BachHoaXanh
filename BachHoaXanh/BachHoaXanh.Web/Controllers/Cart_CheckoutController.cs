@@ -13,7 +13,7 @@ namespace BachHoaXanh.Web.Controllers
     public class Cart_CheckoutController : Controller
     {
         // GET: Cart
-     //   private List<Cart> carts= new List<Cart>() ;
+        //   private List<Cart> carts= new List<Cart>() ;
         private readonly ICartData dbcart;
         private IBillData dbBill;
         BachHoaXanhDbContext db = new BachHoaXanhDbContext();
@@ -112,27 +112,30 @@ namespace BachHoaXanh.Web.Controllers
             //};
             // Return the view
 
-          var  carts= SqlCartData.GetCart(this.HttpContext);            
-         return View(carts.GetCartItems());
+            var carts = SqlCartData.GetCart(this.HttpContext);
+
+            return View(carts.GetCartItems());
         }
         [HttpPost]
-        public ActionResult AddToCart(string id)
+        public ActionResult AddToCart(Product p)
         {
             // Retrieve the album from the database
-            var product = db.Products.Single(p => p.Id == id);
-
+            //var product = db.Products.Single(p => p.Id == id);            
             // Add item to the cart
             var cart = SqlCartData.GetCart(this.HttpContext);
-            cart.AddToCart(product);
+            if (!cart.AddToCart(p))
+            {
+                TempData["Message"] = "Product has been sold out!";
+            }
 
             // Go back to the main store page for more shopping
-            return RedirectToAction("~/Product/Index");
+            return RedirectToAction("Index", "Product", new { id = p.ClassifyId });
         }
 
         // Remove the item from the cart
         [HttpPost]
         public ActionResult RemoveAmountOfCartItem(string id)
-        {           
+        {
             var cart = SqlCartData.GetCart(this.HttpContext);
 
             // Get the name of the album to display confirmation
@@ -162,7 +165,7 @@ namespace BachHoaXanh.Web.Controllers
             string productname = dbcart.GetCartItem(id).ProductName;
 
             // Remove from cart
-           dbcart.RemoveAmountOfCartItem(id);
+            dbcart.RemoveAmountOfCartItem(id);
 
             return RedirectToAction("Cart");
         }
@@ -222,7 +225,7 @@ namespace BachHoaXanh.Web.Controllers
                 newbill.Total = cart.GetTotal();
                 newbill.Points = (int)(newbill.Total * 3 / 100);
                 //    newbill.ServiceCharge
-                newbill.Status = "DatHang";
+                newbill.Status = "Confirm";
                 //Save Order
                 dbBill.Add(newbill);
 
@@ -231,24 +234,11 @@ namespace BachHoaXanh.Web.Controllers
                 return Content("/Order/Confirm");
             }
 
-            return PartialView("AddressAndPayment", modeladdress);
+            return View("AddressAndPayment");
         }
         //
         // GET: /Checkout/Complete
-        public ActionResult Complete(string id)
-        {
-            // Validate customer owns this order
-            bool isValid = db.Bills.Any(b => b.Id == id && b.CustomerId == User.Identity.Name);
 
-            if (isValid)
-            {
-                return View(id);
-            }
-            else
-            {
-                return View("Error");
-            }
-        }
 
     }
 }

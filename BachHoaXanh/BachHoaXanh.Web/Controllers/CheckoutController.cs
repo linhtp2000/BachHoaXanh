@@ -11,7 +11,7 @@ namespace BachHoaXanh.Web.Controllers
 {
     public class CheckoutController : Controller
     {
-      //  const string PromoCode = "FREE";
+        //  const string PromoCode = "FREE";
         private ICartData dbCart;
         private IBillData dbBill;
         BachHoaXanhDbContext db = new BachHoaXanhDbContext();
@@ -50,8 +50,8 @@ namespace BachHoaXanh.Web.Controllers
             if (String.IsNullOrEmpty(modeladdress.Phone))
             {
                 ModelState.AddModelError(nameof(modeladdress.Phone), "Your Phone is required");      //thong bao loi khi Name co gia tri null/ rong
-            }         
-           
+            }
+
             if (ModelState.IsValid)
             {
                 Bill newbill = new Bill();
@@ -85,7 +85,7 @@ namespace BachHoaXanh.Web.Controllers
             bool isValid = db.Bills.Any(b => b.Id == id && b.CustomerId == User.Identity.Name);
 
             if (isValid)
-            {               
+            {
                 return View(id);
             }
             else

@@ -404,7 +404,6 @@ E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Web.Ra
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Web.WebPages.xml
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Web.WebPages.Deployment.xml
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Web.WebPages.Razor.xml
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.ResolveComReference.cache
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.up.resources
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.upd.resources
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.update.resources

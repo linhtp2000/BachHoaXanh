@@ -26,12 +26,13 @@ namespace BachHoaXanh.Data.Models
         public string CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         [MaxLength(255)]
-        public string ProductName { get; set; }      
+        public string ProductName { get; set; }
         public decimal Price { get; set; }
         public int Amount { get; set; }
         public decimal Total { get; set; }
-    
+
         public string Image { get; set; }
+        public int Status { get; set; }
 
     }
 }

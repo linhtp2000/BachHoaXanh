@@ -12,9 +12,9 @@ namespace BachHoaXanh.Data.Models
     {
         [Required]
         [MaxLength(255)]
-         [Key]
-         [Column(Order=1)]
-      //  [ForeignKey("Product")]
+        [Key]
+        [Column(Order = 1)]
+        //  [ForeignKey("Product")]
         public string ProductId { get; set; }
         public virtual Product Product { get; set; }
         [MaxLength(255)]

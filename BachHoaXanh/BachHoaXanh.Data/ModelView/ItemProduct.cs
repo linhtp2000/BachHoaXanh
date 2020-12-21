@@ -19,7 +19,7 @@ namespace BachHoaXanh.Data.ModelView
         public int Amount { get; set; }
         [MaxLength(255)]
         public string Details { get; set; }
-         [NotMapped]
+        [NotMapped]
         public HttpPostedFileBase Image1 { get; set; }
         [NotMapped]
         public HttpPostedFileBase Image2 { get; set; }

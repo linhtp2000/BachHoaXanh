@@ -21,8 +21,8 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Category()
         {
             var model = from category in bhx.Categories
-                         orderby category.Name
-                         select category;/*).OrderBy(s => s.Name);*/
+                        orderby category.Name
+                        select category;/*).OrderBy(s => s.Name);*/
             //var model1 = from dm in bhx.Categories
             //            join nh in bhx.Classifys
             //            on dm.Id equals nh.CategoryId
@@ -34,7 +34,7 @@ namespace BachHoaXanh.Web.Controllers
             var model = from classify in bhx.Classifys
                         where classify.CategoryId == CategoryID
                         select classify;
-       
+
             ViewBag.classify = model;
             if (model != null)
                 return PartialView("Classify", model);

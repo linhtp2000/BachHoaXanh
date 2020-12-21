@@ -1,0 +1,108 @@
+﻿@*@model BachHoaXanh.Data.ModelView.SalesModelView
+
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>SalesStatic</title>
+    </head>
+    <body>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                    <th>Mar</th>
+                    <th>Apr</th>
+                    <th>May</th>
+                    <th>Jun</th>
+                    <th>Jul</th>
+                    <th>Aug</th>
+                    <th>Sep</th>
+                    <th>Oct</th>
+                    <th>Nov</th>
+                    <th>Dec</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model.salesbymonth)
+            {
+
+
+                     <tr>
+                                <td>
+
+                                    @Html.DisplayFor(modelItem => item.total)
+                                </td>
+                            </tr>
+
+             }
+
+        </table>
+        <a href="@Url.Action("ExportToExecl")">Export Excel</a>
+    </body>
+    </html>*@
+
+<div class="row">
+    <div class="col-md-12">
+        <h5> Line Chart Of Sales by Months in 2020 </h5>
+        <div>
+            <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h5> Line Chart Of Sales within five years</h5>
+        <div>
+            <canvas id="myChart2" width="400" height="200"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script src=https://github.com/chartjs/Chart.js/releases/tag/v2.9.4""></script>
+<script type="text/javascript">
+        var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data:@Html.Raw(Json.Encode(Model[0])),
+
+        options: {}
+            
+    });
+
+            //.AddSeries({
+            //    name: ['Bill'],
+            //    xValue: new ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            //    yValues: new [0,2,4,6,8,10],
+            //})
+            //.Write();
+</script>
+
+<script type="text/javascript">
+        var ctx = document.getElementById('myChart2').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data:@Html.Raw(Json.Encode(Model[1])),
+        options: {}
+    });
+            //.AddSeries({
+            //    name: ['Bill'],
+            //    xValue: new ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            //    yValues: new [0,2,4,6,8,10],
+            //})
+            //.Write();
+</script>
+

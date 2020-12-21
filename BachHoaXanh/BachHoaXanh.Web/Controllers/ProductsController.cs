@@ -15,7 +15,7 @@ namespace BachHoaXanh.Web.Controllers
         //GET: Products
         public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
         private readonly IProductData db;
-       
+
         public ProductsController(IProductData db)
         {
             this.db = db;
@@ -29,7 +29,7 @@ namespace BachHoaXanh.Web.Controllers
             var model = from category in bhx.Categories
                         select category;
             //ViewBag.danhmuc = model;
-            return View("_Category",model);
+            return View("_Category", model);
         }
         [HttpGet]
         public ActionResult Classify(string CategoryID)
@@ -52,14 +52,25 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]
         public ActionResult Index(string id)
         {
-            var model = from sp in bhx.Products
-                        where sp.ClassifyId == id
-                        select sp;
-            var tinhtien = from sp in bhx.Products
-                           where sp.ClassifyId == id
-                           select sp.Discount;
+            if (id != null)
+            {
+                var model = from sp in bhx.Products
+                            where sp.ClassifyId == id
+                            select sp;
+                return View(model);
+            }
+            else
+            {
+                var model = from sp in bhx.Products
+                                // where sp.ClassifyId == id
+                            select sp;
+                return View(model);
+            }
+            //var tinhtien = from sp in bhx.Products
+            //               where sp.ClassifyId == id
+            //               select sp.Discount;
 
-            return View(model);
+
         }
         [HttpGet]
         public ActionResult Details(string id)
@@ -73,7 +84,7 @@ namespace BachHoaXanh.Web.Controllers
         }
         [HttpGet]   // use to edit, create restaurant
         public ActionResult Create()
-        {          
+        {
             return View();
         }
 
@@ -103,13 +114,13 @@ namespace BachHoaXanh.Web.Controllers
             }
             if (String.IsNullOrEmpty(item.ClassifyId))
             {
-                ModelState.AddModelError(nameof(item.ClassifyId), "Classify's ID is required");              
+                ModelState.AddModelError(nameof(item.ClassifyId), "Classify's ID is required");
                 //thong bao loi khi Name co gia tri null/ rong
             }
             if (String.IsNullOrEmpty(item.ProviderId))
             {
                 ModelState.AddModelError(nameof(item.ProviderId), "Provider's ID is required");      //thong bao loi khi Name co gia tri null/ rong
-            }            
+            }
 
 
             if (ModelState.IsValid)     //Name hop le
@@ -182,6 +193,6 @@ namespace BachHoaXanh.Web.Controllers
             db.Delete(id);
             return RedirectToAction("Index");
         }
-        
+
     }
 }

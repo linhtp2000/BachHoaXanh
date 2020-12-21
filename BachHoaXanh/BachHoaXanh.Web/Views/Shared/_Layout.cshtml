@@ -1,11 +1,25 @@
 ﻿@*@model BachHoaXanh.Data.Models.Category*@
 @*@model IEnumerable<BachHoaXanh.Data.Models.Category>*@
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     @*<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@ViewBag.Title - My ASP.NET Application</title>*@
+
+
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css">
+    <script src="~/Content/js/jstarbox.js"></script>
+    <link rel="stylesheet" href="~/Content/css/jstarbox.css" type="text/css" media="screen" charset="utf-8">
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -59,16 +73,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <input type="text" name="Product" value="Bạn cần tìm gì..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
                 <input type="submit" value="TÌM">
             </form>
+
         </div>
         <div class="product_list_header">
-            <form action="#" method="post" class="last">
-                <fieldset>
-                    <input type="hidden" name="cmd" value="_cart" />
-                    <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="Giỏ hàng" class="button" />
-                </fieldset>
-            </form>
+            <a href="/Cart_Checkout/Cart">
+                <img src="~/Images/cart.jpg" class="img-fluid" alt="">
+                <span class="" style="position: absolute; background-color: inherit; z-index: 999;"><span class="badge badge-notify my-cart-badge">1</span></span>
+            </a>>
+
+
+            @*<form action="/Cart_Checkout/AddToCart" method="post" class="last">
+                <fieldset>*@
+            @*<img src="~/Images/cart.jpg" class="img-fluid" alt="">*@
+            @*<div class="offer"><p><span>Offer</span></p></div>*@
+
+            @*<img src="~/Images/cart.jpg" alt="" class="img-fluid" />*@
+            @*<input type="submit" class="button" />*@
+            @*<span class="" style="position: absolute; background-color: inherit; z-index: 999;"><span class="badge badge-notify my-cart-badge">1</span></span>*@
+            @*</fieldset>
+                </form>*@
+            @*</a>*@
+
+            @*<div class="cart">
+                    <span class="fa fa-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
+                </div>*@
         </div>
+
+        @*<div class="product_list_header">
+                <form action="#" method="post" class="last">
+                    <fieldset>
+                        <input type="hidden" name="cmd" value="_cart" />
+                        <input type="hidden" name="display" value="1" />
+                        <input type="submit" name="submit" value="Giỏ hàng" class="button" />
+                    </fieldset>
+                </form>
+            </div>*@
         <div class="w3l_header_right">
             <ul>
                 <li class="dropdown profile_details_drop">
@@ -150,7 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                     @*<ul class="nav navbar-nav nav_1">*@
-                    @Html.Action("Category", "Classify")
+                    @Html.ActionLink("Category", "Classify")
                     @*<li><a href="household.html">Households</a></li>*@
                     @*<li class="dropdown mega-dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">;<span class="caret"></span></a>
@@ -335,9 +374,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         });
     </script>
+    <<<<<<< Updated upstream
     <!-- //here ends scrolling icon -->
     <script src="~/Content/js/minicart.js"></script>
-   
+
+    =======
+
+
+    >>>>>>> Stashed changes
     @*<script>
             paypal.minicart.render();
 
@@ -531,7 +575,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         SDT: $("#SDT1").val(),
                         Email: $("#email").val(),
                         MatKhau: $("#password1").val()
-                                    NhapLaiMatKhau: $("#retypepassword").val(),
+<<<<<<< Updated upstream
+                                        NhapLaiMatKhau: $("#retypepassword").val(),
+=======
+                                                            NhapLaiMatKhau: $("#retypepassword").val(),
+>>>>>>> Stashed changes
                     };
                     $.ajax({
                         url: '/Register/SignUp',
@@ -575,5 +623,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
 
     @Scripts.Render("~/bundles/jqueryvalidate")
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

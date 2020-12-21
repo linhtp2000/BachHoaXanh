@@ -11,7 +11,7 @@ namespace BachHoaXanh.Data.Services
 {
     public interface IProductData
     {
-       
+
         IEnumerable<Product> GetAll();
         Product Get(string id);
         void Add(Product product);

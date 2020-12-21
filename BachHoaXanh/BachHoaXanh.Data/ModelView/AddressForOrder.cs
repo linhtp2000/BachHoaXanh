@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BachHoaXanh.Data.ModelView
 {
     public class AddressForOrder
-    {        
+    {
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

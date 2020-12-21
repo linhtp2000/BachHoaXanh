@@ -8,12 +8,23 @@ using System.Threading.Tasks;
 
 namespace BachHoaXanh.Data.Services
 {
-    public class SqlProductData:IProductData
+    public class SqlProductData : IProductData
     {
         private readonly BachHoaXanhDbContext db;
-        public SqlProductData(BachHoaXanhDbContext db)
+        public SqlProductData()
         {
-            this.db = db;
+        }
+        public bool CheckAmountOfProduct(string id)
+        {
+            bool flag = false;
+            var p = (from u in db.Products
+                     where u.Id == id && u.Amount == 0
+                     select u).ToList();
+            if (p != null)
+            {
+                flag = true;
+            }
+            return flag;
         }
         public void Add(Product product)
         {
@@ -35,7 +46,7 @@ namespace BachHoaXanh.Data.Services
         }
 
         public IEnumerable<Product> GetAll()
-        {           
+        {
             return from r in db.Products
                    orderby r.Name
                    select r;

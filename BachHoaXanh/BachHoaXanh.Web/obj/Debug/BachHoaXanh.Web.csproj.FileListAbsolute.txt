@@ -765,3 +765,8 @@ E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.We
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.Web.csproj.CopyComplete
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.Web.dll
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.Web.pdb
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\obj\Debug\BachHoaXanh.Web.csproj.ResolveComReference.cache
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\bin\EPPlus.dll
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\bin\Microsoft.IO.RecyclableMemoryStream.dll
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\bin\EPPlus.xml
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Web\bin\Microsoft.IO.RecyclableMemoryStream.xml

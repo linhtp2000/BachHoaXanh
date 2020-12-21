@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BachHoaXanh.Data.Services
 {
-    public class SqlDetailsOfBillData: IDetailsOfBillData
+    public class SqlDetailsOfBillData : IDetailsOfBillData
     {
         private readonly BachHoaXanhDbContext db;
-        public SqlDetailsOfBillData (BachHoaXanhDbContext db)
+        public SqlDetailsOfBillData(BachHoaXanhDbContext db)
         {
             this.db = db;
         }

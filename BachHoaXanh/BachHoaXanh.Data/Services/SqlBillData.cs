@@ -11,22 +11,22 @@ using System.Web.Mvc;
 
 namespace BachHoaXanh.Data.Services
 {
-    public class SqlBillData: IBillData
+    public class SqlBillData : IBillData
     {
-        private readonly BachHoaXanhDbContext db;
+        BachHoaXanhDbContext db = new BachHoaXanhDbContext();
 
         string UserCurrentId { get; set; }
         public const string UserSessionKey = "CustomerId";
         public static SqlBillData GetCustomer(HttpContextBase context)
         {
             var bill = new SqlBillData();
-             bill.UserCurrentId= bill.GetUserId(context);
+            bill.UserCurrentId = bill.GetUserId(context);
             return bill;
         }
         public static SqlBillData GetCustomer(Controller controller)
         {
             return GetCustomer(controller.HttpContext);
-        }       
+        }
         public void Add(Bill bill)
         {
             db.Bills.Add(bill);
@@ -42,7 +42,7 @@ namespace BachHoaXanh.Data.Services
         public int GetBillId()
         {
             var stringlist = (from bill in db.Bills
-                      select bill.Id).ToList();
+                              select bill.Id).ToList();
             //Doi BillId kieu string sang int
             List<int> intlist = stringlist.Select(s => int.Parse(s)).ToList();
             return intlist.Max();
@@ -58,6 +58,12 @@ namespace BachHoaXanh.Data.Services
             return from r in db.Bills
                    orderby r.CustomerId
                    select r;
+        }
+        public IEnumerable<Models.Bill> GetAllBill()
+        {
+            var bills = (from r in db.Bills
+                         select r);
+            return bills.ToList();
         }
 
         public void Update(Bill bill)

@@ -12,7 +12,7 @@ namespace BachHoaXanh.Web.Controllers
         BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
         private readonly IBillData dbBill;
         private readonly IDetailsOfBillData dbDetail;
- 
+
         public OrderController(IDetailsOfBillData db)
         {
             this.dbDetail = db;
@@ -23,11 +23,11 @@ namespace BachHoaXanh.Web.Controllers
             var model = from bill in bhx.Bills
                         where bill.Status == "Confirm"
                         select bill;
-            return View(model);          
+            return View(model);
         }
         public ActionResult AllOfBills()
         {
-            var model = from bill in bhx.Bills                       
+            var model = from bill in bhx.Bills
                         select bill;
             return View(model);
         }
@@ -53,7 +53,7 @@ namespace BachHoaXanh.Web.Controllers
             return View(model);
         }
         [HttpGet]
-        public ActionResult Detail (string id)
+        public ActionResult Detail(string id)
         {
             //var model = from bill in bhx.Bills
             //            join detail in bhx.DetailsOfBills
@@ -67,17 +67,17 @@ namespace BachHoaXanh.Web.Controllers
             //            on billdetail.ProductId equals picture.Id
             //            where billdetail.ProductId == id
             //            select new {BranchId = billdetail.ProductId, Id= billdetail.BillId, Name = billdetail.ProductName, Amount =  billdetail.Amount, Image1 = picture.Image1 };
-            return View (model1); //model1
+            return View(model1); //model1
         }
 
         public ActionResult PictureProduct(string id)
         {
             var model = from picture in bhx.Products
                         where picture.Id == id
-                        select picture;           
+                        select picture;
             return PartialView("PictureProduct", model);
         }
-        public ActionResult Declined ()
+        public ActionResult Declined()
         {
             var model = from bill in bhx.Bills
                         where bill.Status == "Declined"

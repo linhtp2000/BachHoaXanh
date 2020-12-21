@@ -10,12 +10,12 @@ using System.Web.Mvc;
 
 namespace BachHoaXanh.Data.Services
 {
-    public class SqlCartData:ICartData
+    public class SqlCartData : ICartData
     {
-        private readonly BachHoaXanhDbContext db= new BachHoaXanhDbContext();
+        private readonly BachHoaXanhDbContext db = new BachHoaXanhDbContext();
         string ShoppingCartId { get; set; }
         public const string CartSessionKey = "CustomerId";
-
+        public SqlProductData dbProduct = new SqlProductData();
         public static SqlCartData GetCart(HttpContextBase context)
         {
             var cart = new SqlCartData();
@@ -33,38 +33,43 @@ namespace BachHoaXanh.Data.Services
                && c.ProductId == productid);
             return cartItem;
         }
-        public void AddToCart(Product product)
+        public bool AddToCart(Product product)
         {
             // Get the matching cart and product instances
             var cartItem = db.Carts.SingleOrDefault(
                 c => c.CustomerId == ShoppingCartId
                 && c.ProductId == product.Id);
-
-            if (cartItem == null)
+            if (dbProduct.CheckAmountOfProduct(product.Id))
             {
-                // Create a new cart item if no cart item exists
-                cartItem = new Cart
+                if (cartItem == null)
                 {
-                    Product=product,
-                    ProductId = product.Id,
-                    CustomerId = ShoppingCartId,
-                    ProductName=product.Name,
-                    Price=product.Price,
-                    Total=product.Price*product.Amount*(100-product.Discount)/100,
-                    Image=product.Image1,
-                    Amount = 1,                  
-                };
-                db.Carts.Add(cartItem);
+                    // Create a new cart item if no cart item exists
+                    cartItem = new Cart
+                    {
+                        Product = product,
+                        ProductId = product.Id,
+                        CustomerId = ShoppingCartId,
+                        ProductName = product.Name,
+                        Price = product.Price,
+                        Total = product.Price * product.Amount * (100 - product.Discount) / 100,
+                        Image = product.Image1,
+                        Amount = 1,
+                        Status = 1
+                    };
+                    db.Carts.Add(cartItem);
+                }
+                else
+                {
+                    // If the item does exist in the cart, 
+                    // then add one to the quantity
+                    cartItem.Amount++;
+                    cartItem.Total = product.Price * cartItem.Amount * (100 - product.Discount) / 100;
+                }
+                // Save changes
+                db.SaveChanges();
+                return true;
             }
-            else
-            {
-                // If the item does exist in the cart, 
-                // then add one to the quantity
-                cartItem.Amount++;
-                cartItem.Total = product.Price * cartItem.Amount * (100 - product.Discount) / 100;
-            }
-            // Save changes
-            db.SaveChanges();
+            return false;
         }
         public int RemoveAmountOfCartItem(string productid)
         {
@@ -83,10 +88,10 @@ namespace BachHoaXanh.Data.Services
                     cartItem.Total = cartItem.Price * cartItem.Amount * (100 - cartItem.Product.Discount) / 100;
                     itemCount = cartItem.Amount;
                 }
-                else
-                {
-                    db.Carts.Remove(cartItem);
-                }
+                //else
+                //{
+                //    db.Carts.Remove(cartItem);
+                //}
                 // Save changes
                 db.SaveChanges();
             }
@@ -115,6 +120,20 @@ namespace BachHoaXanh.Data.Services
         }
         public List<Cart> GetCartItems()
         {
+            var carts = db.Carts.Where(
+                cart => cart.CustomerId == ShoppingCartId).ToList();
+            foreach (Cart item in carts)
+            {
+                if (dbProduct.CheckAmountOfProduct(item.ProductId))
+                {
+                    item.Status = 1;
+                }
+                else
+                {
+                    item.Status = 0;
+                }
+            }
+            db.SaveChanges();
             return db.Carts.Where(
                 cart => cart.CustomerId == ShoppingCartId).ToList();
         }
@@ -122,9 +141,9 @@ namespace BachHoaXanh.Data.Services
         {
             // Get the count of each item in the cart and sum them up
             var amount = (from cartItems in db.Carts
-                               where cartItems.CustomerId == ShoppingCartId
-                               select cartItems);
-            if(amount==null)
+                          where cartItems.CustomerId == ShoppingCartId
+                          select cartItems);
+            if (amount == null)
             {
                 return 0;
             }
@@ -135,14 +154,14 @@ namespace BachHoaXanh.Data.Services
             // Multiply album price by count of that album to get 
             // the current price for each of those albums in the cart
             // sum all album price totals to get the cart total
-            decimal? total = (from cartItems in db.Carts 
+            decimal? total = (from cartItems in db.Carts
                               where cartItems.CustomerId == ShoppingCartId
                               select (int?)cartItems.Total).Sum();
 
             return total ?? decimal.Zero;
         }
         public void SaveDetailsOfBill(Bill bill)
-        {          
+        {
             DetailsOfBill detail = new DetailsOfBill();
             var cartItems = GetCartItems();
             // Iterate over the items in the cart, 
@@ -153,16 +172,16 @@ namespace BachHoaXanh.Data.Services
                 {
                     Amount = item.Amount,
                     BillId = bill.Id,
-                    ProductId=item.ProductId,
-                    Product=item.Product,
-                    ProductName=item.ProductName,
-                    Price=item.Price,
-                    Image=item.Image,
-                    Total=item.Amount*item.Price*(100-item.Product.Discount)/100                    
+                    ProductId = item.ProductId,
+                    Product = item.Product,
+                    ProductName = item.ProductName,
+                    Price = item.Price,
+                    Image = item.Image,
+                    Total = item.Amount * item.Price * (100 - item.Product.Discount) / 100
                 };
                 db.DetailsOfBills.Add(orderDetail);
 
-            }          
+            }
             // Save the order
             db.SaveChanges();
             // Empty the shopping cart

@@ -23,22 +23,22 @@ namespace BachHoaXanh.Data.Models
         public int Amount { get; set; }
         [MaxLength(255)]
         public string Details { get; set; }
-       // [NotMapped]
+        // [NotMapped]
         public string Image1 { get; set; }
-       // [NotMapped]
+        // [NotMapped]
         public string Image2 { get; set; }
-       // [NotMapped]
+        // [NotMapped]
         public string Image3 { get; set; }
         [MaxLength(255)]
-       // [ForeignKey("Classify")]
+        // [ForeignKey("Classify")]
         public string ClassifyId { get; set; }
         public virtual Classify Classify { get; set; }
         [MaxLength(255)]
-      //  [ForeignKey("Branch")]
+        //  [ForeignKey("Branch")]
         public string BranchId { get; set; }
-       // public virtual Branch Branch { get; set; }
+        // public virtual Branch Branch { get; set; }
         [MaxLength(255)]
-      //  [ForeignKey("Provider")]
+        //  [ForeignKey("Provider")]
         public string ProviderId { get; set; }
         public virtual Provider Provider { get; set; }
 

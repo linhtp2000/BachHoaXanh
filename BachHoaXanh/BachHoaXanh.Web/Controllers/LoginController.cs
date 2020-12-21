@@ -14,11 +14,11 @@ namespace BachHoaXanh.Web.Controllers
         // GET: Login
         public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
         private readonly ILoginData db;
-        
+
         [HttpGet]
         public ActionResult SignIn()
         {
-          
+
             return View();
         }
         [HttpPost]
@@ -34,27 +34,27 @@ namespace BachHoaXanh.Web.Controllers
             //    ModelState.AddModelError(nameof(account.PassWord), "Password is required");      //yeu cau nhap email
             //}
 
-           // FormCollection f = new FormCollection();
+            // FormCollection f = new FormCollection();
             string sodienthoai = f["SDT"];
             string matkhau = f["password"];
-            Data.Models.Customer us = bhx.Customers.SingleOrDefault(n => n.PhoneNumber == sodienthoai && n.Password == matkhau);
+            var us = bhx.Customers.SingleOrDefault(n => n.PhoneNumber == sodienthoai && n.Password == matkhau);
             if (us != null)
-                return Content("/Main/Index");
+                return Content("/Products/Index");
             else
             {
                 var us1 = (from u in bhx.Employees
-                           where u.Password  == matkhau && u.PhoneNumber == sodienthoai 
+                           where u.Password == matkhau && u.PhoneNumber == sodienthoai
                            select u).SingleOrDefault();// FirstOrDefault();
                 if (us1 != null)
-                    return Content("/Products/Drinks");  
+                    return Content("/Products/Drinks");
             }
             return Content("false");
 
-         //   return View();
-           
+            //   return View();
+
         }
 
-       
+
         [HttpGet]
         public ActionResult LoginSuccessfully()
         {
