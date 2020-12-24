@@ -1,0 +1,19 @@
+﻿@model IEnumerable<BachHoaXanh.Data.Models.Product>
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/_ManagerOrEmployee.cshtml";
+}
+
+<div><h4>Tổng sản phẩm: @ViewBag.TotalProduct sản phẩm</h4></div>
+<br />
+<div><h4>Tổng khách hàng: @ViewBag.TotalCustomer tài khoản đã đăng ký</h4></div>
+<br />
+<div><h4>Tổng doanh thu: @ViewBag.Total VNĐ</h4></div>
+<br />
+<h4>Danh sách 20 sản phẩm bán chạy nhất của cửa hàng:</h4>
+<br />
+@Html.Action("Top20Products", "Products")
+
+<h4>Danh sách 20 khách hàng thân thiết của cửa hàng:</h4>
+<br />
+@Html.Action("Top20Customers", "Customer")

@@ -37,9 +37,13 @@ namespace BachHoaXanh.Web.Controllers
             // FormCollection f = new FormCollection();
             string sodienthoai = f["SDT"];
             string matkhau = f["password"];
-            var us = bhx.Customers.SingleOrDefault(n => n.PhoneNumber == sodienthoai && n.Password == matkhau);
+            Data.Models.Customer us = bhx.Customers.SingleOrDefault(n => n.PhoneNumber == sodienthoai && n.Password == matkhau);
             if (us != null)
-                return Content("/Products/Index");
+            {
+                Session["Name"] = us.Name;
+                Session["Email"] = us.Email;
+                return Content("/Main/Index");
+            }
             else
             {
                 var us1 = (from u in bhx.Employees
@@ -58,8 +62,15 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]
         public ActionResult LoginSuccessfully()
         {
+
             return View();
         }
+        public ActionResult Logout()
+        {
+            Session.Clear();//remove session
+            return RedirectToAction("Index", "Main");
+        }
+
 
     }
 }

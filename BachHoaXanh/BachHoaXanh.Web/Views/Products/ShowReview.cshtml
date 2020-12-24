@@ -1,0 +1,19 @@
+﻿@model IEnumerable<BachHoaXanh.Data.Models.Rating>
+@*@model IEnumerable<(string CustomerName, string Review)>*@
+@{
+    Layout = null;
+}
+@foreach (var rate in Model)
+{
+
+    <div class="reviews-top">
+        <div class="reviews-right">
+            <ul>
+                <li>@rate.CustomerId</li>
+                <li><a href="#"><i class="glyphicon glyphicon-share" aria-hidden="true"></i>Reply</a></li>
+            </ul>
+            <p> @rate.Comments  </p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}

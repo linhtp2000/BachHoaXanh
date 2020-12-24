@@ -135,14 +135,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="clearfix"> </div>
         </div>
-    </div>    
+    </div>
     <div class="privacy about">
         <h3>Quản lý <span>Đơn hàng</span></h3>
 
         <div class="checkout-right">
             <!--Horizontal Tab-->
-            <div id="parentHorizontalTab" style="display: block; width: 100%; margin: 0px;">               
-                      @RenderBody()
+            <div id="parentHorizontalTab" style="display: block; width: 100%; margin: 0px;">
+                @RenderBody()
             </div>
 
             <!--Plug-in Initialisation-->
@@ -473,7 +473,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         SDT: $("#SDT1").val(),
                         Email: $("#email").val(),
                         MatKhau: $("#password1").val()
-                                    NhapLaiMatKhau: $("#retypepassword").val(),
+                                        NhapLaiMatKhau: $("#retypepassword").val(),
                     };
                     $.ajax({
                         url: '/Register/SignUp',

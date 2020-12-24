@@ -1,48 +1,38 @@
-﻿@*@model IEnumerable<BachHoaXanh.Data.Models.Product>*@
-@model PagedList.IPagedList<BachHoaXanh.Data.Models.Product>
+﻿@model IEnumerable<BachHoaXanh.Data.Models.Product>
+@*@model PagedList.IPagedList<BachHoaXanh.Data.Models.Product>*@
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SearchOrNot";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Classify</h2>
+<h2>Kết quả tìm kiếm về từ khóa: @ViewBag.TenSP</h2>
 <link href="~/Content/css/style.css" rel="stylesheet" />
 
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
-@*<form action="/Products/Index/?id=@Model.FirstOrDefault().ClassifyId?tieuchuanloc=giagiam" method="get">
-        Sắp xếp theo <select name="tieuchuanloc">
-            <option value="giagiam">Giá giảm dần</option>
-            <option value="giatang">Giá tăng dần</option>
-        </select>
-        <input type="submit" value="Lọc" class="btn-btn-danger">
-    </form>*@
-<div>
-    @Html.ActionLink("Sắp xếp theo", "Index", new { id = Model.FirstOrDefault().ClassifyId, tieuchuanloc = ViewBag.PriceSortParm })  @ViewBag.tieuchuan
-</div>
+<!--<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 @*
-
-    @foreach (var item in Model)
-    {
-        @Html.DisplayFor(modelItem => item.Id)
-        <!--<td>
-            @Html.DisplayFor(modelItem => item.Provider.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-    @Html.Partial("ProductSummary", item);*@
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(modelItem => item.Id)
+    <!--<td>
+        @Html.DisplayFor(modelItem => item.Provider.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Discount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+@Html.Partial("ProductSummary", item);*@
+}-->
 <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
     @*<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
             <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true"><img src="images/menu1.png"></a></li>
@@ -53,7 +43,6 @@
         <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
             @foreach (var item in Model)
             {
-                //var price = item.Price - item.Discount * item.Price / 100; //LINH LÀM RỒI, TẠM BỎ
                 <div class="product-tab">
                     <div class="col-md-4 product-tab-grid simpleCart_shelfItem">
                         <div class="grid-arr">
@@ -76,10 +65,10 @@
                                 {*@
                             <div class="women">
                                 @Html.ActionLink("Xem sản phẩm", "Details", new { id = item.Id })
-                                <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
+                                <h6><a href="Details.html">@Html.DisplayFor(modelItem => item.Name)</a></h6>
                                 <span class="size">XL / XXL / S </span>
 
-                                <p><del>@Html.DisplayFor(modelItem => item.Price)</del><em class="item_price"> @item.Discount      @*@price*@ </em></p>
+                                <p><del>@Html.DisplayFor(modelItem => item.Price)</del><em class="item_price"> @Html.DisplayFor(modelItem => item.Discount) </em></p>
                                 <a href="/Cart_Checkout/AddToCart?id=@item.Id" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
                             </div>
                             @*@Html.DisplayFor(modelItem => item.Id)*@
@@ -106,8 +95,10 @@
     </div>
 
 </ul>
-<ol class="flex-control-nav flex-control-paging">
-    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+@*<ol class="flex-control-nav flex-control-paging">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("Index", "Products", new { page, id = Model.FirstOrDefault().ClassifyId, tieuchuanloc = ViewBag.PriceSortParm }))
-</ol>
+        @Html.PagedListPager(Model, page => Url.Action("Search", new { page, ProductName=ViewBag.TenSP}))
+    </ol>*@
+
+

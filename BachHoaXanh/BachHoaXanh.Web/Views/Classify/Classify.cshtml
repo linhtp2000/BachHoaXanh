@@ -12,9 +12,12 @@
             <div class="w3ls_vegetables">
                 <ul>
                     <span class="caret"></span>
-                    <li><a href="/Products/Index?id=@nhomhang.Id"> @nhomhang.Name</a></li>
+                    <li><a href="/Products/Index?id=@nhomhang.Id" id="TenNhomHang" name="TenNhomHang"> @nhomhang.Name</a></li>
+
                 </ul>
             </div>
         </div>
     </class>
+
+    @*@(ViewContext.RouteData.Values["id"]);*@
 }

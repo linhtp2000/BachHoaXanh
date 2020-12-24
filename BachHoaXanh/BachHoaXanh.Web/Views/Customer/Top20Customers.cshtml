@@ -1,0 +1,56 @@
+﻿@*@model IEnumerable <(string Id, string Name, string Price, string Amount, string Image)>*@
+@model IEnumerable<BachHoaXanh.Data.ModelView.Top20Customers>
+@{
+    ViewBag.Title = "Top20Customer";
+    Layout = null;
+    //Layout = "~/Views/Shared/_ManagerOrEmployee.cshtml";
+}
+<table class="table">
+    <tr>
+
+        <th>
+            Thứ tự
+            @*@Html.DisplayNameFor(model => model.Name)*@
+        </th>
+        <th>
+            Tên khách hàng
+            @*@Html.DisplayNameFor(model => model.ManagerId)*@
+        </th>
+        <!--<th>
+            Price-->
+        @*@Html.DisplayNameFor(model => model.AdminId)*@
+        <!--</th>-->
+        <th>
+            Tổng tiền đã mua
+            @*@Html.DisplayNameFor(model => model.Salary)*@
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.No) @*HIỆN SỐ THỨ TỰ*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                @*<a href="/Customer/Details?id=@item.Id">Details</a>*@
+                @Html.ActionLink("Details", "Details", "Customer", new { id = item.Id }, "")
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>

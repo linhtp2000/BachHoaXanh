@@ -299,7 +299,9 @@
     <Compile Include="Controllers\Cart_CheckoutController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ClassifyController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ExcelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -838,11 +840,19 @@
     <Content Include="Views\Order\Payment_Refund_DaXuLy.cshtml" />
     <Content Include="Views\Static\BillStatic.cshtml" />
     <Content Include="Views\Static\SalesStatic.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Top20Customers.cshtml" />
+    <Content Include="Views\Products\BestSeller.cshtml" />
+    <Content Include="Views\Products\ShowReview.cshtml" />
+    <Content Include="Views\Products\Top20Products.cshtml" />
+    <Content Include="Views\Products\SearchOrSort.cshtml" />
+    <Content Include="Views\Products\ThongKe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Authorize\" />
     <Folder Include="Views\Employee\" />
+    <Folder Include="Views\Excel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

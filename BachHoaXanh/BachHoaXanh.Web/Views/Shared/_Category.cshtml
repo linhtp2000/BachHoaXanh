@@ -6,21 +6,32 @@
         }
 
     </ul>*@
+
 @foreach (var danhmuc in Model)
 {
-    <li class="dropdown mega-dropdown active">
 
-        <a href="/Classify/Classify?CategoryID=@danhmuc.Id"> @*class="dropdown-toggle" data-toggle="dropdown">*@ @danhmuc.Name  @*<span class="caret"></span>*@</a>
+    @*<li class="dropdown mega-dropdown active">*@
 
-        <!--<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-            <div class="w3ls_vegetables">
-                <ul>
-                    <span class="caret"></span>-->
-        @*<a href="/Classify/Classify?CategoryID=@danhmuc.Id">@ViewBag.classify</a>*@
-        @*@Html.Action("Classify", "Classify") ;*@
+    @*<a href="/Classify/Classify?CategoryID=@*@<!--danhmuc.Id">--> @*class="dropdown-toggle" data-toggle="dropdown">*@ @*@danhmuc.Name*@ @*<span class="caret"></span>*@@*</a>*@
+    @*</li>*@
 
-        <!--</ul>
+
+    <ul class="nav navbar-nav nav_1">
+        <li class="dropdown mega-dropdown active">
+            @danhmuc.Name
+
+            <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                <div class="w3ls_vegetables">
+                    <ul>
+                        <li>@Html.Action("Classify", "Classify", new { CategoryId = danhmuc.Id })</li>
+                        @*<span class="caret">hh</span>*@
+                        @*<span class="caret">@Html.Action("Classify", "Classify", new { CategoryId = danhmuc.Id })</span>*@
+                        @*@Url.Action("Classify", "Classify", new {CategoryId=danhmuc.Id }) ;*@
+
+                    </ul>
+                </div>
             </div>
-        </div>-->
-    </li>
+        </li>
+    </ul>
+
 }
