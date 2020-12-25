@@ -405,8 +405,6 @@ E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Web.We
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Web.WebPages.Deployment.xml
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Web.WebPages.Razor.xml
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.ResolveComReference.cache
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.up.resources
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.dll.config
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.dll
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.pdb
@@ -516,3 +514,6 @@ D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Deb
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.dll
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.pdb
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.updatemodel.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.upp.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.up.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.up2.resources

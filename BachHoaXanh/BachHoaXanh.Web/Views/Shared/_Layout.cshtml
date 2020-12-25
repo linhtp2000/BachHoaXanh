@@ -1,5 +1,6 @@
 ﻿@*@model BachHoaXanh.Data.Models.Category*@
 @*@model IEnumerable<BachHoaXanh.Data.Models.Category>*@
+@using BachHoaXanh.Data.Models
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,37 +63,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </form>
         </div>
         <div class="product_list_header">
-            <form action="#" method="post" class="last">
-                <fieldset>
-                    <input type="hidden" name="cmd" value="_cart" />
-                    <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="Giỏ hàng" class="button" />
-                </fieldset>
-            </form>
+            @*<form action="#" method="post" class="last">
+                    <fieldset>
+                        <input type="hidden" name="cmd" value="_cart" />
+                        <input type="hidden" name="display" value="1" />
+                        <input type="submit" name="submit" value="Giỏ hàng" class="button" />
+                    </fieldset>
+                </form>*@
+            @if (Session["ID"] == null)
+            {
+                <img src="~/Images/cart.jpg" class="img-fluid" alt="">
+                <span class="" style="position: absolute; background-color: inherit; z-index: 999;"><span class="badge badge-notify my-cart-badge">0</span></span>
+            }
+            else
+            {
+                <a href="@Url.Action("Cart", "Cart_Checkout", new { cid = Session["ID"].ToString() })">
+                    <img src="~/Images/cart.jpg" class="img-fluid" alt="">                   
+                        <span class="" style="position: absolute; background-color: inherit; z-index: 999;"><span class="badge badge-notify my-cart-badge">@*@Html.Action("Cart","Cart_Checkout", new { cid = Session["ID"].ToString() })*@</span></span>
+                </a>
+            }
         </div>
         <div class="w3l_header_right">
             <ul>
                 @if (Session["Name"] != null)
                 {
-                    @*<h4 style="color:white">Chào @Session["Name"].ToString()</h4>*@
-                    <li class="dropdown profile_details_drop">
-                        <a href=" " class="dropdown-toggle" data-toggle="dropdown">
-                            @*@if (Session["Name"] != null)
-                                    {<h4 style="color:white">Chào @Session["Name"].ToString()</h4>}
-                                else*@
+                    @*<h4 style="color:white">Chào @Session["Name"].ToString()</h4>
+                        <li class="dropdown profile_details_drop">
+                            @*<a href=" " class="dropdown-toggle" data-toggle="dropdown">*@
+                    @*@<!--if (Session["Name"] != null)
+                        {
                             <h4 style="color:white">Chào @Session["Name"].ToString()</h4>
-                        </a>
+                        }
+                        else *@
 
-                        @*@{Html.RenderAction("Header", "Login");}*@
-                        <div class="mega-dropdown-menu">
-                            <div class="w3ls_vegetables">
-                                <ul class="dropdown-menu drp-mnu">
-                                    <li><a href="@Url.Action("Logout","Login")">Đăng xuấtt</a></li>
+                    <h4 style="color:white">@Session["Name"].ToString()</h4>
+                    @*</a>*@
 
-                                </ul>
-                            </div>
+
+                    @*@{Html.RenderAction("Header", "Login");}*@
+                    <div class="mega-dropdown-menu">
+                        <div class="w3ls_vegetables">
+                            <ul class="dropdown-menu drp-mnu">
+                                <li><a href="@Url.Action("Logout","Login")">Đăng xuấtt</a></li>
+
+                            </ul>
                         </div>
-                    </li>
+                    </div>
+                    @*</li>*@
                     @*<a href="@Url.Action("Logout", "Login")" class="btn btn-warning">Logout</a>*@
                 }
                 else

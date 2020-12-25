@@ -10,21 +10,25 @@ namespace BachHoaXanh.Data.Services
 {
     public class SqlProductData : IProductData
     {
-        private readonly BachHoaXanhDbContext db;
-        public SqlProductData()
-        {
-        }
+        private  BachHoaXanhDbContext db= new BachHoaXanhDbContext();
+      
         public bool CheckAmountOfProduct(string id)
         {
             bool flag = false;
             var p = (from u in db.Products
-                     where u.Id == id && u.Amount == 0
+                     where u.Id == id && u.Amount > 0
                      select u).ToList();
             if (p != null)
             {
                 flag = true;
             }
             return flag;
+        }
+        public int GetAmountOfProductCurrent(string id)
+        {
+            var p = db.Products.SingleOrDefault(x => x.Id == id);
+         
+            return p.Amount;
         }
         public void Add(Product product)
         {
@@ -42,7 +46,7 @@ namespace BachHoaXanh.Data.Services
 
         public Product Get(string id)
         {
-            return db.Products.FirstOrDefault(r => r.Id == id);
+            return db.Products.SingleOrDefault(r => r.Id == id);
         }
 
         public IEnumerable<Product> GetAll()

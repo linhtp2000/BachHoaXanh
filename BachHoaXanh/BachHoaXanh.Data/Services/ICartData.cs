@@ -14,14 +14,14 @@ namespace BachHoaXanh.Data.Services
         //SqlCartData GetCart(Controller controller);
         //SqlCartData GetCart(HttpContextBase context);
         Cart GetCartItem(string productid);
-        bool AddToCart(Product product);
-        int RemoveAmountOfCartItem(string productid);
+        string AddToCart(string pid, string cid);
+        void RemoveAmountOfCartItem(string pid, string cid);
         void RemoveCartItem(string productid);
         void EmptyCart();
-        List<Cart> GetCartItems();
+        List<Cart> GetCartItems(string id);
         int GetCount();
         decimal GetTotal();
-        void SaveDetailsOfBill(Bill bill);
+        void SaveDetailsOfBill(Bill bill, string id);
         string GetCartId(HttpContextBase context);
         void MigrateCart(string userName);
     }
