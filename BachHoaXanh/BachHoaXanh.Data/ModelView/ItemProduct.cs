@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BachHoaXanh.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,29 +12,29 @@ namespace BachHoaXanh.Data.ModelView
 {
     public class ItemProduct
     {
-        public string Id { get; set; }
-        [MaxLength(255)]
+       
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Discount { get; set; }
         public int Amount { get; set; }
-        [MaxLength(255)]
+        
         public string Details { get; set; }
+        public DateTime Date { get; set; }
         [NotMapped]
         public HttpPostedFileBase Image1 { get; set; }
         [NotMapped]
         public HttpPostedFileBase Image2 { get; set; }
         [NotMapped]
         public HttpPostedFileBase Image3 { get; set; }
-        [MaxLength(255)]
+       
         // [ForeignKey("Classify")]
-        public string ClassifyId { get; set; }
-        [MaxLength(255)]
+        public Classify Classify { get; set; }
+      
         //  [ForeignKey("Branch")]
-        public string BranchId { get; set; }
+        public Branch Branch { get; set; }
         // public virtual Branch Branch { get; set; }
-        [MaxLength(255)]
+      
         //  [ForeignKey("Provider")]
-        public string ProviderId { get; set; }
+        public Provider Provider { get; set; }
     }
 }

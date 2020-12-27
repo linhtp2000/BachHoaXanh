@@ -10,10 +10,13 @@ namespace BachHoaXanh.Data.Services
 {
     public class SqlBranchData: IBranchData
     {
-        private readonly BachHoaXanhDbContext db;
+        private BachHoaXanhDbContext db= new BachHoaXanhDbContext();
         public SqlBranchData (BachHoaXanhDbContext db)
         {
             this.db = db;
+        }
+        public SqlBranchData()
+        {         
         }
         public void Add(Branch branch)
         {
@@ -35,9 +38,8 @@ namespace BachHoaXanh.Data.Services
 
         public IEnumerable<Branch> GetAll()
         {
-            return from r in db.Branchs
-                   orderby r.Name
-                   select r;
+            var list = db.Branchs.OrderBy(x => x.Name).Select(x => x).Distinct();
+            return list.AsEnumerable<Branch>();
         }
 
         public void Update(Branch branch)

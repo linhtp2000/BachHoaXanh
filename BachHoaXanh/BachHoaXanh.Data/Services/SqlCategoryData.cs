@@ -15,6 +15,9 @@ namespace BachHoaXanh.Data.Services
         {
             this.db = db;
         }
+        public SqlCategoryData()
+        {          
+        }
         public void Add(Category category)
         {
             db.Categories.Add(category);
@@ -36,8 +39,9 @@ namespace BachHoaXanh.Data.Services
         public IEnumerable<Category> GetAll()
         {
             return from r in db.Categories
-                   orderby r.Name
-                   select r;
+                       orderby r.Name
+                       select r;
+            
         }
 
         public void Update(Category category)

@@ -15,13 +15,16 @@ namespace BachHoaXanh.Web.Controllers
         //GET: Products
 
         public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
-        private IProductData db;
+        SqlBranchData dbBranch = new SqlBranchData();
+        SqlCategoryData dbCategory = new SqlCategoryData();
+        SqlClassifyData dbClassify = new SqlClassifyData();
         SqlCartData dbCart = new SqlCartData();
         SqlProductData dbProduct = new SqlProductData();
-        public ProductsController(IProductData db)
-        {
-            this.db = db;
-        }
+        SqlProviderData dbProvider = new SqlProviderData();
+        //public ProductsController(IProductData db)
+        //{
+        //    this.bhx = db;
+        //}
         //   private readonly IClassifyData cdb;
 
         // GET: Classify
@@ -148,10 +151,17 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]   // use to edit, create restaurant
         public ActionResult Create()
         {
-            Product sp = new Product();
-            ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", sp.BranchId);
-            ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", sp.ClassifyId);
-            ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", sp.ProviderId);
+            //ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", item.Branch.Id);
+            //ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", item.Classify.Id);
+            // ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", item.Provider.Id);
+            IEnumerable<Branch> lBranchs = dbBranch.GetAll();
+            IEnumerable<Provider> lProviders = dbProvider.GetAll();
+            IEnumerable<Classify> lClassifys = dbClassify.GetAll();
+
+            ViewBag.BranchId = lBranchs;
+            ViewBag.ClassifyId = lClassifys;
+            ViewBag.ProviderId = lProviders;
+
             return View();
         }
 
@@ -159,10 +169,18 @@ namespace BachHoaXanh.Web.Controllers
         [ValidateAntiForgeryToken] //thuoc tinh ngan chan mot yeu cau gia mao
         public ActionResult Create(ItemProduct item)
         {
-            if (String.IsNullOrEmpty(item.Id))
-            {
-                ModelState.AddModelError(nameof(item.Id), "Product's ID is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
+
+            IEnumerable<Branch> lBranchs = dbBranch.GetAll();
+            IEnumerable<Provider> lProviders = dbProvider.GetAll();
+            IEnumerable<Classify> lClassifys = dbClassify.GetAll();
+
+            ViewBag.BranchId = lBranchs;
+            ViewBag.ClassifyId = lClassifys;
+            ViewBag.ProviderId = lProviders;
+
+            //ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", item.Branch.Id);
+            //ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", item.Classify.Id);
+            //ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", item.Provider.Id);
             if (String.IsNullOrEmpty(item.Name))
             {
                 ModelState.AddModelError(nameof(item.Name), "The name is required");      //thong bao loi khi Name co gia tri null/ rong
@@ -175,45 +193,124 @@ namespace BachHoaXanh.Web.Controllers
             {
                 ModelState.AddModelError(nameof(item.Amount), "Amount is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            //if (String.IsNullOrEmpty(item.BranchId))
-            //{
-            //    ModelState.AddModelError(nameof(item.BranchId), "Branch's ID is required");      //thong bao loi khi Name co gia tri null/ rong
-            //}
-            if (String.IsNullOrEmpty(item.ClassifyId))
+            if (String.IsNullOrEmpty(item.Branch.Name))
             {
-                ModelState.AddModelError(nameof(item.ClassifyId), "Classify's ID is required");
+                ModelState.AddModelError(nameof(item.Branch.Name), "Branch is required");      //thong bao loi khi Name co gia tri null/ rong
+            }
+            if (String.IsNullOrEmpty(item.Classify.Name))
+            {
+                ModelState.AddModelError(nameof(item.Classify.Name), "Classify is required");
                 //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(item.ProviderId))
+            if (String.IsNullOrEmpty(item.Provider.Name))
             {
-                ModelState.AddModelError(nameof(item.ProviderId), "Provider's ID is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.Provider.Name), "Provider is required");      //thong bao loi khi Name co gia tri null/ rong
             }
 
-            ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", item.BranchId);
-            ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", item.ClassifyId);
-            ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", item.ProviderId);
-            if (ModelState.IsValid)     //Name hop le
+            //List<Branch> lBranchs = dbBranch.GetAll() as List<Branch>;
+            //List<Provider> lProviders = dbProvider.GetAll() as List<Provider>;
+            //List<Classify> lClassifys = dbClassify.GetAll() as List<Classify>;
+
+            //ViewBag.BranchName = lBranchs;
+            //ViewBag.ClassifyName = lClassifys;
+            //ViewBag.ProviderName = lProviders;
+
+            
+            if (ModelState.IsValid)    
             {
                 Product p = new Product();
-                p.Id = item.Id;
+                p.Id = dbProduct.GetIdMax().ToString();
                 p.Name = item.Name;
-                p.BranchId = item.BranchId;
+                p.BranchId = item.Branch.Id;
                 p.Amount = item.Amount;
-                p.ClassifyId = item.ClassifyId;
-                p.ProviderId = item.ProviderId;
+                p.ClassifyId = item.Classify.Id;
+                p.ProviderId = item.Provider.Id;
                 p.Details = item.Details;
                 p.Discount = item.Discount;
                 p.Price = item.Price;
+                p.Date = item.Date;
 
-                string image1 = Guid.NewGuid() + Path.GetExtension(item.Image1.FileName);  //GetExstension
-                item.Image1.SaveAs(filename: Server.MapPath("~/Images/" + image1));
-                p.Image1 = item.Image1.ToString();
-                string image2 = Guid.NewGuid() + Path.GetExtension(item.Image2.FileName);
-                item.Image2.SaveAs(filename: Server.MapPath("~/Images/" + image1));
-                p.Image2 = item.Image2.ToString();
-                string image3 = Guid.NewGuid() + Path.GetExtension(item.Image3.FileName);
-                item.Image3.SaveAs(filename: Server.MapPath("~/Images/" + image1));
-                p.Image3 = item.Image3.ToString();
+                if (item.Image1.ContentLength > 0)
+                {
+                    //Lay ten hinh anh
+                    var image1 = Path.GetExtension(item.Image1.FileName);  //GetExstension
+                                                                           //Lay hinh anh chuyen vao thu muc
+                    var path = Path.Combine(Server.MapPath("~/Images"), image1);
+                    //Neu thu muc chua hinh anh do roi thi xuat ra thong bao
+                    if (System.IO.File.Exists(path))
+                    {
+                        ViewBag.upload = " Image has existed!";
+                    }
+                    else
+                    {
+                        //Lay hinh anh dua vao thu muc Images
+                        item.Image1.SaveAs(path);
+                        p.Image1 = image1;
+                        //Session["Image1"] = item.Image1.FileName;
+                        //ViewBag.Image1 = "";
+                    }
+                }
+                else
+                {
+                    p.Image1 = null;
+                }
+
+
+                if (item.Image2.ContentLength > 0)
+                {
+                    //Lay ten hinh anh
+                    var image2 = Path.GetExtension(item.Image2.FileName);  //GetExstension
+                                                                           //Lay hinh anh chuyen vao thu muc
+                    var path = Path.Combine(Server.MapPath("~/Images"), image2);
+                    //Neu thu muc chua hinh anh do roi thi xuat ra thong bao
+                    if (System.IO.File.Exists(path))
+                    {
+                        ViewBag.upload = " Image has existed!";
+                    }
+                    else
+                    {
+                        //Lay hinh anh dua vao thu muc Images
+                        item.Image2.SaveAs(path);
+                        p.Image2 = image2;
+                    }
+                }
+                else
+                {
+                    p.Image2 = null;
+                }
+
+
+                if (item.Image3.ContentLength > 0)
+                {
+                    //Lay ten hinh anh
+                    var image3 = Path.GetExtension(item.Image1.FileName);  //GetExstension
+                                                                           //Lay hinh anh chuyen vao thu muc
+                    var path = Path.Combine(Server.MapPath("~/Images"), image3);
+                    //Neu thu muc chua hinh anh do roi thi xuat ra thong bao
+                    if (System.IO.File.Exists(path))
+                    {
+                        ViewBag.upload = " Image has existed!";
+                    }
+                    else
+                    {
+                        //Lay hinh anh dua vao thu muc Images
+                        item.Image3.SaveAs(path);
+                        p.Image3 = image3;
+                    }
+                }
+                else
+                {
+                    p.Image3 = null;
+                }            
+                //string image1 = Path.GetExtension(item.Image1.FileName);  //GetExstension
+                //item.Image1.SaveAs(filename: Server.MapPath("~/Images/" + image1));
+                //p.Image1 = item.Image1.ToString();
+                //string image2 = Guid.NewGuid() + Path.GetExtension(item.Image2.FileName);
+                //item.Image2.SaveAs(filename: Server.MapPath("~/Images/" + image1));
+                //p.Image2 = item.Image2.ToString();
+                //string image3 = Guid.NewGuid() + Path.GetExtension(item.Image3.FileName);
+                //item.Image3.SaveAs(filename: Server.MapPath("~/Images/" + image1));
+                //p.Image3 = item.Image3.ToString();
 
 
                 //string image1 = Path.GetFileNameWithoutExtension(item.Image1.FileName);
@@ -223,7 +320,7 @@ namespace BachHoaXanh.Web.Controllers
 
                 //item.Image1.SaveAs(filename: Server.MapPath("~/Images/" + image1));
                 //p.Image1 = item.Image1.ToString();
-                db.Add(p);
+                dbProduct.Add(p);
                 return RedirectToAction("Details", new { id = p.Id });
             }
             return View();
@@ -232,7 +329,7 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            var model = db.Get(id);
+            var model = dbProduct.Get(id);
 
             if (model == null)
             {
@@ -247,7 +344,7 @@ namespace BachHoaXanh.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Update(products);
+                dbProduct.Update(products);
                 TempData["Message"] = "You have saved the product!";
                 return RedirectToAction("Details", new { id = products.Id });
             }
@@ -257,7 +354,7 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            var model = db.Get(id);
+            var model = dbProduct.Get(id);
             if (model == null)
             {
                 return View("Error");
@@ -269,7 +366,7 @@ namespace BachHoaXanh.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id, FormCollection form)
         {
-            db.Delete(id);
+            dbProduct.Delete(id);
             return RedirectToAction("Index");
         }
 

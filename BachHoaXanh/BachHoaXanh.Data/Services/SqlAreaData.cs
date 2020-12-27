@@ -32,13 +32,7 @@ namespace BachHoaXanh.Data.Services
         {
             return db.Areas.FirstOrDefault(r => r.Id == id);
         }
-
-        public IEnumerable<Area> GetAll()
-        {
-            return from r in db.Areas
-                   orderby r.Name
-                   select r;
-        }
+     
 
         public void Update(Area area)
         {
@@ -46,6 +40,10 @@ namespace BachHoaXanh.Data.Services
             entry.State = EntityState.Modified;
             db.SaveChanges();
 
+        }
+        public IEnumerable<Area> GetAll()
+        {
+            return (from r in db.Areas select r);
         }
     }
 }

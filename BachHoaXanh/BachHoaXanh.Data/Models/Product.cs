@@ -23,6 +23,7 @@ namespace BachHoaXanh.Data.Models
         public int Amount { get; set; }
         [MaxLength(255)]
         public string Details { get; set; }
+        public DateTime Date { get; set; }
         // [NotMapped]
         public string Image1 { get; set; }
         // [NotMapped]

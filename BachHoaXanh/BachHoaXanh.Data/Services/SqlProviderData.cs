@@ -10,10 +10,14 @@ namespace BachHoaXanh.Data.Services
 {
     public class SqlProviderData: IProvidersData
     {
-        private readonly BachHoaXanhDbContext db;
+        private  BachHoaXanhDbContext db= new BachHoaXanhDbContext();
         public SqlProviderData (BachHoaXanhDbContext db)
         {
             this.db = db;
+        }
+        public SqlProviderData()
+        {
+            
         }
         public void Add(Provider provider)
         {
@@ -35,9 +39,8 @@ namespace BachHoaXanh.Data.Services
 
         public IEnumerable<Provider> GetAll()
         {
-            return from r in db.Providers
-                   orderby r.Name
-                   select r;
+            var list = db.Providers.OrderBy(x => x.Name).Select(x => x).Distinct();
+            return list.AsEnumerable<Provider>();
         }
 
         public void Update(Provider provider)

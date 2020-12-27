@@ -48,6 +48,17 @@ namespace BachHoaXanh.Data.Services
         {
             return db.Products.SingleOrDefault(r => r.Id == id);
         }
+        public int GetIdMax()
+        {
+            var list= db.Products.Select(r => r.Id).ToList();
+            if(list==null)
+            {
+                return 1;
+            }
+            //Doi BillId kieu string sang int
+            List<int> intlist = list.Select(s => int.Parse(s)).ToList();
+            return intlist.Max()+1;
+        }
 
         public IEnumerable<Product> GetAll()
         {
@@ -63,5 +74,6 @@ namespace BachHoaXanh.Data.Services
             db.SaveChanges();
 
         }
+       
     }
 }

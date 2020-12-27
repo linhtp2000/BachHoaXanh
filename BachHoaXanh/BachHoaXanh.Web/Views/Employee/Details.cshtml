@@ -1,0 +1,83 @@
+﻿@model BachHoaXanh.Data.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ManagerOrEmployee.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Quyền
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "ListEmployee")
+</p>

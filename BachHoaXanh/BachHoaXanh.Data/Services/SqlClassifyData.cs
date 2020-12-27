@@ -10,10 +10,13 @@ namespace BachHoaXanh.Data.Services
 {
     public class SqlClassifyData: IClassifyData
     {
-        private readonly BachHoaXanhDbContext db;
+        private  BachHoaXanhDbContext db= new BachHoaXanhDbContext();
         public SqlClassifyData(BachHoaXanhDbContext db)
         {
             this.db = db;
+        }
+        public SqlClassifyData()
+        {
         }
         public void Add(Classify classify )
         {
@@ -34,9 +37,8 @@ namespace BachHoaXanh.Data.Services
 
         public IEnumerable<Classify> GetAll()
         {
-            return from r in db.Classifys
-                   orderby r.Name
-                   select r;
+            var list = db.Classifys.OrderBy(x => x.Name).Select(x => x).Distinct();
+            return list.AsEnumerable<Classify>();
         }
 
         public void Update(Classify classify)
