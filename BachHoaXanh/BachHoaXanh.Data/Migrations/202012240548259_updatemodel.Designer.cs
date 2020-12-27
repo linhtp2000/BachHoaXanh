@@ -7,13 +7,13 @@ namespace BachHoaXanh.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class upp : IMigrationMetadata
+    public sealed partial class updatemodel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(upp));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatemodel));
         
         string IMigrationMetadata.Id
         {
-            get { return "202012240607122_upp"; }
+            get { return "202012240548259_updatemodel"; }
         }
         
         string IMigrationMetadata.Source

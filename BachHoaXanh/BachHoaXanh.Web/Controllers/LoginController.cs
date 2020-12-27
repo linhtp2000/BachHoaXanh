@@ -42,9 +42,7 @@ namespace BachHoaXanh.Web.Controllers
             {
                 Session["Name"] = us.Name;
                 Session["Email"] = us.Email;
-                Session["ID"] = us.Id;
-              //  Session["Cart"] = us.Id;
-                return Content("/Products/Index");
+                return Content("/Main/Index");
             }
             else
             {

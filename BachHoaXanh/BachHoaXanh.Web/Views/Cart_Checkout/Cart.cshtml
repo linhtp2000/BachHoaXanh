@@ -4,7 +4,6 @@
     ViewBag.Title = "Cart";
     decimal TotalAmount = 0;
     int stt = 1;
-    decimal tempprice = 0;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using BachHoaXanh.Data.Models
@@ -30,7 +29,7 @@
         });
 
     </script>*@
-@*<script src="/Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         // Document.ready -> link up remove event handler
@@ -55,7 +54,7 @@
             }
         });
     });
-</script>*@
+</script>
 <h3>
     <em>Review</em> your cart:
 </h3>
@@ -77,13 +76,11 @@
         </thead>
         @foreach (var item in Model)
         {
-            if (item.Status == 1)
-            {
-                TotalAmount += (item.Amount * item.Price);
+            TotalAmount += (item.Amount * item.Price);
             <tbody>
                 <tr id="row-@item.ProductId">
                     <td class="invert">@stt++</td>
-                    <td class="invert-image"><a href="@Url.Action("Details","Products",new { id=item.ProductId})"><img src="@Url.Content(item.Image)" class="img-responsive"></a></td>
+                    <td class="invert-image"><a href="/Products/Details/">< img src="@item.Image" />alt=" " class="img-responsive"></a></td>
                     <td class="invert">
                         <div class="quantity">
                             <div class="quantity-select">
@@ -94,26 +91,25 @@
                         </div>
                     </td>
                     <td class="invert">@item.ProductName</td>
-                    
-                    <td class="invert">@item.Total</td>
+
+                    <td class="invert">@item.Amount* @item.Price</td>
                     <td class="invert">
                         <div class="rem">
-                            <div class="close"> <a href=@Url.Action("RemoveAmountOfCartItem", new { pid=item.ProductId}) class="RemoveLink" data-id="@item.ProductId"></a></div>
+                            <div class="close"> <a href="#" class="RemoveLink" data-id="@item.ProductId"></a></div>
                         </div>
                     </td>
                 </tr>
             </tbody>
-            }
         }
         <tr>
-            @*<td>Total </td>
+            <td>Total </td>
             <td>
             </td>
             <td>
             </td>
             <td id="cart-total">
                 @TotalAmount
-            </td>*@
+            </td>
 
             <td colspan=" 4" style=" text-align: right">
                 <h3>Total</h3>
@@ -157,7 +153,51 @@
     </tr>
 
 
-  
+    < tbody >
+    < tr class="rem">
+    <td class="invert">@stt++</td>
+    <td class="invert-image"><a href = "/Products/Details/" >< img src="@item.Image" />alt=" " class="img-responsive"></a></td>
+    <td class="invert">
+    <div class="quantity">
+    <div class="quantity-select">
+    <div class="entry value-minus">&nbsp;</div>
+    <div class="entry value"><span>@item.Amount</span></div>
+    <div class="entry value-plus active">&nbsp;</div>
+    </div>
+    </div>
+    </td>
+    <td class="invert">@item.ProductName</td>
+
+    <td class="invert">@item.Amount* @item.Price</td>
+    <td class="invert">
+    <div class="rem">
+    <div class="close"> </div>
+    </div>
+
+    </td>
+    </tr>-->-->
+    <!--@*}*@-->
+    <!--<!--</ table >
+        @foreach (Cart item in Model)
+        {
+            TotalAmount -= item.Product.Price * item.Product.Discount;
+            < div class= "col-md-4 checkout-left-basket" >
+            < h4 > Continue to basket</h4>
+            <ul>
+                <li>@item.ProductName<i>-</i> <span>@item.Product.Price* @item.Product.Discount</span></li>
+            </ul>
+        </div>
+    }-->-->
+    <!--@*<li>Total <i>-</i> <span>$84.00</span></li>*@-->
+    <!--<li><i></i><span></span></li><li><i></i><span></span></li>
+    <tr style="border-top: 2px solid maroon">
+        <td colspan=" 4" style=" text-align: right">
+            <h3>Total</h3>
+        </td>
+        <td style=" text-align:right">
+            <h3>@TotalAmount</h3>
+        </td>
+
     </tr>
 
 

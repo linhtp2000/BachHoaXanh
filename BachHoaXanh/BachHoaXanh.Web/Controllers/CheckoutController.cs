@@ -55,14 +55,14 @@ namespace BachHoaXanh.Web.Controllers
             if (ModelState.IsValid)
             {
                 Bill newbill = new Bill();
-              //  var cart = SqlCartData.GetCart(this.HttpContext);
+                var cart = SqlCartData.GetCart(this.HttpContext);
                 newbill.CustomerId = User.Identity.Name;
                 newbill.Datetime = DateTime.Now;
                 newbill.Address = modeladdress.Address;
                 newbill.City = modeladdress.City;
                 newbill.CustomerName = modeladdress.Name;
                 newbill.Id = (dbBill.GetBillId() + 1).ToString();
-              //  newbill.Total = cart.GetTotal();
+                newbill.Total = cart.GetTotal();
                 newbill.Points = (int)(newbill.Total * 3 / 100);
                 //    newbill.ServiceCharge
                 newbill.Status = "DatHang";
@@ -70,7 +70,7 @@ namespace BachHoaXanh.Web.Controllers
                 dbBill.Add(newbill);
 
                 //Process the order
-                //cart.SaveDetailsOfBill(newbill);
+                cart.SaveDetailsOfBill(newbill);
 
                 return RedirectToAction("Complete", new { id = newbill.Id });
             }
