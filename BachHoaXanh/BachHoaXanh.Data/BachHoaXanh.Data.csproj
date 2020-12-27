@@ -215,9 +215,9 @@
     <Compile Include="Migrations\202012040316481_InitialCreate.designer.cs">
       <DependentUpon>202012040316481_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202012240548259_updatemodel.cs" />
-    <Compile Include="Migrations\202012240548259_updatemodel.designer.cs">
-      <DependentUpon>202012240548259_updatemodel.cs</DependentUpon>
+    <Compile Include="Migrations\202012271222174_update1.cs" />
+    <Compile Include="Migrations\202012271222174_update1.designer.cs">
+      <DependentUpon>202012271222174_update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelView\AddressForOrder.cs" />
@@ -234,6 +234,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="ModelView\BarChartVM.cs" />
+    <Compile Include="ModelView\CartView.cs" />
     <Compile Include="ModelView\ItemProduct.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Product.cs" />
@@ -376,8 +377,8 @@
     <EmbeddedResource Include="Migrations\202012040316481_InitialCreate.resx">
       <DependentUpon>202012040316481_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012240548259_updatemodel.resx">
-      <DependentUpon>202012240548259_updatemodel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012271222174_update1.resx">
+      <DependentUpon>202012271222174_update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

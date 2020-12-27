@@ -15,8 +15,9 @@ namespace BachHoaXanh.Web.Controllers
         //GET: Products
 
         public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
-        private readonly IProductData db;
-
+        private IProductData db;
+        SqlCartData dbCart = new SqlCartData();
+        SqlProductData dbProduct = new SqlProductData();
         public ProductsController(IProductData db)
         {
             this.db = db;
@@ -71,16 +72,28 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Index(int? page, string id, string tieuchuanloc)
         {
             ViewBag.PriceSortParm = String.IsNullOrEmpty(tieuchuanloc) ? "giagiam" : "";
-
-            var model = (from sp in bhx.Products
+            IEnumerable<Product> model;
+            if (id != null)
+            {
+                model = (from sp in bhx.Products
                          where sp.ClassifyId == id
                          select sp);//.OrderBy(s => s.Name);
+                ViewBag.All = 0;
+            }
+            else
+            {
+                model = (from sp in bhx.Products
+                             // where sp.ClassifyId == id
+                         select sp);//.OrderBy(s => s.Name);
+                ViewBag.All = 1;
+            }
             if (model.FirstOrDefault() == null) return Content("Sản phẩm sẽ được thêm vào sớm, xin lỗi quý khách vì sự bất tiện này.");
             // 1. Tham số int? dùng để thể hiện null và kiểu int
             // page có thể có giá trị là null và kiểu int.
 
             // 2. Nếu page = null thì đặt lại là 1.
             if (page == null) page = 1;
+            ViewBag.page = page;
 
             // 3. Tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
             // theo LinkID mới có thể phân trang.
@@ -122,7 +135,10 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]
         public ActionResult Details(string id)
         {
-            var model = db.Get(id);
+            //var model = db.Get(id);
+            var model = (from sp in bhx.Products
+                         where sp.Id == id
+                         select sp).FirstOrDefault();
             if (model == null)
             {
                 return View("Error");
@@ -217,6 +233,7 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Edit(string id)
         {
             var model = db.Get(id);
+
             if (model == null)
             {
                 return HttpNotFound();
@@ -461,5 +478,84 @@ namespace BachHoaXanh.Web.Controllers
             }
             return View(ListReview);
         }
+        [HttpPost]
+        public ActionResult AddToCart(string id)
+        {
+            //    // Retrieve the album from the database
+            //    //var product = db.Products.Single(p => p.Id == id);            
+            //    // Add item to the cart
+
+            //    var cart = SqlCartData.GetCart(this.HttpContext);
+            //    //Customer cus = bhx.Customers.SingleOrDefault(
+            //    //  c => c.PhoneNumber == cart.ShoppingCartId);
+            //    if (!cart.AddToCart(p))
+            //    {
+            //        TempData["Message"] = "Product has been sold out!";
+            //    }
+
+            //    // Go back to the main store page for more shopping
+            //    return RedirectToAction("Index");
+            ////}
+            //List<Cart> cart = new List<Cart>();
+
+            //return Content(dbCart.AddToCart(p, Session["ID"].ToString()).ToString());
+            //if (dbCart.AddToCart(p, Session["ID"].ToString()))
+            //{
+            //    TempData["Message"] = "Product has been sold out!";
+            //}
+            //cart = dbCart.GetCartItems(Session["ID"].ToString());
+            //Session["Cart"] = cart;
+            //return RedirectToAction("Index");
+            string result = dbCart.AddToCart(id, Session["ID"].ToString());
+            Session["CartCounter"] = dbCart.GetCount(Session["ID"].ToString());
+            if (result == "1")
+            {
+                return RedirectToAction("Index");
+            }
+            if (result == "2")
+            {
+                TempData["Message"] = "You have reached to the maximum of quanlity!";
+                return RedirectToAction("Index");
+            }
+            if (result == "0")
+            {
+                TempData["Message"] = "Product has been sold out!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["Message"] = "Some problems have been!";
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        //public ActionResult AddToCart(string id)
+        //{
+
+        //    string result = dbCart.AddToCart(id, Session["ID"].ToString());
+        //    int counter = dbCart.GetCount(Session["ID"].ToString());
+        //    Session["CartCounter"] = counter;
+        //    if (result == "1")
+        //    {
+        //        return Json(new { result = 1 }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    if (result == "2")
+        //    {
+        //        // TempData["Message"] = "You have reached to the maximum of quanlity!";
+        //        return Json(new { result = 2 }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    if (result == "0")
+        //    {
+        //        // TempData["Message"] = "Product has been sold out!";
+        //        return Json(new { result = 0 }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    else
+        //    {
+        //        //TempData["Message"] = "Some problems have been!";
+        //        return Json(new { result = 3 }, JsonRequestBehavior.AllowGet);
+        //    }
+
+        //}
     }
 }

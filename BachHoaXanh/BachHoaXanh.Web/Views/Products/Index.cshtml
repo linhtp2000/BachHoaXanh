@@ -5,10 +5,13 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal PriceNow = 0;
 }
 <h2>@ViewBag.Classify</h2>
 <link href="~/Content/css/style.css" rel="stylesheet" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
@@ -71,43 +74,138 @@
                             </div>
                             <div class="block">
                                 <div class="starbox small ghosting"> </div>
+                                @Html.ActionLink("Xem sản phẩm", "Details", new { id = item.Id }) |
+                                <h6><a href="Details.html">@Html.DisplayFor(modelItem => item.Name)</a></h6>
+                                @*<span class="size">XL / XXL / S </span>*@
+                                @if (item.Discount != 0)
+                                {
+                                    PriceNow = item.Price * (100 - item.Discount) / 100;
+                                    <h4>$@PriceNow</h4>
+                                    <p><del>@Html.DisplayFor(modelItem => item.Price)</del><em class="item_price"> @Html.DisplayFor(modelItem => item.Discount)% </em></p>
+
+                                }
+                                else
+                                {
+                                    <h4>$@item.Price</h4>
+                                }
+
+                                @if (item.Amount > 0)
+                                {
+                                    using (Html.BeginForm("AddToCart", "Products", new { id = item.Id }, FormMethod.Post))
+                                    {
+                                        @*<a class="AddToCart">
+                                            <input type="button" class="pull-right my-cart-icon" itemid="@item.Id"/>*@
+                                        <button type="submit" class="pull-left"><i class="fa fa-shopping-cart"></i> </button>
+
+                                    }
+                                }
+
+                                else
+                                {
+                                    <a class="right" href="#"><i class="fa fa-shopping-cart"></i> </a>
+                                    <p>Hết Hàng</p>
+                                }
+
+
+                                @*@Html.DisplayFor(modelItem => item.Id)*@
+
+
+
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>*@
+                                @*@Html.Partial("ProductSummary", item);*@
+
+                                @*}*@
+
                             </div>
-                            @*@foreach (var item in Model)
-                                {*@
-                            <div class="women">
-                                @Html.ActionLink("Xem sản phẩm", "Details", new { id = item.Id })
-                                <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
-                                <span class="size">XL / XXL / S </span>
-
-                                <p><del>@Html.DisplayFor(modelItem => item.Price)</del><em class="item_price"> @item.Discount      @*@price*@ </em></p>
-                                <a href="/Cart_Checkout/AddToCart?id=@item.Id" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
-                            </div>
-                            @*@Html.DisplayFor(modelItem => item.Id)*@
-
-
-
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.Amount)
-                                </td>*@
-                            @*@Html.Partial("ProductSummary", item);*@
-
-                            @*}*@
-
                         </div>
+
                     </div>
 
                 </div>
-
             }
+
 
         </div>
 
-
     </div>
 
-</ul>
-<ol class="flex-control-nav flex-control-paging">
-    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("Index", "Products", new { page, id = Model.FirstOrDefault().ClassifyId, tieuchuanloc = ViewBag.PriceSortParm }))
-</ol>
+</ul>
+
+<div id="divLoading" style="display:none;">
+    <img src="#" />
+</div>
+
+
+@if (ViewBag.All == 1)
+{<ol class="flex-control-nav flex-control-paging">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Products", new { page, id = Model.FirstOrDefault().ClassifyId, tieuchuanloc = ViewBag.PriceSortParm }))
+    </ol>
+}
+else
+{
+    <ol class="flex-control-nav flex-control-paging">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Products", new { page, tieuchuanloc = ViewBag.PriceSortParm }))
+    </ol>
+}
+
+@*////==================================ADD TO CART=================================////*@
+
+<script type="text/javascript">
+
+    $(".AddToCart").click(function(item) {
+        var itemId = $(item).attr("itemid");
+        var formData = new FormData()
+            formData.append("ItemId", itemId);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Products/AddToCart',
+            success: function (data) {
+                if (data.re == 1) { alert("Sucessfully!"); }
+            },
+            error: function () {
+                if (data.result == 3) { alert("There is some problem"); }
+                if (data.result == 0) { alert("Product has been sold out!"); }
+                if (data.result == 2) { alert("You have reached to the maximum of quanlity!"); }
+
+            }
+
+        });
+    }
+</script>
+@*$(function () {
+    // Document.ready -> link up remove event handler
+    $(".RemoveLink").click(function () {
+        // Get the id from the link
+        var recordToDelete = $(this).attr("data-id");
+        if (recordToDelete != '') {
+            // Perform the ajax post
+            $.post("/ShoppingCart/RemoveFromCart", {"id": recordToDelete },*@
+
+<!--<s-->@*cript type="text/javascript">
+        $(function () {
+            // Document.ready -> link up remove event handler
+            $(".RemoveLink").click(function () {
+                // Get the id from the link
+                var itemId = $(this).attr("data-id");
+                if (itemId != '') {
+                    // Perform the ajax post
+                    $.post("/Products/AddToCart", { "id": itemId },
+                        function (data) {
+                            if (data.result == 1) { alert("Sucessfully!"); }
+                        });
+                }
+            });
+        });
+    </script>*@

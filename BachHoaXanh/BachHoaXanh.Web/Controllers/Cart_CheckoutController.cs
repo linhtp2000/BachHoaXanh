@@ -14,7 +14,7 @@ namespace BachHoaXanh.Web.Controllers
     {
         // GET: Cart
         //   private List<Cart> carts= new List<Cart>() ;
-        private readonly ICartData dbcart;
+        private SqlCartData dbcart = new SqlCartData();
         private IBillData dbBill;
         BachHoaXanhDbContext db = new BachHoaXanhDbContext();
         //public CartController()
@@ -112,62 +112,68 @@ namespace BachHoaXanh.Web.Controllers
             //};
             // Return the view
 
-            var carts = SqlCartData.GetCart(this.HttpContext);
+            List<Cart> carts = new List<Cart>();
+            //carts = dbcart.GetCartItems(Session["ID"].ToString());
+            //Session["Cart"] = carts;
 
-            return View(carts.GetCartItems());
+            return View(dbcart.GetCartItems(Session["ID"].ToString()));
+        }
+        public ActionResult AddToCart(string id, int amount)
+        {
+            string result = dbcart.AddToCart2(id, Session["ID"].ToString(), amount);
+            Session["CartCounter"] = dbcart.GetCount(Session["ID"].ToString());
+            decimal itemTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
+            decimal cartTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
+            CartView results = new CartView
+            {
+                success = true,
+                price = itemTotal,
+                total = cartTotal
+            };
+
+            if (result == "1")
+            {
+                return Json(new { success = true, result = results }, JsonRequestBehavior.AllowGet);
+            }
+            results.success = false;
+            return Json(new { success = false, result = results }, JsonRequestBehavior.AllowGet);
+
         }
         [HttpPost]
-        public ActionResult AddToCart(Product p)
+        public ActionResult UpdateCart(string id)
         {
-            // Retrieve the album from the database
-            //var product = db.Products.Single(p => p.Id == id);            
-            // Add item to the cart
-            var cart = SqlCartData.GetCart(this.HttpContext);
-            if (!cart.AddToCart(p))
+            decimal itemTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
+            decimal cartTotal = dbcart.GetTotal(Session["ID"].ToString());
+            CartView results = new CartView
             {
-                TempData["Message"] = "Product has been sold out!";
-            }
-
-            // Go back to the main store page for more shopping
-            return RedirectToAction("Index", "Product", new { id = p.ClassifyId });
+                price = itemTotal,
+                total = cartTotal
+            };
+            return Json(new { result = 3 }, JsonRequestBehavior.AllowGet);
         }
-
         // Remove the item from the cart
         [HttpPost]
-        public ActionResult RemoveAmountOfCartItem(string id)
+        public ActionResult RemoveAmountOfCartItem(string id, int amount)
         {
-            var cart = SqlCartData.GetCart(this.HttpContext);
-
-            // Get the name of the album to display confirmation
-            string productname = cart.GetCartItem(id).ProductName;
-
-            // Remove amount of item
-            int itemCount = cart.RemoveAmountOfCartItem(id);
-
-            // Display the confirmation message
-            //var results = new ShoppingCartRemoveView
-            //{
-            //    Message = Server.HtmlEncode(productname) +
-            //        " has been removed from your shopping cart.",
-            //    CartTotal = cart.GetTotal(),
-            //    CartCount = cart.GetCount(),
-            //    ItemCount = itemCount,
-            //    DeleteId = id
-            //};
-            return RedirectToAction("Cart");
+            string cid = Session["ID"].ToString();
+            dbcart.RemoveAmountOfCartItem(id, cid, amount);
+            Session["CartCounter"] = dbcart.GetCount(cid);
+            decimal total = dbcart.GetTotalItem(id, cid);
+            //return RedirectToAction("Cart",new {id= cid});
+            return Json(new { success = true, Total = total }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult RemoveCartItem(string id)
         {
-            var cart = SqlCartData.GetCart(this.HttpContext);
+            //var cart = SqlCartData.GetCart(this.HttpContext);
 
             // Get the name of the album to display confirmation
             string productname = dbcart.GetCartItem(id).ProductName;
 
             // Remove from cart
-            dbcart.RemoveAmountOfCartItem(id);
+            //    dbcart.RemoveAmountOfCartItem(id);
 
-            return RedirectToAction("Cart");
+            return Content("Cart");
         }
         ////
         //// GET: /ShoppingCart/CartSummary
@@ -215,14 +221,14 @@ namespace BachHoaXanh.Web.Controllers
             if (ModelState.IsValid)
             {
                 Bill newbill = new Bill();
-                var cart = SqlCartData.GetCart(this.HttpContext);
+                // var cart = SqlCartData.GetCart(this.HttpContext);
                 newbill.CustomerId = User.Identity.Name;
                 newbill.Datetime = DateTime.Now;
                 newbill.Address = modeladdress.Address;
                 newbill.City = modeladdress.City;
                 newbill.CustomerName = modeladdress.Name;
                 newbill.Id = (dbBill.GetBillId() + 1).ToString();
-                newbill.Total = cart.GetTotal();
+                //  newbill.Total = cart.GetTotal();
                 newbill.Points = (int)(newbill.Total * 3 / 100);
                 //    newbill.ServiceCharge
                 newbill.Status = "Confirm";
@@ -230,7 +236,7 @@ namespace BachHoaXanh.Web.Controllers
                 dbBill.Add(newbill);
 
                 //Process the order
-                cart.SaveDetailsOfBill(newbill);
+                //cart.SaveDetailsOfBill(newbill);
                 return Content("/Order/Confirm");
             }
 
