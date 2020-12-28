@@ -28,13 +28,13 @@ namespace BachHoaXanh.Data.ModelView
         public HttpPostedFileBase Image3 { get; set; }
        
         // [ForeignKey("Classify")]
-        public Classify Classify { get; set; }
+        public string ClassifyName { get; set; }
       
         //  [ForeignKey("Branch")]
-        public Branch Branch { get; set; }
+        public string BranchName { get; set; }
         // public virtual Branch Branch { get; set; }
       
         //  [ForeignKey("Provider")]
-        public Provider Provider { get; set; }
+        public string ProviderName { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace BachHoaXanh.Data.Services
 {
    public interface IProvidersData
     {
-        IEnumerable<Provider> GetAll();
+        List<string> GetAll();
         Provider Get(string id);
         void Add(Provider provider);
         void Update(Provider provider);

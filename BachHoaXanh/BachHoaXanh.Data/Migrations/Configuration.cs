@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "BachHoaXanh.Data.Services.BachHoaXanhDbContext";
         }
 
         protected override void Seed(BachHoaXanh.Data.Services.BachHoaXanhDbContext context)

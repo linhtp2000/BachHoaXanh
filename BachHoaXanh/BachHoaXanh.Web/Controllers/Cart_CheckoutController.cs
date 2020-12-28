@@ -15,7 +15,7 @@ namespace BachHoaXanh.Web.Controllers
         // GET: Cart
         //   private List<Cart> carts= new List<Cart>() ;
         private SqlCartData dbcart = new SqlCartData();
-        private IBillData dbBill;
+        private IBillData dbBill = new SqlBillData();
         BachHoaXanhDbContext db = new BachHoaXanhDbContext();
         //public CartController()
         //{
@@ -100,37 +100,110 @@ namespace BachHoaXanh.Web.Controllers
         //    return -1;
         //}
 
-        public ActionResult Cart()
+        public ActionResult CartPartial()
         {
-            ////var carts = dbcart.GetCart(this.HttpContext);
-
-            // Set up ViewModel
-            //var viewModel = new ShoppingCartView()
-            //{
-            //    CartItems = carts.GetCartItems(),
-            //    CartTotal = carts.GetTotal()
-            //};
-            // Return the view
-
-            List<Cart> carts = new List<Cart>();
-            //carts = dbcart.GetCartItems(Session["ID"].ToString());
-            //Session["Cart"] = carts;
-
-            return View(dbcart.GetCartItems(Session["ID"].ToString()));
+            //string s = Session["ID"].ToString();
+            if(Session["ID"]==null)
+            //if (s==null)
+            {
+                List<ItemCartViewWithoutLogin> cart= Session["Cart"] as List < ItemCartViewWithoutLogin>;
+                if (cart == null)
+                {
+                    ViewBag.CartTotal = 0;
+                    ViewBag.CartCounter = 0;
+                }
+                else
+                {
+                    ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(cart);
+                    ViewBag.CartCounter = dbcart.GetCountWithoutLogin(cart);
+                }
+                return PartialView();
+            }
+            string s = Session["ID"].ToString();
+            int temp= dbcart.GetCount(s);
+            if (temp==0)
+            {
+                ViewBag.CartTotal = 0;
+                ViewBag.CartCounter = 0;
+                return PartialView();
+            }
+            ViewBag.CartTotal = dbcart.GetTotal(s);
+            ViewBag.CartCounter = temp;
+            return PartialView();
         }
-        public ActionResult AddToCart(string id, int amount)
+
+        [HttpGet]
+        public ActionResult Cart()
+        {           
+            List<ItemCartViewWithoutLogin> cart1 = Session["Cart"] as List<ItemCartViewWithoutLogin>;
+            //Khong co dang nhap tai khoan
+            if(Session["ID"] == null)
+            {
+                //if(cart1==null)
+                //{
+                //    return PartialView("CartParttial");
+                //}/
+                //else
+                // {
+                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(cart1);
+                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(cart1);
+                return View(cart1);
+               //}
+            }
+            List<ItemCartViewWithoutLogin> cart2 =new List<ItemCartViewWithoutLogin>();
+            List<Cart> tempCart = dbcart.GetCartItems(Session["ID"].ToString());
+            foreach(Cart item in tempCart)
+            {
+                ItemCartViewWithoutLogin itemview = new ItemCartViewWithoutLogin();
+                itemview.ProductId = item.ProductId;
+                itemview.ProductName = item.ProductName;
+                itemview.Price = item.Price;
+                itemview.Total = item.Total;
+                itemview.Image = item.Image;
+                itemview.Amount = item.Amount;
+                itemview.Status = item.Status;
+                cart2.Add(itemview);
+            }
+            ViewBag.CartTotal = dbcart.GetTotal(Session["ID"].ToString());
+            ViewBag.CartCounter = dbcart.GetCount(Session["ID"].ToString());
+            Session["Cart"] = cart2;
+            return View(cart2);
+        }
+
+        public ActionResult AddToCart(string id)
         {
-            string result = dbcart.AddToCart2(id, Session["ID"].ToString(), amount);
-            Session["CartCounter"] = dbcart.GetCount(Session["ID"].ToString());
-            decimal itemTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
-            decimal cartTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
+            //khong login
+           // string s = Session["ID"].ToString();
+            string result = "0";
+            decimal itemTotal = 0;
+            decimal cartTotal = 0;
+            if (Session["ID"] == null)
+            {
+                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
+                Session["Cart"] = dbcart.AddToCartWithoutLogin(id, cart, ref result);
+                itemTotal = dbcart.GetTotalItemWithoutLogin(id,Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                cartTotal= dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.ItemTotal = dbcart.GetTotalItemWithoutLogin(id,Session["Cart"] as List<ItemCartViewWithoutLogin>);
+
+            }
+            else 
+            { 
+
+                result = dbcart.AddToCart(id, Session["ID"].ToString());          
+                itemTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
+                cartTotal = dbcart.GetTotal(Session["ID"].ToString());
+                ViewBag.CartTotal = dbcart.GetTotal(Session["ID"] .ToString());
+                ViewBag.CartCounter = dbcart.GetCount(Session["ID"].ToString());
+                ViewBag.ItemTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
+            }
             CartView results = new CartView
             {
                 success = true,
                 price = itemTotal,
                 total = cartTotal
             };
-
             if (result == "1")
             {
                 return Json(new { success = true, result = results }, JsonRequestBehavior.AllowGet);
@@ -155,36 +228,56 @@ namespace BachHoaXanh.Web.Controllers
         [HttpPost]
         public ActionResult RemoveAmountOfCartItem(string id, int amount)
         {
-            string cid = Session["ID"].ToString();
-            dbcart.RemoveAmountOfCartItem(id, cid, amount);
-            Session["CartCounter"] = dbcart.GetCount(cid);
-            decimal total = dbcart.GetTotalItem(id, cid);
+           // string cid = Session["ID"].ToString();
+            decimal total = 0;
+            if (Session["ID"] == null)
+            {
+                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
+                Session["Cart"] = dbcart.RemoveAmountOfCartItemWithoutLogin(id, cart, amount);
+                total = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.ItemTotal = dbcart.GetTotalItemWithoutLogin(id, Session["Cart"] as List<ItemCartViewWithoutLogin>);
+            }
+            else
+            {
+                string cid = Session["ID"].ToString();
+                dbcart.RemoveAmountOfCartItem(id, cid,amount);
+              
+                total = dbcart.GetTotalItem(id, cid);
+                ViewBag.CartTotal = dbcart.GetTotal(Session["ID"].ToString());
+                ViewBag.CartCounter = dbcart.GetCount(Session["ID"].ToString());
+                ViewBag.ItemTotal = dbcart.GetTotalItem(id, Session["ID"].ToString());
+            }
             //return RedirectToAction("Cart",new {id= cid});
+            //CartView results = new CartView
+            //{
+            //    success = true,
+            //    price = itemTotal,
+            //    total = cartTotal
+            //};
             return Json(new { success = true, Total = total }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult RemoveCartItem(string id)
+        public ActionResult RemoveCartItem(string pid)
         {
-            //var cart = SqlCartData.GetCart(this.HttpContext);
-
-            // Get the name of the album to display confirmation
-            string productname = dbcart.GetCartItem(id).ProductName;
-
-            // Remove from cart
-            //    dbcart.RemoveAmountOfCartItem(id);
-
-            return Content("Cart");
+            if (Session["ID"] == null)
+            {
+                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
+                Session["Cart"] = dbcart.RemoveCartItemWithoutLogin(pid, cart);
+                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.ItemTotal = dbcart.GetTotalItemWithoutLogin(pid, Session["Cart"] as List<ItemCartViewWithoutLogin>);
+            }
+            else
+            {
+                dbcart.RemoveCartItem(pid, Session["ID"].ToString());
+                ViewBag.CartTotal = dbcart.GetTotal(Session["ID"].ToString());
+                ViewBag.CartCounter = dbcart.GetCount(Session["ID"].ToString());
+                ViewBag.ItemTotal = dbcart.GetTotalItem(pid, Session["ID"].ToString());
+            }
+            return Json(new { success = true });
         }
-        ////
-        //// GET: /ShoppingCart/CartSummary
-        //[ChildActionOnly]
-        //public ActionResult CartSummary()
-        //{
-        //    var cart = dbcart.GetCart(this.HttpContext);
-
-        //    ViewData["CartCount"] = cart.GetCount();
-        //    return PartialView("CartSummary");
-        //}
 
         //Checkout
         [HttpGet]

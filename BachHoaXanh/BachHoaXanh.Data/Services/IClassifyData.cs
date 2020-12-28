@@ -9,7 +9,7 @@ namespace BachHoaXanh.Data.Services
 {
     public interface IClassifyData
     {
-        IEnumerable<Classify> GetAll();
+        List<string> GetAll();
         Classify Get(string id);
         void Add(Classify classify);
         void Update(Classify classify);

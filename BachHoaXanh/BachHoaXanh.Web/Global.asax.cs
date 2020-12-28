@@ -20,6 +20,11 @@ namespace BachHoaXanh.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ContainerConfig.RegisterContainer(GlobalConfiguration.Configuration);
+
+
+            //Thong ke so luong truy cap
+            Application["PageView"] = 0;
+        
         }
     }
 }

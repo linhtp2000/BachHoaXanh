@@ -32,13 +32,13 @@ namespace BachHoaXanh.Data.Services
 
         public Classify Get(string id)
         {
-            return db.Classifys.FirstOrDefault(r => r.Id == id);
+            return db.Classifys.FirstOrDefault(r => r.Name == id);
         }
 
-        public IEnumerable<Classify> GetAll()
+        public List<string> GetAll()
         {
-            var list = db.Classifys.OrderBy(x => x.Name).Select(x => x).Distinct();
-            return list.AsEnumerable<Classify>();
+            var list = db.Classifys.Select(x => x.Name).Distinct();
+            return list.ToList();
         }
 
         public void Update(Classify classify)

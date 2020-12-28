@@ -1,0 +1,27 @@
+﻿
+@*@if (Session["ID"] == null)
+    {*@
+
+<!--<span class="" style="position: absolute; background-color: inherit; z-index: 999;"><span class="badge badge-notify my-cart-badge">ViewBag.CartCounter</span></span>-->
+@*}
+    else
+    {
+        <span class="" style="position: absolute; background-color: inherit; z-index: 999;"><span class="badge badge-notify my-cart-badge">@Session["CartCounter"].ToString()</span></span>
+
+    }*@
+
+
+
+<div class="product_list_header">
+  <a href="@Url.Action("Cart", "Cart_Checkout")">
+    @*<form action="/Cart_Checkout/Cart" method="post" class="last">*@
+    <fieldset>
+        <img src="~/Images/cart.jpg" class="img-fluid" alt="">
+        <span class="" style="position: relative; background-color: inherit; z-index: 999;"><span class="badge badge-notify my-cart-badge">@ViewBag.CartCounter</span></span>
+        @*<input type="hidden" name="cmd" value="_cart" />
+            <input type="hidden" name="display" value="1" />*@
+        @*<input type="submit" name="submit" value="Giỏ hàng" class="button" />*@
+    </fieldset>
+      </a>
+    @*</form>*@
+</div>

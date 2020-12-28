@@ -1,10 +1,9 @@
-﻿@model IEnumerable<BachHoaXanh.Data.Models.Cart>
+﻿@model IEnumerable<BachHoaXanh.Data.ModelView.ItemCartViewWithoutLogin>
 
 @{
     ViewBag.Title = "Cart";
-    decimal TotalAmount = 0;
-    int stt = 1;
-    decimal tempprice = 0;
+
+    int stt = 0;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using BachHoaXanh.Data.Models
@@ -32,6 +31,8 @@
 <a href="~/Scripts/jquery-3.5.1.min.map"></a>
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Content/js/jquery-1.11.1.min.js"></script>
+<script src="~/Content/Admin/js/jquery-2.1.1.min.js"></script>
 
 
 <script>
@@ -56,7 +57,6 @@
 
 </script>
 
-<script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
 <h3>
     <em>Review</em> your cart:
@@ -78,50 +78,45 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            if (item.Status == 1)
+            foreach (var item in Model)
             {
-                TotalAmount += (item.Amount * item.Price);
-
-                <tr class="rem">
-                    <td class="invert">@stt</td>
-                    <td class="invert-image"><a href="@Url.Action("Details","Products",new { id=item.ProductId})"><img src="@Url.Content(item.Image)" class="img-responsive"></a></td>
-                    <td class="invert">
-                        <div class="quantity">
-                            <div class="quantity-select">
-                                <div class="entry value-minus" data-id="@item.ProductId">&nbsp;</div>
-                                <div class="entry value"><span>@item.Amount</span></div>
-                                <div class="entry value-plus active" data-id="@item.ProductId">&nbsp;</div>
+                if (item.Status == 1)
+                {
+                    stt += 1;
+                    <tr class="rem" data-id="@item.ProductId">
+                        <td class="invert">@stt</td>
+                        <td class="invert-image"><a href="@Url.Action("Details", "Products", new { id = item.ProductId })"><img src="@Url.Content(item.Image)" class="img-responsive"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus" data-id="@item.ProductId">&nbsp;</div>
+                                    <div class="entry value"><span>@item.Amount</span></div>
+                                    <div class="entry value-plus active" data-id="@item.ProductId">&nbsp;</div>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="invert">@item.ProductName<a href="@Url.Action("Details","Products",new { id=item.ProductId})"></a></td>
+                        </td>
+                        <td class="invert">@item.ProductName<a href="@Url.Action("Details", "Products", new { id = item.ProductId })"></a></td>
 
-                    <td class="invert" id="ItemTotal">@item.Total</td>
-                    <td class="invert">
-                        <div class="rem">
-                            <div class="close"><img src="@Url.Content("~/Images/close.jpg")" class="img-responsive" @*class="RemoveLink" data-id="@item.ProductId"*@></div>
-                        </div>
-                    </td>
-                </tr>
+                        <td class="invert" id="ItemTotal">@item.Total</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close" data-id="@item.ProductId"><img src="@Url.Content("~/Images/close.jpg")" class="img-responsive" @*class="RemoveLink" data-id="@item.ProductId"*@></div>
+                            </div>
+                        </td>
+                    </tr>
 
+                }
             }
         }
 
         <tr>
-            <td>Total </td>
-            <td>
-            </td>
-            <td>
-            </td>
-
-
             <td colspan=" 4" style=" text-align: right">
                 <h3>Total</h3>
             </td>
             <td id="CartTotal" style=" text-align:right">
-                <h3>@TotalAmount</h3>
+                <h3>@ViewBag.CartTotal</h3>
             </td>
         </tr>
     </tbody>
@@ -142,14 +137,15 @@
         $.ajax({
             //async: true,
             type: 'POST',
-            //  contentType: false,
-            //  processData: false,
-            data: { "id": itemId, "amount": newVal },
+             // contentType: false,
+             // processData: false,
+            data: { "id": itemId},
             url: '@Url.Content("AddToCart")',
             success: function (data) {
+
                 divUpd.text(newVal);
-                //$('#ItemTotal').text(itemVal);
-                //$('#CartTotal').text(cartVal);
+                $('#ItemTotal').html(@ViewBag.ItemTotal);
+                $('#CartTotal').html(@ViewBag.CartTotal);
             },
             error: function (data) {
                 alert("There is some problem");
@@ -161,10 +157,10 @@
 
 <script>
     $('.value-minus').on('click', function () {
-        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;      
+        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
         var itemId = $(this).attr("data-id");
-        //var itemTotal = $(this).find('#ItemTotal'), itemVal = parseFloat(itemTotal.text(), 10) * newVal;
-        //var cartTotal = $(this).find('#CartTotal'), cartVal = parseFloat(cartTotal.text(), 10) + itemTotal;
+        var itemTotal = $(this).find('#ItemTotal'), itemVal = parseFloat(itemTotal.text(), 10) * newVal;
+        var cartTotal = $(this).find('#CartTotal'), cartVal = parseFloat(cartTotal.text(), 10) + itemTotal;
         $.ajax({
             //async: true,
             type: 'POST',
@@ -175,7 +171,7 @@
             success: function (data) {
                 if (newVal >= 1) {
                     divUpd.text(newVal);
-                    //$('#CartTotal').text(cartVal);
+                    $('#CartTotal').text(cartVal);
                 }
             },
             error: function (data) {
@@ -183,37 +179,63 @@
 
             }
         });
-       
+
     });
 </script>
-<!--quantity-->
+
+
+quantity
 <script>
-    $(document).ready(function (c) {
-        $('.close1').on('click', function (c) {
-            $('.rem1').fadeOut('slow', function (c) {
-                $('.rem1').remove();
+        $(document).ready(function (c) {
+            $('.close').on('click', function (c) {
+                var itemId = $(this).attr("data-id");
+
+                $.ajax({
+                  //  async: true,
+                    type: 'POST',
+                    //  contentType: false,
+                   //  processData: false,
+                    data: { "pid": itemId },
+                    url: '@Url.Content("RemoveCartItem")',
+                    success: function (data) {
+                        $('#rem-' + itemId).fadeOut('quick', function (c) {
+                            $('#rem-' + itemId).remove();
+                        })
+                    },
+                    error: function (data) {
+                        alert("There is some problem");
+                    }
+                });
             });
         });
+    </script>
+
+
+@*<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $('.close').click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/RemoveCartItem", { "pid": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        //if (data.) {
+                        $('#row-' + recordToDelete).fadeOut('slow');
+                        //    } else {
+                        //        $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        //    }
+                        //    $('#cart-total').text(data.CartTotal);
+                        //    $('#update-message').text(data.Message);
+                        //    $('#cart-status').text('Cart (' + data.CartCount + ')');
+                        //});
+                    });
+        }
     });
-</script>
-<script>
-    $(document).ready(function (c) {
-        $('.close2').on('click', function (c) {
-            $('.rem2').fadeOut('slow', function (c) {
-                $('.rem2').remove();
-            });
-        });
-    });
-</script>
-<script>
-    $(document).ready(function (c) {
-        $('.close3').on('click', function (c) {
-            $('.rem3').fadeOut('slow', function (c) {
-                $('.rem3').remove();
-            });
-        });
-    });
-</script>
+</script>*@
 
 <!-- //js -->
 <!-- script-for sticky-nav -->

@@ -33,13 +33,13 @@ namespace BachHoaXanh.Data.Services
 
         public Branch Get(string id)
         {
-            return db.Branchs.FirstOrDefault(r => r.Id == id);
+            return db.Branchs.First(r => r.Name == id);
         }
 
-        public IEnumerable<Branch> GetAll()
+        public List<string> GetAll()
         {
-            var list = db.Branchs.OrderBy(x => x.Name).Select(x => x).Distinct();
-            return list.AsEnumerable<Branch>();
+            var list = db.Branchs.Select(x => x.Name).Distinct();
+            return list.ToList();
         }
 
         public void Update(Branch branch)

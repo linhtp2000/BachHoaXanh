@@ -34,13 +34,13 @@ namespace BachHoaXanh.Data.Services
 
         public Provider Get(string id)
         {
-            return db.Providers.FirstOrDefault(r => r.Id == id);
+            return db.Providers.FirstOrDefault(r => r.Name == id);
         }
 
-        public IEnumerable<Provider> GetAll()
+        public List<string> GetAll()
         {
-            var list = db.Providers.OrderBy(x => x.Name).Select(x => x).Distinct();
-            return list.AsEnumerable<Provider>();
+            var list = db.Providers.Select(x => x.Name).Distinct();
+            return list.ToList();
         }
 
         public void Update(Provider provider)

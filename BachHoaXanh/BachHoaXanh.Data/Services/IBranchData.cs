@@ -9,7 +9,7 @@ namespace BachHoaXanh.Data.Services
 {
     public interface IBranchData
     {
-        IEnumerable<Branch> GetAll();
+        List<string> GetAll();
         Branch Get(string id);
         void Add(Branch branch);
         void Update(Branch branch);

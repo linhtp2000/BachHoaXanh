@@ -385,8 +385,6 @@ E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Numeri
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Text.Encodings.Web.xml
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Threading.Tasks.Extensions.xml
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.InitialCreate.resources
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.GenerateResource.cache
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.CoreCompileInputs.cache
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.CopyComplete
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.dll
@@ -514,5 +512,9 @@ D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Deb
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.dll
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.pdb
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.updatemodel.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\EntityFramework.SqlServerCompact.dll
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Data.SqlServerCe.dll
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\EntityFramework.SqlServerCompact.xml
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.up.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.GenerateResource.cache
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache

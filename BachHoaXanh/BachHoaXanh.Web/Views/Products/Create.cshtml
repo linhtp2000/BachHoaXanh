@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    BachHoaXanh.Data.Services.BachHoaXanhDbContext db = new BachHoaXanh.Data.Services.BachHoaXanhDbContext();
 }
-
+@using BachHoaXanh.Data.Models
 <h2>Create</h2>
 
 @*<script type="text/javascript>
@@ -53,7 +54,7 @@
 </script>
 
 
-@using (Html.BeginForm("TaoMoi","QuanLySanPham", FormMethod.Post, new { @enctype="mutipart/form-data"}))
+@using (Html.BeginForm("Create", "Products",FormMethod.Post, new { enctype="multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
 
@@ -65,29 +66,29 @@
         <div class="form-group">
             @Html.LabelFor(model =>model.Name,new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Name,  new { @class = "form-control" } )
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Price,  new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Price,  new { @class = "form-control"  })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Discount,  new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Discount, new { @class = "form-control"  })
                 @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.TextBox("Date","", new { id="datepicker"})
                 @*<input name="Date" type="text" id="datepicker"/>*@
@@ -97,52 +98,53 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Details,  new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Details, new { @class = "form-control"  })
                 @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Amount,  new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Classify.Name, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ClassifyName, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EnumDropDownListFor(model =>"ClassifyId", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Classify.Name, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model =>model.ClassifyName, (IEnumerable<SelectListItem>)ViewBag.ClassifyName, new { @class = "form -control" })
+                @Html.ValidationMessageFor(model => model.ClassifyName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => "Chi Nhánh", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BranchName, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @*@Html.DropDownList("BranchName", null, htmlAttributes: new { @class = "form-control" })*@
-                @Html.EnumDropDownListFor(model => "BranchId", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Branch.Name, "", new { @class = "text-danger" })
+               
+                @Html.DropDownListFor(model => model.BranchName, (IEnumerable<SelectListItem>) ViewBag.BranchName, new { @class = "form -control" })
+                @Html.ValidationMessageFor(model => model.BranchName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => "Nhà Cung Cấp", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProviderName, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EnumDropDownListFor(model => "ProviderId", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Provider.Name, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.ProviderName, (IEnumerable<SelectListItem>)ViewBag.ProviderName, new { @class = "form -control" })
+                @Html.ValidationMessageFor(model => model.ProviderName, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Image1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Image1, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input name="Image1" type="file" />
+                <input  type="file" id="Image1" name="Image1" accept="image/*" />
+               
                 <span style="color:red;">@ViewBag.upload</span>
                 @*@Html.EditorFor(model => model.Image1, new { htmlAttributes = new { type = "file", @class = "form-control" } })*@
                 @*@Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
@@ -150,22 +152,23 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Image2, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Image2,new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @*@Html.EditorFor(model => model.Image2, new { htmlAttributes = new { type = "file", @class = "form-control" } })*@
-                @*@Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
-                <input name="Image2" type="file"/>
+                @*@Html.EditorFor(model => model.Image2, new { htmlAttributes = new { type = "file", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
+                <input type="file" id="Image2" name="Image2" accept="image/*" />
                 <span style="color:red;">@ViewBag.upload</span>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Image3, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Image3, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input name="Image3" type="file" />
+                <input type="file" id="Image3" name="Image3" accept="image/*" />
+
                 <span style="color:red;">@ViewBag.upload</span>
-                @*@Html.EditorFor(model => model.Image3, new { htmlAttributes = new { type = "file", @class = "form-control" } })*@
-                @*@Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
+                @*@Html.EditorFor(model => model.Image3, new { htmlAttributes = new { type = "file", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
             </div>
         </div>
 

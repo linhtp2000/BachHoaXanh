@@ -15,6 +15,7 @@ namespace BachHoaXanh.Web.Controllers
         //GET: Products
 
         public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
+        public BachHoaXanhDbContext bhx2 = new BachHoaXanhDbContext();
         SqlBranchData dbBranch = new SqlBranchData();
         SqlCategoryData dbCategory = new SqlCategoryData();
         SqlClassifyData dbClassify = new SqlClassifyData();
@@ -90,7 +91,7 @@ namespace BachHoaXanh.Web.Controllers
                          select sp);//.OrderBy(s => s.Name);
                 ViewBag.All = 1;
             }
-            if (model.FirstOrDefault() == null) return Content("Sản phẩm sẽ được thêm vào sớm, xin lỗi quý khách vì sự bất tiện này.");
+            if (model/*.FirstOrDefault()*/ == null) return Content("Sản phẩm sẽ được thêm vào sớm, xin lỗi quý khách vì sự bất tiện này.");
             // 1. Tham số int? dùng để thể hiện null và kiểu int
             // page có thể có giá trị là null và kiểu int.
 
@@ -151,36 +152,37 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]   // use to edit, create restaurant
         public ActionResult Create()
         {
-            //ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", item.Branch.Id);
-            //ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", item.Classify.Id);
-            // ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", item.Provider.Id);
-            IEnumerable<Branch> lBranchs = dbBranch.GetAll();
-            IEnumerable<Provider> lProviders = dbProvider.GetAll();
-            IEnumerable<Classify> lClassifys = dbClassify.GetAll();
+            ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", 1);
+            ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", 1);
+            ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", 1);
 
-            ViewBag.BranchId = lBranchs;
-            ViewBag.ClassifyId = lClassifys;
-            ViewBag.ProviderId = lProviders;
+            //Session["BranchName"] = new SelectList(bhx.Branchs, "Id", "Name", 1);
+            // Session["ClassifyName"] = new SelectList(bhx.Classifys, "Id", "Name", 1);
+            // Session["ProviderName"] = new SelectList(bhx.Providers, "Id", "Name", 1);
 
             return View();
         }
 
         [HttpPost]  //use to post, write restaurant
-        [ValidateAntiForgeryToken] //thuoc tinh ngan chan mot yeu cau gia mao
-        public ActionResult Create(ItemProduct item)
+        [ValidateInput(false)]
+        public ActionResult Create(ItemProduct item, HttpPostedFileBase Image1, HttpPostedFileBase Image2, HttpPostedFileBase Image3)
         {
 
-            IEnumerable<Branch> lBranchs = dbBranch.GetAll();
-            IEnumerable<Provider> lProviders = dbProvider.GetAll();
-            IEnumerable<Classify> lClassifys = dbClassify.GetAll();
+            //IEnumerable<Branch> lBranchs = dbBranch.GetAll();
+            //IEnumerable<Provider> lProviders = dbProvider.GetAll();
+            //IEnumerable<Classify> lClassifys = dbClassify.GetAll();
 
-            ViewBag.BranchId = lBranchs;
-            ViewBag.ClassifyId = lClassifys;
-            ViewBag.ProviderId = lProviders;
+            //ViewBag.Branch.Name = lBranchs;
+            //ViewBag.Classify.Name = lClassifys;
+            //ViewBag.ProviderId.Name = lProviders;
 
             //ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", item.Branch.Id);
             //ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", item.Classify.Id);
             //ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", item.Provider.Id);
+
+            ViewBag.BranchName = new SelectList(bhx.Branchs, "Id", "Name", 1);
+            ViewBag.ClassifyName = new SelectList(bhx.Classifys, "Id", "Name", 1);
+            ViewBag.ProviderName = new SelectList(bhx.Providers, "Id", "Name", 1);
             if (String.IsNullOrEmpty(item.Name))
             {
                 ModelState.AddModelError(nameof(item.Name), "The name is required");      //thong bao loi khi Name co gia tri null/ rong
@@ -193,18 +195,18 @@ namespace BachHoaXanh.Web.Controllers
             {
                 ModelState.AddModelError(nameof(item.Amount), "Amount is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(item.Branch.Name))
+            if (String.IsNullOrEmpty(item.BranchName))
             {
-                ModelState.AddModelError(nameof(item.Branch.Name), "Branch is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.BranchName), "Branch is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(item.Classify.Name))
+            if (String.IsNullOrEmpty(item.ClassifyName))
             {
-                ModelState.AddModelError(nameof(item.Classify.Name), "Classify is required");
+                ModelState.AddModelError(nameof(item.ClassifyName), "Classify is required");
                 //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(item.Provider.Name))
+            if (String.IsNullOrEmpty(item.ProviderName))
             {
-                ModelState.AddModelError(nameof(item.Provider.Name), "Provider is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(item.ProviderName), "Provider is required");      //thong bao loi khi Name co gia tri null/ rong
             }
 
             //List<Branch> lBranchs = dbBranch.GetAll() as List<Branch>;
@@ -215,26 +217,28 @@ namespace BachHoaXanh.Web.Controllers
             //ViewBag.ClassifyName = lClassifys;
             //ViewBag.ProviderName = lProviders;
 
-            
+            //string branch = bhx.Branchs.Where(x => x.Name == item.BranchName).Select(x=> x.Id).First().ToString();
+            //Classify classify = bhx.Classifys.Where(x => x.Name == item.ClassifyName).FirstOrDefault();
+            //Provider provider = bhx.Providers.Where(x => x.Name == item.ProviderName).FirstOrDefault(); 
             if (ModelState.IsValid)    
             {
                 Product p = new Product();
                 p.Id = dbProduct.GetIdMax().ToString();
                 p.Name = item.Name;
-                p.BranchId = item.Branch.Id;
+                p.BranchId = item.BranchName;
                 p.Amount = item.Amount;
-                p.ClassifyId = item.Classify.Id;
-                p.ProviderId = item.Provider.Id;
+                p.ClassifyId = item.ClassifyName;
+                p.ProviderId = item.ProviderName;
                 p.Details = item.Details;
                 p.Discount = item.Discount;
                 p.Price = item.Price;
                 p.Date = item.Date;
 
-                if (item.Image1.ContentLength > 0)
+                if (Image1.ContentLength > 0)
                 {
                     //Lay ten hinh anh
-                    var image1 = Path.GetExtension(item.Image1.FileName);  //GetExstension
-                                                                           //Lay hinh anh chuyen vao thu muc
+                    string image1 = p.Id + ".1" + Path.GetExtension(item.Image1.FileName);  //GetExstension
+                    //item.Image1.SaveAs(filename: ("E:/LTWeb/BachHoaXanh_Update/BachHoaXanh/BachHoaXanh.Web/Images/" + image1));                 
                     var path = Path.Combine(Server.MapPath("~/Images"), image1);
                     //Neu thu muc chua hinh anh do roi thi xuat ra thong bao
                     if (System.IO.File.Exists(path))
@@ -243,36 +247,35 @@ namespace BachHoaXanh.Web.Controllers
                     }
                     else
                     {
-                        //Lay hinh anh dua vao thu muc Images
-                        item.Image1.SaveAs(path);
-                        p.Image1 = image1;
-                        //Session["Image1"] = item.Image1.FileName;
-                        //ViewBag.Image1 = "";
+                        item.Image1.SaveAs(path);                     
                     }
+                    string temp = "~/Images/" + image1;
+                    p.Image1 = temp;
                 }
                 else
                 {
                     p.Image1 = null;
                 }
 
-
-                if (item.Image2.ContentLength > 0)
+                if (Image2.ContentLength > 0)
                 {
                     //Lay ten hinh anh
-                    var image2 = Path.GetExtension(item.Image2.FileName);  //GetExstension
-                                                                           //Lay hinh anh chuyen vao thu muc
+                    string image2 = p.Id + ".2" + Path.GetExtension(item.Image2.FileName);  //GetExstension
+                    //item.Image1.SaveAs(filename: ("E:/LTWeb/BachHoaXanh_Update/BachHoaXanh/BachHoaXanh.Web/Images/" + image1));                 
                     var path = Path.Combine(Server.MapPath("~/Images"), image2);
                     //Neu thu muc chua hinh anh do roi thi xuat ra thong bao
                     if (System.IO.File.Exists(path))
                     {
                         ViewBag.upload = " Image has existed!";
+                       // p.Image2 = path.ToString();
                     }
                     else
                     {
-                        //Lay hinh anh dua vao thu muc Images
                         item.Image2.SaveAs(path);
-                        p.Image2 = image2;
+                       // p.Image2 = path.ToString();
                     }
+                    string temp = "~/Images/" + image2;
+                    p.Image2 = temp;
                 }
                 else
                 {
@@ -280,47 +283,31 @@ namespace BachHoaXanh.Web.Controllers
                 }
 
 
-                if (item.Image3.ContentLength > 0)
+                if (Image3.ContentLength > 0)
                 {
                     //Lay ten hinh anh
-                    var image3 = Path.GetExtension(item.Image1.FileName);  //GetExstension
-                                                                           //Lay hinh anh chuyen vao thu muc
+                    string image3 = p.Id + ".3" + Path.GetExtension(item.Image3.FileName);  //GetExstension
+                    //item.Image1.SaveAs(filename: ("E:/LTWeb/BachHoaXanh_Update/BachHoaXanh/BachHoaXanh.Web/Images/" + image1));                 
                     var path = Path.Combine(Server.MapPath("~/Images"), image3);
                     //Neu thu muc chua hinh anh do roi thi xuat ra thong bao
                     if (System.IO.File.Exists(path))
                     {
-                        ViewBag.upload = " Image has existed!";
+                        ViewBag.upload = " Image has existed!";                      
                     }
                     else
                     {
-                        //Lay hinh anh dua vao thu muc Images
-                        item.Image3.SaveAs(path);
-                        p.Image3 = image3;
+                        item.Image3.SaveAs(path);                       
                     }
+                    string temp = "~/Images/" + image3;
+                    p.Image3 = temp;
                 }
                 else
                 {
                     p.Image3 = null;
-                }            
-                //string image1 = Path.GetExtension(item.Image1.FileName);  //GetExstension
-                //item.Image1.SaveAs(filename: Server.MapPath("~/Images/" + image1));
-                //p.Image1 = item.Image1.ToString();
-                //string image2 = Guid.NewGuid() + Path.GetExtension(item.Image2.FileName);
-                //item.Image2.SaveAs(filename: Server.MapPath("~/Images/" + image1));
-                //p.Image2 = item.Image2.ToString();
-                //string image3 = Guid.NewGuid() + Path.GetExtension(item.Image3.FileName);
-                //item.Image3.SaveAs(filename: Server.MapPath("~/Images/" + image1));
-                //p.Image3 = item.Image3.ToString();
-
-
-                //string image1 = Path.GetFileNameWithoutExtension(item.Image1.FileName);
-                //string extension1 = Path.GetExtension(item.Image1.FileName);
-                //image1 = image1 + extension1;
-
-
-                //item.Image1.SaveAs(filename: Server.MapPath("~/Images/" + image1));
-                //p.Image1 = item.Image1.ToString();
-                dbProduct.Add(p);
+                }
+              
+                bhx.Products.Add(p);
+                bhx.SaveChanges();
                 return RedirectToAction("Details", new { id = p.Id });
             }
             return View();
@@ -603,8 +590,24 @@ namespace BachHoaXanh.Web.Controllers
             //cart = dbCart.GetCartItems(Session["ID"].ToString());
             //Session["Cart"] = cart;
             //return RedirectToAction("Index");
-            string result = dbCart.AddToCart(id, Session["ID"].ToString());
-            Session["CartCounter"] = dbCart.GetCount(Session["ID"].ToString());
+
+            string result = "0";
+            //Khong login
+            if (Session["ID"] == null)
+            {
+                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
+                Session["Cart"] = dbCart.AddToCartWithoutLogin(id, cart, ref result);
+                ViewBag.CartTotal = dbCart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.CartCounter = dbCart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.ItemTotal = dbCart.GetTotalItemWithoutLogin(id, Session["Cart"] as List<ItemCartViewWithoutLogin>);
+            }
+            else
+            {
+                result = dbCart.AddToCart(id, Session["ID"].ToString());
+                ViewBag.CartTotal = dbCart.GetTotal(Session["ID"].ToString());
+                ViewBag.CartCounter = dbCart.GetCount(Session["ID"].ToString());
+                ViewBag.ItemTotal = dbCart.GetTotalItem(id, Session["ID"].ToString());
+            }
             if (result == "1")
             {
                 return RedirectToAction("Index");
