@@ -16,18 +16,25 @@ namespace BachHoaXanh.Data.Models
         public string Id { get; set; }
         [MaxLength(255)]
         public string Name { get; set; }
-
-        [MaxLength(255)]
-        public string Password { get; set; }
+     
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+        [MaxLength(255)]
+        public string State { get; set; }
+        [MaxLength(255)]
+        public string City { get; set; }
+        public string Password { get; set; }
 
         [MaxLength(255)]
         public string Address { get; set; }
         public int Points { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public bool Member { get; set; }
 
+        [MaxLength(255)]
+        public string UserId { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<Cart> Cart { get; set; }
 
         //public virtual List<Bill> Bills { get; set; }

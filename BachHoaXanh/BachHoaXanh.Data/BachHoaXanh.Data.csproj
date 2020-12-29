@@ -217,12 +217,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202012281216062_up.cs" />
-    <Compile Include="Migrations\202012281216062_up.designer.cs">
-      <DependentUpon>202012281216062_up.cs</DependentUpon>
+    <Compile Include="Migrations\202012290614087_up.cs" />
+    <Compile Include="Migrations\202012290614087_up.designer.cs">
+      <DependentUpon>202012290614087_up.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290647431_up5.cs" />
+    <Compile Include="Migrations\202012290647431_up5.designer.cs">
+      <DependentUpon>202012290647431_up5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290658335_up6.cs" />
+    <Compile Include="Migrations\202012290658335_up6.designer.cs">
+      <DependentUpon>202012290658335_up6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290724024_up7.cs" />
+    <Compile Include="Migrations\202012290724024_up7.designer.cs">
+      <DependentUpon>202012290724024_up7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290829084_up8.cs" />
+    <Compile Include="Migrations\202012290829084_up8.designer.cs">
+      <DependentUpon>202012290829084_up8.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ModelView\AddressForOrder.cs" />
+    <Compile Include="ModelView\AddressView.cs" />
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Authorize.cs" />
     <Compile Include="Models\Bill.cs" />
@@ -237,7 +253,7 @@
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="ModelView\BarChartVM.cs" />
     <Compile Include="ModelView\CartView.cs" />
-    <Compile Include="ModelView\ItemCartViewWithoutLogin.cs" />
+    <Compile Include="ModelView\ItemCartView.cs" />
     <Compile Include="ModelView\ItemProduct.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Product.cs" />
@@ -340,8 +356,20 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012281216062_up.resx">
-      <DependentUpon>202012281216062_up.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012290614087_up.resx">
+      <DependentUpon>202012290614087_up.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290647431_up5.resx">
+      <DependentUpon>202012290647431_up5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290658335_up6.resx">
+      <DependentUpon>202012290658335_up6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290724024_up7.resx">
+      <DependentUpon>202012290724024_up7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290829084_up8.resx">
+      <DependentUpon>202012290829084_up8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

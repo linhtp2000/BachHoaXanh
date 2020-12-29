@@ -1,4 +1,5 @@
 ﻿using BachHoaXanh.Data.Models;
+using BachHoaXanh.Data.ModelView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace BachHoaXanh.Data.Services
         int GetCount(string ID);
         decimal GetTotal(string cid);
         decimal GetTotalItem(string cid, string pid);
-        void SaveDetailsOfBill(Bill bill, string id);
+       
         //string GetCartId(HttpContextBase context);
         //void MigrateCart(string userName);
     }

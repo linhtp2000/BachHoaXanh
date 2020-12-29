@@ -28,7 +28,7 @@ namespace BachHoaXanh.Web.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddressAndPayment(AddressForOrder modeladdress)
+        public ActionResult AddressAndPayment(AddressView modeladdress)
         {
             //   TryUpdateModel(order);
             if (String.IsNullOrEmpty(modeladdress.Address))

@@ -23,11 +23,13 @@ namespace BachHoaXanh.Data.Models
         //  [ForeignKey("Employee")]
         public string CustomerName { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
         public string Address { get; set; }
         public decimal ServiceCharge { get; set; }
         public decimal Total { get; set; }
         public int Points { get; set; }
         public string Status { get; set; }
+        public bool Payment { get; set; }
         // public virtual List<DetailsOfBill> DetailsOfBill { get; set; }
         public virtual ICollection<DetailsOfBill> DetailsOfBill { get; set; }
     }

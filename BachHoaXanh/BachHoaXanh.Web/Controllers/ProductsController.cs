@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using PagedList;
 namespace BachHoaXanh.Web.Controllers
 {
+    [Authorize(Roles = "QuanTri")]
     public class ProductsController : Controller
     {
         //GET: Products
@@ -595,11 +596,11 @@ namespace BachHoaXanh.Web.Controllers
             //Khong login
             if (Session["ID"] == null)
             {
-                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
-                Session["Cart"] = dbCart.AddToCartWithoutLogin(id, cart, ref result);
-                ViewBag.CartTotal = dbCart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.CartCounter = dbCart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.ItemTotal = dbCart.GetTotalItemWithoutLogin(id, Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                List<ItemCartView> cart = Session["Cart"] as List<ItemCartView>;
+                Session["Cart"] = dbCart.AddToCartCurrent(id, cart, ref result);
+                ViewBag.CartTotal = dbCart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.CartCounter = dbCart.GetCountCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.ItemTotal = dbCart.GetTotalItemCurrent(id, Session["Cart"] as List<ItemCartView>);
             }
             else
             {

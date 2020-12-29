@@ -29,5 +29,6 @@ namespace BachHoaXanh.Data.Models
 
         public virtual ICollection<User_Authorize> User_Authorizes { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

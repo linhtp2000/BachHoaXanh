@@ -24,18 +24,17 @@ namespace BachHoaXanh.Data.Models
         public string PhoneNumber { get; set; }    
         [MaxLength(255)]
         public  string ManagerId { get; set; }
-       // public virtual Employee Manage { get; set; }
+       // public virtual Employee Employee { get; set; }
         [MaxLength(255)]
         public  string AdminId { get; set; }
-      //  public virtual Employee Admin { get; set; }
         [MaxLength(255)]     
         public string UserId { get; set; }
         public virtual User User { get; set; }
         public double Salary { get; set; }
        // public virtual ICollection<Branch> Branch { get; set; }
        // public virtual ICollection<Bill> Bills { get; set; }
-       // public virtual ICollection<Employee> Employees { get; set; }
-       // public virtual ICollection<Employee> Employee1s { get; set; }
+ 
+     //   public virtual ICollection<Employee> Employee1s { get; set; }
         public virtual ICollection<WorkAt> WorkAts { get; set; }
 
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BachHoaXanh.Data.ModelView.ItemCartViewWithoutLogin>
+﻿@model IEnumerable<BachHoaXanh.Data.ModelView.ItemCartView>
 
 @{
     ViewBag.Title = "Cart";
@@ -61,9 +61,7 @@
 <h3>
     <em>Review</em> your cart:
 </h3>
-<p class="button">
-    @Html.ActionLink("Address And Payment >>", "AddressAndPayment", "Cart_Checkout")
-</p>
+
 <div id="update-message"></div>
 <table class="timetable_sub">
     <thead>
@@ -123,6 +121,17 @@
 </table>
 
 
+<div class="button">
+    @using (Html.BeginForm("Order", "Cart_Checkout"))
+    {
+
+        @Html.ActionLink("<< Shopping Continue", "Index","Products")
+    }
+</div>
+
+Khach hang khong dang nhap tai khoan
+
+
 
 
 
@@ -135,8 +144,8 @@
         //var itemTotal = $(this).find('#ItemTotal'), itemVal = parseFloat(itemTotal.text(), 10) * newVal;
         //var cartTotal = $(this).find('#CartTotal'), cartVal = parseFloat(cartTotal.text(), 10) + itemTotal;
         $.ajax({
-            //async: true,
-            type: 'POST',
+        //async: true,
+        type: 'POST',
              // contentType: false,
              // processData: false,
             data: { "id": itemId},
@@ -162,8 +171,8 @@
         var itemTotal = $(this).find('#ItemTotal'), itemVal = parseFloat(itemTotal.text(), 10) * newVal;
         var cartTotal = $(this).find('#CartTotal'), cartVal = parseFloat(cartTotal.text(), 10) + itemTotal;
         $.ajax({
-            //async: true,
-            type: 'POST',
+        //async: true,
+        type: 'POST',
             //  contentType: false,
             //  processData: false,
             data: { "id": itemId, "amount": newVal },
@@ -188,11 +197,11 @@ quantity
 <script>
         $(document).ready(function (c) {
             $('.close').on('click', function (c) {
-                var itemId = $(this).attr("data-id");
+            var itemId = $(this).attr("data-id");
 
                 $.ajax({
-                  //  async: true,
-                    type: 'POST',
+            //  async: true,
+            type: 'POST',
                     //  contentType: false,
                    //  processData: false,
                     data: { "pid": itemId },
@@ -200,14 +209,14 @@ quantity
                     success: function (data) {
                         $('#rem-' + itemId).fadeOut('quick', function (c) {
                             $('#rem-' + itemId).remove();
-                        })
+                    })
                     },
                     error: function (data) {
-                        alert("There is some problem");
-                    }
-                });
+                    alert("There is some problem");
+                }
             });
         });
+    });
     </script>
 
 

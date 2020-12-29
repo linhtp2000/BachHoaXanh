@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace BachHoaXanh.Web.Controllers
 {
+   
     public class MainController : Controller
     {
         // GET: Main

@@ -106,7 +106,7 @@ namespace BachHoaXanh.Web.Controllers
             if(Session["ID"]==null)
             //if (s==null)
             {
-                List<ItemCartViewWithoutLogin> cart= Session["Cart"] as List < ItemCartViewWithoutLogin>;
+                List<ItemCartView> cart= Session["Cart"] as List < ItemCartView>;
                 if (cart == null)
                 {
                     ViewBag.CartTotal = 0;
@@ -114,8 +114,8 @@ namespace BachHoaXanh.Web.Controllers
                 }
                 else
                 {
-                    ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(cart);
-                    ViewBag.CartCounter = dbcart.GetCountWithoutLogin(cart);
+                    ViewBag.CartTotal = dbcart.GetTotalCurrent(cart);
+                    ViewBag.CartCounter = dbcart.GetCountCurrent(cart);
                 }
                 return PartialView();
             }
@@ -135,26 +135,20 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]
         public ActionResult Cart()
         {           
-            List<ItemCartViewWithoutLogin> cart1 = Session["Cart"] as List<ItemCartViewWithoutLogin>;
+            List<ItemCartView> cart1 = Session["Cart"] as List<ItemCartView>;
             //Khong co dang nhap tai khoan
             if(Session["ID"] == null)
             {
-                //if(cart1==null)
-                //{
-                //    return PartialView("CartParttial");
-                //}/
-                //else
-                // {
-                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(cart1);
-                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(cart1);
+          
+                ViewBag.CartTotal = dbcart.GetTotalCurrent(cart1);
+                ViewBag.CartCounter = dbcart.GetCountCurrent(cart1);
                 return View(cart1);
-               //}
             }
-            List<ItemCartViewWithoutLogin> cart2 =new List<ItemCartViewWithoutLogin>();
+            List<ItemCartView> cart2 =new List<ItemCartView>();
             List<Cart> tempCart = dbcart.GetCartItems(Session["ID"].ToString());
             foreach(Cart item in tempCart)
             {
-                ItemCartViewWithoutLogin itemview = new ItemCartViewWithoutLogin();
+                ItemCartView itemview = new ItemCartView();
                 itemview.ProductId = item.ProductId;
                 itemview.ProductName = item.ProductName;
                 itemview.Price = item.Price;
@@ -179,13 +173,13 @@ namespace BachHoaXanh.Web.Controllers
             decimal cartTotal = 0;
             if (Session["ID"] == null)
             {
-                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
-                Session["Cart"] = dbcart.AddToCartWithoutLogin(id, cart, ref result);
-                itemTotal = dbcart.GetTotalItemWithoutLogin(id,Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                cartTotal= dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.ItemTotal = dbcart.GetTotalItemWithoutLogin(id,Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                List<ItemCartView> cart = Session["Cart"] as List<ItemCartView>;
+                Session["Cart"] = dbcart.AddToCartCurrent(id, cart, ref result);
+                itemTotal = dbcart.GetTotalItemCurrent(id,Session["Cart"] as List<ItemCartView>);
+                cartTotal= dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.CartTotal = dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.CartCounter = dbcart.GetCountCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.ItemTotal = dbcart.GetTotalItemCurrent(id,Session["Cart"] as List<ItemCartView>);
 
             }
             else 
@@ -232,12 +226,12 @@ namespace BachHoaXanh.Web.Controllers
             decimal total = 0;
             if (Session["ID"] == null)
             {
-                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
-                Session["Cart"] = dbcart.RemoveAmountOfCartItemWithoutLogin(id, cart, amount);
-                total = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.ItemTotal = dbcart.GetTotalItemWithoutLogin(id, Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                List<ItemCartView> cart = Session["Cart"] as List<ItemCartView>;
+                Session["Cart"] = dbcart.RemoveAmountOfCartItemCurrent(id, cart, amount);
+                total = dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.CartTotal = dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.CartCounter = dbcart.GetCountCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.ItemTotal = dbcart.GetTotalItemCurrent(id, Session["Cart"] as List<ItemCartView>);
             }
             else
             {
@@ -263,11 +257,11 @@ namespace BachHoaXanh.Web.Controllers
         {
             if (Session["ID"] == null)
             {
-                List<ItemCartViewWithoutLogin> cart = Session["Cart"] as List<ItemCartViewWithoutLogin>;
+                List<ItemCartView> cart = Session["Cart"] as List<ItemCartView>;
                 Session["Cart"] = dbcart.RemoveCartItemWithoutLogin(pid, cart);
-                ViewBag.CartTotal = dbcart.GetTotalWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.CartCounter = dbcart.GetCountWithoutLogin(Session["Cart"] as List<ItemCartViewWithoutLogin>);
-                ViewBag.ItemTotal = dbcart.GetTotalItemWithoutLogin(pid, Session["Cart"] as List<ItemCartViewWithoutLogin>);
+                ViewBag.CartTotal = dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.CartCounter = dbcart.GetCountCurrent(Session["Cart"] as List<ItemCartView>);
+                ViewBag.ItemTotal = dbcart.GetTotalItemCurrent(pid, Session["Cart"] as List<ItemCartView>);
             }
             else
             {
@@ -279,64 +273,72 @@ namespace BachHoaXanh.Web.Controllers
             return Json(new { success = true });
         }
 
+        //===============ORDER=====================//
+
         //Checkout
         [HttpGet]
-        public ActionResult AddressAndPayment()
+        public ActionResult Order()
         {
+            if (Session["ID"] == null)
+            {
+                return View();
+            }
             return View();
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddressAndPayment(AddressForOrder modeladdress)
+        public ActionResult OrderForCus(AddressView model)
         {
             //   TryUpdateModel(order);
-            if (String.IsNullOrEmpty(modeladdress.Address))
+            if (String.IsNullOrEmpty(model.Address))
             {
-                ModelState.AddModelError(nameof(modeladdress.Address), "Address is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(model.Address), "Address is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(modeladdress.City))
+            if (String.IsNullOrEmpty(model.City))
             {
-                ModelState.AddModelError(nameof(modeladdress.City), "City is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(model.City), "City is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(modeladdress.Name))
+            if (String.IsNullOrEmpty(model.Name))
             {
-                ModelState.AddModelError(nameof(modeladdress.Name), "Full Name is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(model.Name), "Full Name is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(modeladdress.State))
+            if (String.IsNullOrEmpty(model.State))
             {
-                ModelState.AddModelError(nameof(modeladdress.State), "State is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(model.State), "State is required");      //thong bao loi khi Name co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(modeladdress.Phone))
+            if (String.IsNullOrEmpty(model.Phone))
             {
-                ModelState.AddModelError(nameof(modeladdress.Phone), "Your Phone is required");      //thong bao loi khi Name co gia tri null/ rong
+                ModelState.AddModelError(nameof(model.Phone), "Your Phone is required");      //thong bao loi khi Name co gia tri null/ rong
             }
 
             if (ModelState.IsValid)
             {
                 Bill newbill = new Bill();
-                // var cart = SqlCartData.GetCart(this.HttpContext);
-                newbill.CustomerId = User.Identity.Name;
-                newbill.Datetime = DateTime.Now;
-                newbill.Address = modeladdress.Address;
-                newbill.City = modeladdress.City;
-                newbill.CustomerName = modeladdress.Name;
                 newbill.Id = (dbBill.GetBillId() + 1).ToString();
+                newbill.CustomerId = null;
+                newbill.Datetime = DateTime.Now;
+                newbill.Address = model.Address;
+                newbill.City = model.City;
+                newbill.CustomerName = model.Name;               
                 //  newbill.Total = cart.GetTotal();
-                newbill.Points = (int)(newbill.Total * 3 / 100);
+                newbill.Points = 0;
                 //    newbill.ServiceCharge
                 newbill.Status = "Confirm";
+                newbill.Payment = false;
+                newbill.State = model.State;
+                newbill.Total = dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
                 //Save Order
-                dbBill.Add(newbill);
+                db.Bills.Add(newbill);
 
-                //Process the order
-                //cart.SaveDetailsOfBill(newbill);
+                //Save details of bill
+                dbcart.SaveDetailsOfBillCurrent(newbill, Session["Cart"] as List<ItemCartView>);
+                Session["Cart"] = null;
                 return Content("/Order/Confirm");
             }
-
             return View("AddressAndPayment");
         }
-        //
-        // GET: /Checkout/Complete
+      
 
 
     }

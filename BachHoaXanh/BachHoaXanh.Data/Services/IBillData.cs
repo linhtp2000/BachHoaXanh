@@ -16,6 +16,6 @@ namespace BachHoaXanh.Data.Services
         void Add(Bill bill);
         void Update(Bill bill);
         void Delete(string id);
-        string GetUserId(HttpContextBase context);
+ 
     }
 }

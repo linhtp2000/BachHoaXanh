@@ -670,25 +670,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h6>Số lượng:</h6>
                         <div class="quantity">
                             <div class="quantity-select">
-                                <div class="entry value-minus1">&nbsp;</div>
+                                <div class="entry value-minus" data-id="@Model.Id">&nbsp;</div>
                                 <div class="entry value1"><span>1</span></div>
-                                <div class="entry value-plus1 active">&nbsp;</div>
+                                <div class="entry value-plus active" data-id="@Model.Id">&nbsp;</div>
                                 <br>
                                 <div>Còn @Html.DisplayFor(model => model.Amount) sản phẩm</div>
                             </div>
                         </div>
+
                         <!--quantity-->
                         <script>
-                            $('.value-plus1').on('click', function () {
-                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) + 1;
-                                divUpd.text(newVal);
-                            });
-
-                            $('.value-minus1').on('click', function () {
-                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) - 1;
-                                if (newVal >= 1) divUpd.text(newVal);
+                            $('.value-plus').on('click', function () {
+                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
+                                var itemId = $(this).attr("data-id");
+                                //var itemTotal = $(this).find('#ItemTotal'), itemVal = parseFloat(itemTotal.text(), 10) * newVal;
+                                //var cartTotal = $(this).find('#CartTotal'), cartVal = parseFloat(cartTotal.text(), 10) + itemTotal;
+                                $.ajax({
+                                //async: true,
+                                type: 'POST',
+                                     // contentType: false,
+                                     // processData: false,
+                                    data: { "id": itemId},
+                                    url: '@Url.Content("Cart_Checkout/AddToCart")',
+                                    success: function (data) {
+                                        divUpd.text(newVal);                                  
+                                    },
+                                    error: function (data) {
+                                        alert("There is some problem");
+                                    }
+                                });
                             });
                         </script>
+
+                        <script>
+                            $('.value-minus').on('click', function () {
+                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
+                                var itemId = $(this).attr("data-id");
+                                var itemTotal = $(this).find('#ItemTotal'), itemVal = parseFloat(itemTotal.text(), 10) * newVal;
+                                var cartTotal = $(this).find('#CartTotal'), cartVal = parseFloat(cartTotal.text(), 10) + itemTotal;
+                                $.ajax({
+                                type: 'POST',
+                                    data: { "id": itemId, "amount": newVal },
+                                    url: '@Url.Content("Cart_Checkout/RemoveAmountOfCartItem")',
+                                    success: function (data) {
+                                        if (newVal >= 1) {
+                                            divUpd.text(newVal);
+                                            $('#CartTotal').text(cartVal);
+                                        }
+                                    },
+                                    error: function (data) {
+                                        alert("There is some problem");
+
+                                    }
+                                });
+
+                            });
+                        </script>
+                        @*$('.value-minus1').on('click', function () {
+                        var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10) - 1;
+                        if (newVal >= 1) divUpd.text(newVal);
+                        });
+                        </script>*@
                         <!--quantity-->
                     </div>
                     <div class="women">

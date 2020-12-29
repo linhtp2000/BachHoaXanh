@@ -16,76 +16,8 @@ namespace BachHoaXanh.Data.Services
         private BachHoaXanhDbContext db = new BachHoaXanhDbContext();
         private BachHoaXanhDbContext db2 = new BachHoaXanhDbContext();
         private SqlProductData dbProduct = new SqlProductData();
-
-        //public SqlProductData dbProduct = new SqlProductData();
-        //public static SqlCartData GetCart(string cid)
-        //{
-        //    var cart = new SqlCartData();
-        //    //  cart.ShoppingCartId = cart.GetCartId(context);
-        //    return cart;
-        //}
-
-        //public Cart GetCartItem(string productid)
-        //{
-        //    var cartItem = db.Carts.SingleOrDefault(
-        //       c => c.CustomerId == ShoppingCartId
-        //       && c.ProductId == productid);
-        //    return cartItem;
-        //}
-
-        public List<ItemCartViewWithoutLogin> AddToCartWithoutLogin(string pid, List<ItemCartViewWithoutLogin> cart, ref string result)
-        {
-            Product p = dbProduct.Get(pid);
-            if (dbProduct.CheckAmountOfProduct(pid))
-            {
-                if (cart == null)
-                {
-                    ItemCartViewWithoutLogin item = new ItemCartViewWithoutLogin();
-                    item.ProductId = pid;
-                    item.ProductName = p.Name;
-                    item.Price = p.Price;
-                    item.Total = p.Price *(100 - p.Discount) / 100;
-                    item.Image = p.Image1;
-                    item.Amount = 1;
-                    item.Status = 1;
-                    cart = new List<ItemCartViewWithoutLogin>();
-                    cart.Add(item);
-                    result = "1";
-                }
-            }
-            else
-            {
-                ItemCartViewWithoutLogin i = cart.Find(x => x.ProductId == pid);
-                if (i == null)
-                {
-                    ItemCartViewWithoutLogin item = new ItemCartViewWithoutLogin();
-                    item.ProductId = pid;
-                    item.ProductName = p.Name;
-                    item.Price = p.Price;
-                    item.Total = p.Price * (100 - p.Discount) / 100;
-                    item.Image = p.Image1;
-                    item.Amount = 1;
-                    item.Status = 1;
-                    cart.Add(item);
-                    result = "1";
-                }
-                if (dbProduct.GetAmountOfProductCurrent(pid) > i.Amount)
-                {
-                    cart.Remove(i);
-                    i.Amount +=1;
-                    i.Total = p.Price * i.Amount * (100 - p.Discount) / 100;
-                    i.Status = 1;
-                    cart.Add(i);
-                    result = "1";
-                }
-                else
-                {
-                    result = "2";
-                }
-            }
-            result = "0";
-            return cart;//themm thanh cong
-        }        
+        private SqlBillData dbBill = new SqlBillData();
+ 
         //public string AddToCart(string pid, string cid)
         //{
                        
@@ -152,16 +84,10 @@ namespace BachHoaXanh.Data.Services
                     if (dbProduct.GetAmountOfProductCurrent(pid) > cartItem.Amount)
                     {
                         db.Carts.Remove(cartItem);
-                        db.SaveChanges();
-                        //Cart item = new Cart();
-                        //item.ProductId = pid;
-                        //item.CustomerId = cid;
-                        //item.ProductName = cartItem.ProductName;
-                        //item.Amount +=1;
-                        cartItem.Amount += 1;
-                        //item.Price = p.Price;
+                        db.SaveChanges();      
+                        
+                        cartItem.Amount += 1;               
                         cartItem.Total = p.Price * cartItem.Amount * (100 - p.Discount) / 100;
-                        //item.Image = p.Image1;
                         cartItem.Status = 1;
 
                         db2.Carts.Add(cartItem);
@@ -176,8 +102,7 @@ namespace BachHoaXanh.Data.Services
             }
             return "0";//het hang
         }
-
-       
+      
         public void RemoveAmountOfCartItem(string pid, string cid, int amount)
         {
             // Get the cart
@@ -208,30 +133,14 @@ namespace BachHoaXanh.Data.Services
             }
             //  return itemCount;
         }
-
-        public List<ItemCartViewWithoutLogin> RemoveAmountOfCartItemWithoutLogin(string pid, List<ItemCartViewWithoutLogin> cart, int amount)
-        {
-            ItemCartViewWithoutLogin item = cart.Find(x => x.ProductId == pid);
-            Product p = dbProduct.Get(pid);
-            if (item.Amount >= 2)
-            { 
-                    cart.Remove(item);
-                    item.Amount -= 1; 
-                    item.Total = p.Price * item.Amount * (100 - p.Discount) / 100;
-                    item.Status = 1;
-                    cart.Add(item);
-                //result = "1";//xoa thanh cong
-            }
-           // result = "0";   //error
-            return cart;
-        }
+ 
         public void RemoveCartItem(string pid, string cid)
         {
             var cartItem = db.Carts.FirstOrDefault(cart => cart.CustomerId == cid && cart.ProductId == pid);
             db.Carts.Remove(cartItem);
             db.SaveChanges();
         }
-        public List<ItemCartViewWithoutLogin> RemoveCartItemWithoutLogin(string pid, List<ItemCartViewWithoutLogin> cart)
+        public List<ItemCartView> RemoveCartItemWithoutLogin(string pid, List<ItemCartView> cart)
         {
             var item = cart.Find(c => c.ProductId == pid);
             cart.Remove(item);
@@ -291,30 +200,11 @@ namespace BachHoaXanh.Data.Services
         }
         public decimal GetTotalItem(string pid, string cid)
         {
-            // Multiply album price by count of that album to get 
-            // the current price for each of those albums in the cart
-            // sum all album price totals to get the cart total
             decimal? total = (from cartItems in db.Carts
                               where cartItems.CustomerId == cid && cartItems.ProductId == pid
                               select (decimal?)cartItems.Total).Sum();
           
             return total ?? decimal.Zero;
-        }
-        public decimal GetTotalItemWithoutLogin(string pid, List<ItemCartViewWithoutLogin> cart)
-        {
-            // Multiply album price by count of that album to get 
-            // the current price for each of those albums in the cart
-            // sum all album price totals to get the cart total
-            if(cart==null)
-            {
-                return 0;
-            }
-            ItemCartViewWithoutLogin item= cart.Find(x=> x.ProductId==pid);
-            if(item==null)
-            {
-                return 0;
-            }
-            return item.Total;
         }
         public decimal GetTotal(string cid)
         {
@@ -327,89 +217,177 @@ namespace BachHoaXanh.Data.Services
 
             return total ?? decimal.Zero;
         }
-        public void SaveDetailsOfBill(Bill bill, string ID)
+        public void SaveDetailsOfBill(Bill bill, string cid)
         {
             DetailsOfBill detail = new DetailsOfBill();
-            var cartItems = GetCartItems(ID);
+              var cartItem = GetCartItems(cid);
             // Iterate over the items in the cart, 
             // adding the order details for each
-            foreach (var item in cartItems)
+            foreach (var item in cartItem)
             {
                 var orderDetail = new DetailsOfBill()
                 {
-                    Amount = item.Amount,
                     BillId = bill.Id,
                     ProductId = item.ProductId,
-                    Product = item.Product,
+                    Amount = item.Amount,
                     ProductName = item.ProductName,
                     Price = item.Price,
                     Image = item.Image,
-                    Total = item.Amount * item.Price * (100 - item.Product.Discount) / 100
+                    Total = item.Total,
                 };
                 db.DetailsOfBills.Add(orderDetail);
-
             }
-            // Save the order
             db.SaveChanges();
-            // Empty the shopping cart
-          //  EmptyCart();
+        }
+        public void CreatBill(string cid)
+        {
+            var customer = db.Customers.FirstOrDefault(x => x.Id == cid);
+            // var cartItem = GetCartItems(cid);
+            // Iterate over the items in the cart, 
+            // adding the order details for each
+            Bill bill = new Bill();
+            bill.Id = (dbBill.GetBillId() + 1).ToString();
+            bill.CustomerId = customer.Id;
+            bill.CustomerName = customer.Name;
+            bill.Address = customer.Address;
+            bill.City = customer.City;
+            bill.Datetime = DateTime.Now;
+            bill.Payment = false;
+            bill.Points = (int)(GetTotal(cid) * 5 / 100);
+            bill.State = customer.State;
+            bill.Total = GetTotal(cid);
+            bill.Status = "Confirm";
+            //  bill.ServiceCharge=          
+            db.SaveChanges();
+
+            SaveDetailsOfBill(bill, cid);
 
         }
 
-        public int GetCountWithoutLogin(List<ItemCartViewWithoutLogin> list)
+
+        public List<ItemCartView> AddToCartCurrent(string pid, List<ItemCartView> cart, ref string result)
+        {
+            Product p = dbProduct.Get(pid);
+            if (dbProduct.CheckAmountOfProduct(pid))
+            {
+                if (cart == null)
+                {
+                    ItemCartView item = new ItemCartView();
+                    item.ProductId = pid;
+                    item.ProductName = p.Name;
+                    item.Price = p.Price;
+                    item.Total = p.Price * (100 - p.Discount) / 100;
+                    item.Image = p.Image1;
+                    item.Amount = 1;
+                    item.Status = 1;
+                    cart = new List<ItemCartView>();
+                    cart.Add(item);
+                    result = "1";
+                }
+            }
+            else
+            {
+                ItemCartView i = cart.Find(x => x.ProductId == pid);
+                if (i == null)
+                {
+                    ItemCartView item = new ItemCartView();
+                    item.ProductId = pid;
+                    item.ProductName = p.Name;
+                    item.Price = p.Price;
+                    item.Total = p.Price * (100 - p.Discount) / 100;
+                    item.Image = p.Image1;
+                    item.Amount = 1;
+                    item.Status = 1;
+                    cart.Add(item);
+                    result = "1";
+                }
+                if (dbProduct.GetAmountOfProductCurrent(pid) > i.Amount)
+                {
+                    cart.Remove(i);
+                    i.Amount += 1;
+                    i.Total = p.Price * i.Amount * (100 - p.Discount) / 100;
+                    i.Status = 1;
+                    cart.Add(i);
+                    result = "1";
+                }
+                else
+                {
+                    result = "2";
+                }
+            }
+            result = "0";
+            return cart;//themm thanh cong
+        }
+        public List<ItemCartView> RemoveAmountOfCartItemCurrent(string pid, List<ItemCartView> cart, int amount)
+        {
+            ItemCartView item = cart.Find(x => x.ProductId == pid);
+            Product p = dbProduct.Get(pid);
+            if (item.Amount >= 2)
+            {
+                cart.Remove(item);
+                item.Amount -= 1;
+                item.Total = p.Price * item.Amount * (100 - p.Discount) / 100;
+                item.Status = 1;
+                cart.Add(item);
+                //result = "1";//xoa thanh cong
+            }
+            return cart;
+        }
+        public decimal GetTotalItemCurrent(string pid, List<ItemCartView> cart)
+        {
+            if(cart==null)
+            {
+                return 0;
+            }
+            ItemCartView item= cart.Find(x=> x.ProductId==pid);
+            if(item==null)
+            {
+                return 0;
+            }
+            return item.Total;
+        }
+  
+        public int GetCountCurrent(List<ItemCartView> list)
         {
             if(list==null)
             { return 0; }
             int count = 0;
-            foreach(ItemCartViewWithoutLogin item in list)
+            foreach(ItemCartView item in list)
             {
                 count += item.Amount;
             }
             return count;
         }
-        public decimal GetTotalWithoutLogin(List<ItemCartViewWithoutLogin> list)
+        public decimal GetTotalCurrent(List<ItemCartView> list)
         {
             if (list == null)
             { return 0; }
             decimal total = 0;
-            foreach (ItemCartViewWithoutLogin item in list)
+            foreach (ItemCartView item in list)
             {
                 total += item.Total;
             }
             return total; ;
         }
-        // We're using HttpContextBase to allow access to cookies.
-        //public string GetCartId(HttpContextBase context)
-        //{
-        //    if (context.Session[CartSessionKey] == null)
-        //    {
-        //        if (!string.IsNullOrWhiteSpace(context.User.Identity.Name))
-        //        {
-        //            context.Session[CartSessionKey] = context.User.Identity.Name;
-        //        }
-        //        else
-        //        {
-        //            // Generate a new random GUID using System.Guid class
-        //            Guid tempCartId = Guid.NewGuid();
-        //            // Send tempCartId back to client as a cookie
-        //            context.Session[CartSessionKey] = tempCartId.ToString();
-        //        }
-        //    }
-        //    return context.Session[CartSessionKey].ToString();
-        //}
-        // When a user has logged in, migrate their shopping cart to
-        // be associated with their username
-        //public void MigrateCart(string userName)
-        //{
-        //    var shoppingCart = db.Carts.Where(
-        //        c => c.CustomerId == ShoppingCartId);
-
-        //    foreach (Cart item in shoppingCart)
-        //    {
-        //        item.CustomerId = userName;
-        //    }
-        //    db.SaveChanges();
-        //}
+        public void SaveDetailsOfBillCurrent(Bill bill, List<ItemCartView> list)
+        {
+            DetailsOfBill detail = new DetailsOfBill();
+            foreach (var item in list)
+            {
+                var orderDetail = new DetailsOfBill()
+                {
+                    BillId = bill.Id,
+                    ProductId = item.ProductId,
+                    Amount = item.Amount,
+                    ProductName = item.ProductName,
+                    Price = item.Price,
+                    Image = item.Image,
+                    Total = item.Total,
+                };
+                db.DetailsOfBills.Add(orderDetail);
+            }
+            db.SaveChanges();
+        }
     }
 
 }
