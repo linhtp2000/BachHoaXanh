@@ -283,40 +283,44 @@ namespace BachHoaXanh.Data.Services
                     cart = new List<ItemCartView>();
                     cart.Add(item);
                     result = "1";
-                }
-            }
-            else
-            {
-                ItemCartView i = cart.Find(x => x.ProductId == pid);
-                if (i == null)
-                {
-                    ItemCartView item = new ItemCartView();
-                    item.ProductId = pid;
-                    item.ProductName = p.Name;
-                    item.Price = p.Price;
-                    item.Total = p.Price * (100 - p.Discount) / 100;
-                    item.Image = p.Image1;
-                    item.Amount = 1;
-                    item.Status = 1;
-                    cart.Add(item);
-                    result = "1";
-                }
-                if (dbProduct.GetAmountOfProductCurrent(pid) > i.Amount)
-                {
-                    cart.Remove(i);
-                    i.Amount += 1;
-                    i.Total = p.Price * i.Amount * (100 - p.Discount) / 100;
-                    i.Status = 1;
-                    cart.Add(i);
-                    result = "1";
+                    return cart;//themm thanh cong
+                    
                 }
                 else
                 {
-                    result = "2";
+                    ItemCartView i = cart.Find(x => x.ProductId == pid);
+                    if (i == null)
+                    {
+                        ItemCartView item = new ItemCartView();
+                        item.ProductId = pid;
+                        item.ProductName = p.Name;
+                        item.Price = p.Price;
+                        item.Total = p.Price * (100 - p.Discount) / 100;
+                        item.Image = p.Image1;
+                        item.Amount = 1;
+                        item.Status = 1;
+                        cart.Add(item);
+                        result = "1";
+                        return cart;
+                    }
+                    if (dbProduct.GetAmountOfProductCurrent(pid) > i.Amount)
+                    {
+                        cart.Remove(i);
+                        i.Amount += 1;
+                        i.Total = p.Price * i.Amount * (100 - p.Discount) / 100;
+                        i.Status = 1;
+                        cart.Add(i);
+                        result = "1";
+                    }
+                    else
+                    {
+                        result = "2";
+                    }
                 }
             }
+         
             result = "0";
-            return cart;//themm thanh cong
+            return cart;
         }
         public List<ItemCartView> RemoveAmountOfCartItemCurrent(string pid, List<ItemCartView> cart, int amount)
         {
@@ -365,7 +369,7 @@ namespace BachHoaXanh.Data.Services
             decimal total = 0;
             foreach (ItemCartView item in list)
             {
-                total += item.Total;
+                total =total+ item.Total;
             }
             return total; ;
         }

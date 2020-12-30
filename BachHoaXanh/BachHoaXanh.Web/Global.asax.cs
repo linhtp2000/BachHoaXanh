@@ -25,7 +25,7 @@ namespace BachHoaXanh.Web
 
 
             //Thong ke so luong truy cap
-            Application["PageView"] = 0;        
+          //  Application["PageView"] = 0;        
         }
 
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)

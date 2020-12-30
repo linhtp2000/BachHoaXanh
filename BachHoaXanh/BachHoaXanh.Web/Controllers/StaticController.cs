@@ -10,6 +10,7 @@ using OfficeOpenXml;
 
 namespace BachHoaXanh.Web.Controllers
 {
+    [Authorize(Roles = "QuanTri")]
     public class StaticController : Controller
     {
         // GET: Static

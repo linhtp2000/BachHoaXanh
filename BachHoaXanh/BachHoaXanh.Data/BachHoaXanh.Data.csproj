@@ -237,6 +237,10 @@
     <Compile Include="Migrations\202012290829084_up8.designer.cs">
       <DependentUpon>202012290829084_up8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012300319452_up81.cs" />
+    <Compile Include="Migrations\202012300319452_up81.designer.cs">
+      <DependentUpon>202012300319452_up81.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelView\AddressView.cs" />
     <Compile Include="Models\Area.cs" />
@@ -370,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012290829084_up8.resx">
       <DependentUpon>202012290829084_up8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012300319452_up81.resx">
+      <DependentUpon>202012300319452_up81.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

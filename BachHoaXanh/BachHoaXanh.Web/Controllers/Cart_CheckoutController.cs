@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace BachHoaXanh.Web.Controllers
 {
+    //[Authorize(Roles = "QuanTri, QLGioHang")]
     public class Cart_CheckoutController : Controller
     {
         // GET: Cart
@@ -275,71 +276,7 @@ namespace BachHoaXanh.Web.Controllers
 
         //===============ORDER=====================//
 
-        //Checkout
-        [HttpGet]
-        public ActionResult Order()
-        {
-            if (Session["ID"] == null)
-            {
-                return View();
-            }
-            return View();
-
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult OrderForCus(AddressView model)
-        {
-            //   TryUpdateModel(order);
-            if (String.IsNullOrEmpty(model.Address))
-            {
-                ModelState.AddModelError(nameof(model.Address), "Address is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.City))
-            {
-                ModelState.AddModelError(nameof(model.City), "City is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.Name))
-            {
-                ModelState.AddModelError(nameof(model.Name), "Full Name is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.State))
-            {
-                ModelState.AddModelError(nameof(model.State), "State is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.Phone))
-            {
-                ModelState.AddModelError(nameof(model.Phone), "Your Phone is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-
-            if (ModelState.IsValid)
-            {
-                Bill newbill = new Bill();
-                newbill.Id = (dbBill.GetBillId() + 1).ToString();
-                newbill.CustomerId = null;
-                newbill.Datetime = DateTime.Now;
-                newbill.Address = model.Address;
-                newbill.City = model.City;
-                newbill.CustomerName = model.Name;               
-                //  newbill.Total = cart.GetTotal();
-                newbill.Points = 0;
-                //    newbill.ServiceCharge
-                newbill.Status = "Confirm";
-                newbill.Payment = false;
-                newbill.State = model.State;
-                newbill.Total = dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
-                //Save Order
-                db.Bills.Add(newbill);
-
-                //Save details of bill
-                dbcart.SaveDetailsOfBillCurrent(newbill, Session["Cart"] as List<ItemCartView>);
-                Session["Cart"] = null;
-                return Content("/Order/Confirm");
-            }
-            return View("AddressAndPayment");
-        }
-      
-
+        
 
     }
 }

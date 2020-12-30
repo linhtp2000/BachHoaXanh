@@ -31,9 +31,14 @@ namespace BachHoaXanh.Data.Services
         {
             var stringlist = (from bill in db.Bills
                               select bill.Id).ToList();
+            if (stringlist.Count==0)
+                return 0;
             //Doi BillId kieu string sang int
-            List<int> intlist = stringlist.Select(s => int.Parse(s)).ToList();
-            return intlist.Max();
+            List<int> intlist = new List<int>();
+            foreach (string s in stringlist)
+                intlist.Add(int.Parse(s.ToString()));
+             
+            return intlist.Max()+1;
         }
 
         public Bill Get(string id)

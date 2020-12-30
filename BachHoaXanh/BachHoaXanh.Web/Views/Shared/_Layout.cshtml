@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
     <!-- header -->
-    <div class="agileits_header">
+    <div class="agileits_header fixed">
         <div class="w3l_offers">
             <a href="products.html">Today's special Offers !</a>
         </div>
@@ -78,13 +78,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 @if (Session["Name"] != null)
                 {
                     @*<h4 style="color:white">Chào @Session["Name"].ToString()</h4>
-                    <li class="dropdown profile_details_drop">
-                        @*<a href=" " class="dropdown-toggle" data-toggle="dropdown">*@
+                        <li class="dropdown profile_details_drop">
+                            @*<a href=" " class="dropdown-toggle" data-toggle="dropdown">*@
                     @*@<!--if (Session["Name"] != null)
-                    {
-                        <h4 style="color:white">Chào @Session["Name"].ToString()</h4>
-                    }
-                    else *@
+                        {
+                            <h4 style="color:white">Chào @Session["Name"].ToString()</h4>
+                        }
+                        else *@
 
                     <h4 style="color:white">@Session["Name"].ToString()</h4>
                     @*</a>*@
@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="mega-dropdown-menu">
                         <div class="w3ls_vegetables">
                             <ul class="dropdown-menu drp-mnu">
-                                <li><a href="@Url.Action("Logout","Login")">Đăng xuấtt</a></li>
+                                <li><a href="@Url.Action("Logout","Login")">Đăng xuất</a></li>
 
                             </ul>
                         </div>
@@ -132,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
         <div class="w3l_header_right1">
-            <h2><a href="mail.html">Đơn hàng của bạn</a></h2>
+            <h2><a href="/Order/">Đơn hàng của bạn</a></h2>
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -155,114 +155,196 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="logo_products">
         <div class="container">
             <div class="w3ls_logo_products_left">
-                <h1><a href="/Main/Index"><span>BÁCH HÓA</span> XANH</a></h1>
+                <h1><a href="index.html"><span>BÁCH HÓA</span> XANH</a></h1>
             </div>
             <div class="w3ls_logo_products_left1">
                 <ul class="special_items">
-                    <li><a href="events.html">Sự kiện</a><i>/</i></li>
-                    <li><a href="products.html">Deals sốc</a><i>/</i></li>
-                    <li><a href="services.html">Dịch vụ</a></li>
+                    <li><a href="events.html">Events</a><i>/</i></li>
+                    <li><a href="about.html">About Us</a><i>/</i></li>
+                    <li><a href="products.html">Best Deals</a><i>/</i></li>
+                    <li><a href="services.html">Services</a></li>
                 </ul>
             </div>
             <div class="w3ls_logo_products_left1">
                 <ul class="phone_email">
-                    <li><i class="fa fa-phone" aria-hidden="true"></i> 028.3622.9900 (7:00 - 21:30)</li>
-                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">bachhoaxanh@grocery.com</a></li>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:bachhoaxanh@grocery.com">bachhoaxanh@grocery.com</a></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>
         </div>
     </div>
+
+
     <!-- //header -->
     <!-- banner -->
     <div class="banner">
         <div class="w3l_banner_nav_left">
-            <nav class="navbar nav_bottom">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                @*<div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>*@
-                <!--THANH DANH MỤC GÓC BÊN TRÁI TRANG CHỦ-->
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                    @*<ul class="nav navbar-nav nav_1">*@
-                    @*@Html.ActionLink("Category", "Category", "Classify")*@
+        @*<nav class="navbar nav_bottom">*@
+            <!-- Brand and toggle get grouped for better mobile display -->
+        <!--@*<div class="navbar-header nav_2">
+            <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>*@-->
+        <!--<!--THANH DANH MỤC GÓC BÊN TRÁI TRANG CHỦ-->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">-->
+        @*<ul class="nav navbar-nav nav_1">*@
+        @*@Html.ActionLink("Category", "Category", "Classify")*@
 
-                    @Html.Action("Category", "Classify")
-                    @*<li><a href="household.html">Households</a></li>*@
-                    @*<li class="dropdown mega-dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">;<span class="caret"></span></a>
-                            <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                <div class="w3ls_vegetables">
-                                    <ul>
-                                        @Html.Action("Classify", "Classify");
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>*@
 
-                    @*</ul>*@
-                    @*<ul class="nav navbar-nav nav_1">
-                          @Html.Action("Category", "Classify");
+        @*<li><a href="household.html">Households</a></li>*@
+        @*<li class="dropdown mega-dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">;<span class="caret"></span></a>
+                <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                    <div class="w3ls_vegetables">
+                        <ul>
+                            @Html.Action("Classify", "Classify");
+                        </ul>
+                    </div>
+                </div>
+            </li>*@
 
-                          <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu" style="display: none;">
-                              <div class="w3ls_vegetables">
-                                  <ul>
-                                      @Html.Action("Classify", "Classify");
+        @*</ul>*@
+        @*<ul class="nav navbar-nav nav_1">
+              @Html.Action("Category", "Classify");
 
-                                  </ul>
-                              </div>
-                          </div>
-                        </ul>*@
+              <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu" style="display: none;">
+                  <div class="w3ls_vegetables">
+                      <ul>
+                          @Html.Action("Classify", "Classify");
 
-                </div>              <!-- /.navbar-collapse -->
-            </nav>
+                      </ul>
+                  </div>
+              </div>
+            </ul>*@
+
+        <!-- /.navbar-collapse -->
+        @*</nav>*@
         </div>
         <div class="w3l_banner_nav_right">
 
-            <section class="slider">
+        <section class="slider">
 
-                <ul>
-                    @*<li class="dropdown profile_details_drop">
-                        <i class="fa fa-user" aria-hidden="true">*@
-                    @*Sắp xếp*@
-                    @*</i>*@
-                    @*<a href=" " class="dropdown-toggle" data-toggle="dropdown">*@
-                    @*<span class="caret"></span>*@
-                    @*</a>*@
-                    @*<form action="/Products/Index" method="post">
-                            Sắp xếp theo <select name="tieuchuanloc">
-                                <option value="trong">trong</option>
-                                <option value="giagiam">giagiam</option>
-                                <option value="giatang">Gía tăng dần</option>
-                            </select>
-                            <input type="submit" value="Lọc" class="btn-btn-danger">
-                        </form>*@
-                    <!--<div class="mega-dropdown-menu">
-                    <div class="w3ls_vegetables">
-                        <ul class="dropdown-menu drp-mnu" style="display: none;">-->
-                    @*data-toggle="dropdown"*@
-                    <!--<li><a href="/Products/SortPriceDown">Giá giảm dần</a></li>
-                                <li> <a href="/Products/SortPriceUp">Giá tăng dần</a></li>
+            <ul>
+        @*<li class="dropdown profile_details_drop">
+            <i class="fa fa-user" aria-hidden="true">
+        Sắp xếp
+        </i>
+        <a href=" " class="dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        </a>
+        <form action="/Products/Index" method="post">
+                Sắp xếp theo <select name="tieuchuanloc">
+                    <option value="trong">trong</option>
+                    <option value="giagiam">giagiam</option>
+                    <option value="giatang">Gía tăng dần</option>
+                </select>
+                <input type="submit" value="Lọc" class="btn-btn-danger">
+            </form>
+        <div class="mega-dropdown-menu">
+        <div class="w3ls_vegetables">
+            <ul class="dropdown-menu drp-mnu" style="display: none;">
+        
+        data-toggle="dropdown"
+        <li><a href="/Products/SortPriceDown">Giá giảm dần</a></li>
+                    <li> <a href="/Products/SortPriceUp">Giá tăng dần</a></li>
 
-                            </ul>
-                        </div>
-                    </div>-->
-                    @*</li>*@
                 </ul>
-                @RenderBody()
+            </div>
+        </div>
+       
+        </li>*@
+            </ul>
+            @RenderBody()
+        </section>
+
+        <link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css" media="screen" property="" />
+        <script defer src="~/Content/js/jquery.flexslider.js"></script>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
+        </script>
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="w3l_banner_nav_right">
+            <section class="slider">
+                <div class="flexslider">
+
+                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                        <ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(-2040px, 0px, 0px);">
+                            <li class="clone" style="width: 1020px; float: left; display: block;">
+                               
+                                <div class="w3l_banner_nav_right_banner2">
+                                   
+                                    <h3>upto <i>50%</i> off.</h3>
+                                    <div class="more">
+
+                                        <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="width: 1020px; float: left; display: block;" class="">
+                                <div class="w3l_banner_nav_right_banner">
+                                   
+                                    <h3>Make your <span>food</span> with Spicy.</h3>
+                                    <div class="more">
+                                        <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex-active-slide" style="width: 1020px; float: left; display: block;">                               
+                                <div class="w3l_banner_nav_right_banner1">
+                                 
+                                    <h3>Make your <span>food</span> with Spicy.</h3>
+                                    <div class="more">
+                                        <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="" style="width: 1020px; float: left; display: block;">
+                                <div class="w3l_banner_nav_right_banner2">
+                                    <h3>upto <i>50%</i> off.</h3>
+                                    <div class="more">
+                                        <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                       
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="width: 1020px; float: left; display: block;" class="clone">
+                                <div class="w3l_banner_nav_right_banner">
+                                    <h3>Make your <span>food</span> with Spicy.</h3>
+                                    <div class="more">
+                                        <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                      
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div><ol class="flex-control-nav flex-control-paging"><li><a class="">1</a></li><li><a class="flex-active">2</a></li><li><a class="">3</a></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul>
+                </div>
             </section>
-            <!-- flexSlider -->
-            <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
-            <script defer src="~/Content/js/jquery.flexslider.js"></script>
+        
+            <link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css" media="screen" property="">
+            <script defer="" src="~/Content/js/jquery.flexslider.js"></script>
             <script type="text/javascript">
                 $(window).load(function () {
-                    $('.flexslider').flexslider({
+                    $('.flexslider').flexslider({                                                                                                       
                         animation: "slide",
                         start: function (slider) {
                             $('body').removeClass('loading');
@@ -270,10 +352,195 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     });
                 });
             </script>
-            <!-- //flexSlider -->
         </div>
         <div class="clearfix"></div>
     </div>
+
+
+
+    <div class="banner_bottom">
+        <div class="wthree_banner_bottom_left_grid_sub">
+        </div>
+        <div class="wthree_banner_bottom_left_grid_sub1">
+            <div class="col-md-4 wthree_banner_bottom_left">
+                <div class="wthree_banner_bottom_left_grid">
+                    <img src="images/4.jpg" alt=" " class="img-responsive">
+                    <div class="wthree_banner_bottom_left_grid_pos">
+                        <h4>Discount Offer <span>25%</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 wthree_banner_bottom_left">
+                <div class="wthree_banner_bottom_left_grid">
+                    <img src="images/5.jpg" alt=" " class="img-responsive">
+                    <div class="wthree_banner_btm_pos">
+                        <h3>introducing <span>best store</span> for <i>groceries</i></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 wthree_banner_bottom_left">
+                <div class="wthree_banner_bottom_left_grid">
+                    <img src="images/6.jpg" alt=" " class="img-responsive">
+                    <div class="wthree_banner_btm_pos1">
+                        <h3>Save <span>Upto</span> $10</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+
+    <div class="top-brands">
+        <div class="container">
+            <h3>Hot Offers</h3>
+            <div class="agile_top_brands_grids">
+                <div class="col-md-3 top_brand_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="tag"><img src="images/tag.png" alt=" " class="img-responsive"></div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="single.html"><img title=" " alt=" " src="images/1.png"></a>
+                                            <p>fortune sunflower oil</p>
+                                            <h4>$7.99 <span>$10.00</span></h4>
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="checkout.html" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" name="cmd" value="_cart">
+                                                    <input type="hidden" name="add" value="1">
+                                                    <input type="hidden" name="business" value=" ">
+                                                    <input type="hidden" name="item_name" value="Fortune Sunflower Oil">
+                                                    <input type="hidden" name="amount" value="7.99">
+                                                    <input type="hidden" name="discount_amount" value="1.00">
+                                                    <input type="hidden" name="currency_code" value="USD">
+                                                    <input type="hidden" name="return" value=" ">
+                                                    <input type="hidden" name="cancel_return" value=" ">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button">
+                                                </fieldset>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 top_brand_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="single.html"><img title=" " alt=" " src="images/3.png"></a>
+                                            <p>basmati rise (5 Kg)</p>
+                                            <h4>$11.99 <span>$15.00</span></h4>
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" name="cmd" value="_cart">
+                                                    <input type="hidden" name="add" value="1">
+                                                    <input type="hidden" name="business" value=" ">
+                                                    <input type="hidden" name="item_name" value="basmati rise">
+                                                    <input type="hidden" name="amount" value="11.99">
+                                                    <input type="hidden" name="discount_amount" value="1.00">
+                                                    <input type="hidden" name="currency_code" value="USD">
+                                                    <input type="hidden" name="return" value=" ">
+                                                    <input type="hidden" name="cancel_return" value=" ">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button">
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 top_brand_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="agile_top_brand_left_grid_pos">
+                                <img src="images/offer.png" alt=" " class="img-responsive">
+                            </div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="single.html"><img src="images/2.png" alt=" " class="img-responsive"></a>
+                                            <p>Pepsi soft drink (2 Ltr)</p>
+                                            <h4>$8.00 <span>$10.00</span></h4>
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" name="cmd" value="_cart">
+                                                    <input type="hidden" name="add" value="1">
+                                                    <input type="hidden" name="business" value=" ">
+                                                    <input type="hidden" name="item_name" value="Pepsi soft drink">
+                                                    <input type="hidden" name="amount" value="8.00">
+                                                    <input type="hidden" name="discount_amount" value="1.00">
+                                                    <input type="hidden" name="currency_code" value="USD">
+                                                    <input type="hidden" name="return" value=" ">
+                                                    <input type="hidden" name="cancel_return" value=" ">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button">
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 top_brand_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="agile_top_brand_left_grid_pos">
+                                <img src="images/offer.png" alt=" " class="img-responsive">
+                            </div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="single.html"><img src="images/4.png" alt=" " class="img-responsive"></a>
+                                            <p>dogs food (4 Kg)</p>
+                                            <h4>$9.00 <span>$11.00</span></h4>
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" name="cmd" value="_cart">
+                                                    <input type="hidden" name="add" value="1">
+                                                    <input type="hidden" name="business" value=" ">
+                                                    <input type="hidden" name="item_name" value="dogs food">
+                                                    <input type="hidden" name="amount" value="9.00">
+                                                    <input type="hidden" name="discount_amount" value="1.00">
+                                                    <input type="hidden" name="currency_code" value="USD">
+                                                    <input type="hidden" name="return" value=" ">
+                                                    <input type="hidden" name="cancel_return" value=" ">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button">
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
     <!-- banner -->
     @*<div>@RenderBody()</div>*@
     <!-- top-brands -->

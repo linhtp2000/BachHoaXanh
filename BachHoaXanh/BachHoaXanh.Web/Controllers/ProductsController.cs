@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using PagedList;
 namespace BachHoaXanh.Web.Controllers
 {
-    [Authorize(Roles = "QuanTri")]
+    //[Authorize(Roles = "QuanTri, QLSanPham")]
     public class ProductsController : Controller
     {
         //GET: Products
@@ -73,8 +73,11 @@ namespace BachHoaXanh.Web.Controllers
         //{
         //    return View();
         //}
+
+        //[Authorize(Roles = "XemSanPham")]
         [HttpGet]
         public ActionResult Index(int? page, string id, string tieuchuanloc)
+        
         {
             ViewBag.PriceSortParm = String.IsNullOrEmpty(tieuchuanloc) ? "giagiam" : "";
             IEnumerable<Product> model;

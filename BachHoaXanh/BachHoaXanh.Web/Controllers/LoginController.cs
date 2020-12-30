@@ -78,7 +78,7 @@ namespace BachHoaXanh.Web.Controllers
                 }
                 Quyen = Quyen.Substring(0, Quyen.Length - 1);
                 PhanQuyen(us.PhoneNumber.ToString(), Quyen);
-                return Content("/Products/Index"); 
+                return Content ("/Products/Index");
             }
             else
             {

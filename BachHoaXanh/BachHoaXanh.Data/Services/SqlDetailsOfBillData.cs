@@ -11,10 +11,7 @@ namespace BachHoaXanh.Data.Services
     public class SqlDetailsOfBillData : IDetailsOfBillData
     {
         private readonly BachHoaXanhDbContext db;
-        public SqlDetailsOfBillData(BachHoaXanhDbContext db)
-        {
-            this.db = db;
-        }
+      
         public void Add(DetailsOfBill detailsOfBill)
         {
             db.DetailsOfBills.Add(detailsOfBill);

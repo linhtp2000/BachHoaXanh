@@ -9,6 +9,7 @@ using PagedList;
 
 namespace BachHoaXanh.Web.Controllers
 {
+    [Authorize(Roles = "QuanTri, QLNhanVien")]
     public class EmployeeController : Controller
     {
         public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
