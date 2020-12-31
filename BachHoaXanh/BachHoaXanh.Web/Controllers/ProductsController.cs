@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using PagedList;
 namespace BachHoaXanh.Web.Controllers
 {
-    //[Authorize(Roles = "QuanTri, QLSanPham")]
+    //[Authorize(Roles = "QuanTri, XemSP, QLGioHang,XemDonHang")]
     public class ProductsController : Controller
     {
         //GET: Products
@@ -74,28 +74,15 @@ namespace BachHoaXanh.Web.Controllers
         //    return View();
         //}
 
-        //[Authorize(Roles = "XemSanPham")]
         [HttpGet]
         public ActionResult Index(int? page, string id, string tieuchuanloc)
-        
         {
             ViewBag.PriceSortParm = String.IsNullOrEmpty(tieuchuanloc) ? "giagiam" : "";
             IEnumerable<Product> model;
-            if (id != null)
-            {
-                model = (from sp in bhx.Products
-                         where sp.ClassifyId == id
-                         select sp);//.OrderBy(s => s.Name);
-                ViewBag.All = 0;
-            }
-            else
-            {
-                model = (from sp in bhx.Products
-                             // where sp.ClassifyId == id
-                         select sp);//.OrderBy(s => s.Name);
-                ViewBag.All = 1;
-            }
-            if (model/*.FirstOrDefault()*/ == null) return Content("Sản phẩm sẽ được thêm vào sớm, xin lỗi quý khách vì sự bất tiện này.");
+            model = (from sp in bhx.Products
+                     where sp.ClassifyId == id
+                     select sp);//.OrderBy(s => s.Name);
+            if (model.FirstOrDefault() == null) return Content("Sản phẩm sẽ được thêm vào sớm, xin lỗi quý khách vì sự bất tiện này.");
             // 1. Tham số int? dùng để thể hiện null và kiểu int
             // page có thể có giá trị là null và kiểu int.
 
@@ -224,7 +211,7 @@ namespace BachHoaXanh.Web.Controllers
             //string branch = bhx.Branchs.Where(x => x.Name == item.BranchName).Select(x=> x.Id).First().ToString();
             //Classify classify = bhx.Classifys.Where(x => x.Name == item.ClassifyName).FirstOrDefault();
             //Provider provider = bhx.Providers.Where(x => x.Name == item.ProviderName).FirstOrDefault(); 
-            if (ModelState.IsValid)    
+            if (ModelState.IsValid)
             {
                 Product p = new Product();
                 p.Id = dbProduct.GetIdMax().ToString();
@@ -251,7 +238,7 @@ namespace BachHoaXanh.Web.Controllers
                     }
                     else
                     {
-                        item.Image1.SaveAs(path);                     
+                        item.Image1.SaveAs(path);
                     }
                     string temp = "~/Images/" + image1;
                     p.Image1 = temp;
@@ -271,12 +258,12 @@ namespace BachHoaXanh.Web.Controllers
                     if (System.IO.File.Exists(path))
                     {
                         ViewBag.upload = " Image has existed!";
-                       // p.Image2 = path.ToString();
+                        // p.Image2 = path.ToString();
                     }
                     else
                     {
                         item.Image2.SaveAs(path);
-                       // p.Image2 = path.ToString();
+                        // p.Image2 = path.ToString();
                     }
                     string temp = "~/Images/" + image2;
                     p.Image2 = temp;
@@ -296,11 +283,11 @@ namespace BachHoaXanh.Web.Controllers
                     //Neu thu muc chua hinh anh do roi thi xuat ra thong bao
                     if (System.IO.File.Exists(path))
                     {
-                        ViewBag.upload = " Image has existed!";                      
+                        ViewBag.upload = " Image has existed!";
                     }
                     else
                     {
-                        item.Image3.SaveAs(path);                       
+                        item.Image3.SaveAs(path);
                     }
                     string temp = "~/Images/" + image3;
                     p.Image3 = temp;
@@ -309,12 +296,12 @@ namespace BachHoaXanh.Web.Controllers
                 {
                     p.Image3 = null;
                 }
-              
+
                 bhx.Products.Add(p);
                 bhx.SaveChanges();
-                return RedirectToAction("Details", new { id = p.Id });
+                return RedirectToAction("ProductDetails", "Admin", new { id = p.Id });
             }
-            return View();
+            return View("ProductCreate");
         }
 
         [HttpGet]
@@ -566,6 +553,10 @@ namespace BachHoaXanh.Web.Controllers
             }
             return View(ListReview);
         }
+
+
+        //---Ở DƯỚI CỦA LINH
+
         [HttpPost]
         public ActionResult AddToCart(string id)
         {

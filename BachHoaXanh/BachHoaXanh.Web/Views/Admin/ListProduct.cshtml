@@ -1,0 +1,94 @@
+﻿@model IEnumerable<BachHoaXanh.Data.Models.Product>
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Classify.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Provider.Name)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Details)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Image1)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Image2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image3)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.BranchId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Classify.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Provider.Name)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Image1)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Image2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image3)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "ProductDetails", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

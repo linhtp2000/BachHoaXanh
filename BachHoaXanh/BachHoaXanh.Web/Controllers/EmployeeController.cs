@@ -9,7 +9,7 @@ using PagedList;
 
 namespace BachHoaXanh.Web.Controllers
 {
-    [Authorize(Roles = "QuanTri, QLNhanVien")]
+    [Authorize(Roles = "QLNhanVien")]
     public class EmployeeController : Controller
     {
         public BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
@@ -59,7 +59,7 @@ namespace BachHoaXanh.Web.Controllers
             var model = db.Get(id);
             if (model == null)
             {
-                return View("NotFound");
+                return View("Error");
             }
             return View(model);
         }
@@ -67,8 +67,17 @@ namespace BachHoaXanh.Web.Controllers
         [HttpGet]   // use to edit, create 
         public ActionResult Create()
         {
+            // Tạo SelectList
+            //SelectList cateList = new SelectList(cate, "ID", "THELOAI_NAME");
+
+            // Set vào ViewBag
+            // ViewBag.CategoryList = cateList;
+
             User user = new User();
             ViewBag.UserId = new SelectList(bhx.Users, "Id", "Name", user.Id);
+
+            ViewBag.ManagerId = new SelectList(bhx.Employees, "Id", "Name");
+            ViewBag.BranchId = new SelectList(bhx.Branchs, "Id", "Name");
             return View();
         }
 
@@ -92,11 +101,8 @@ namespace BachHoaXanh.Web.Controllers
             {
                 ModelState.AddModelError(nameof(employee.Salary), "Salary is required");      //thong bao loi khi Salary co gia tri null/ rong
             }
-            if (String.IsNullOrEmpty(employee.WorkAts.ToString()))
-            {
-                ModelState.AddModelError(nameof(employee.WorkAts), "Branch's ID is required");      //thong bao loi khi BranchId co gia tri null/ rong
-            }
-
+            employee.UserId = "3";
+            employee.ManagerId = Session["ID"].ToString();
             if (ModelState.IsValid)
             {
                 db.Add(employee);
@@ -112,7 +118,7 @@ namespace BachHoaXanh.Web.Controllers
             var model = db.Get(id);
             if (model == null)
             {
-                return View("NotFound");
+                return View("Error");
             }
             return View(model);
         }

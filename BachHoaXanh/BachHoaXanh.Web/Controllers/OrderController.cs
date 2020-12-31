@@ -100,7 +100,16 @@ namespace BachHoaXanh.Web.Controllers
                         select bill;
             return View(model);
         }
+        public ActionResult AgreeBackMoney(string id)
+        {
+            var model = (from bill in bhx.Bills
+                         where bill.Id == id
+                         select bill).FirstOrDefault();
 
+            model.Status = "Refund_Roi";
+            bhx.SaveChanges();
+            return RedirectToAction("Payment_Refund_ChuaXuLy");
+        }
 
         //============PHAN DANH CHO NHAN VIEN, QUAN TRỊ, QUAN LY===================
         //Checkout

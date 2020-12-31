@@ -30,112 +30,211 @@ namespace BachHoaXanh.Web.Controllers
         }
 
 
+        //[HttpPost]
+        //public ActionResult Index(HttpPostedFileBase file)
+        //{
+        //    string filePath = string.Empty;
+        //    if (file != null)
+        //    {
+        //        string path = Server.MapPath("~/Uploads/");
+        //        if (!Directory.Exists(path))
+        //        {
+        //            Directory.CreateDirectory(path);
+        //        }
+
+        //        filePath = path + Path.GetFileName(file.FileName);
+        //        string extension = Path.GetExtension(file.FileName);
+        //        file.SaveAs(filePath);
+
+        //        string conString = string.Empty;
+
+        //        switch (extension)
+        //        {
+        //            //case ".xls": //Excel 97-03.
+        //            //    conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
+        //            //    break;
+        //            //case ".xlsx": //Excel 07 and above.
+        //            //    conString = ConfigurationManager.ConnectionStrings["Excel07ConString"].ConnectionString;
+        //            //    break;
+
+
+        //            //case ".xls": //Excel 97-03.
+        //            //    conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=(localdb)/MSSQLLocalDB;Extended Properties='Excel 8.0;HDR=YES'";
+        //            //    break;
+        //            //case ".xlsx": //Excel 07 and above.     cái cũ Microsoft.ACE.OLEDB.12.0
+        //            //    conString = "Provider=Microsoft.ACE.OLEDB.15.0;Data Source=(localdb)/MSSQLLocalDB;Extended Properties='Excel 8.0;HDR=YES'";
+        //            //    break;
+
+        //            case ".xls": //Excel 97-03.
+        //                conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES',providerName=System.Data.OleDb ";
+        //                break;
+        //            case ".xlsx": //Excel 07 and above.
+        //                conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES', providerName=System.Data.OleDb";
+        //                break;
+        //        }
+
+        //        DataTable dt = new DataTable();
+        //        conString = string.Format(conString, filePath);
+
+        //        using (OleDbConnection connExcel = new OleDbConnection(conString))
+        //        {
+        //            using (OleDbCommand cmdExcel = new OleDbCommand())
+        //            {
+        //                using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+        //                {
+        //                    cmdExcel.Connection = connExcel;
+
+        //                    //Get the name of First Sheet.
+        //                    connExcel.Open();
+        //                    DataTable dtExcelSchema;
+        //                    dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+        //                    string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+        //                    connExcel.Close();
+
+        //                    //Read Data from First Sheet.
+        //                    connExcel.Open();
+        //                    cmdExcel.CommandText = "SELECT * From [" + sheetName + "]";
+        //                    odaExcel.SelectCommand = cmdExcel;
+        //                    odaExcel.Fill(dt);
+        //                    connExcel.Close();
+        //                }
+        //            }
+        //        }
+        //        // conString = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+
+        //        conString = @"Server=(localdb)\MSSQLLocalDB;Database=BachHoaXanhMVC;Trusted_Connection=True; providerName=ystem.Data.OleDb";
+        //        using (SqlConnection con = new SqlConnection(conString))
+        //        {
+        //            using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+        //            {
+        //                //Set the database table name.
+        //                sqlBulkCopy.DestinationTableName = "dbo.Areas";
+
+        //                // Map the Excel columns with that of the database table, this is optional but good if you do
+        //                // 
+        //                sqlBulkCopy.ColumnMappings.Add("Id", "Id");
+        //                sqlBulkCopy.ColumnMappings.Add("Name", "Name");
+        //                //sqlBulkCopy.ColumnMappings.Add("Price", "Price");
+        //                //sqlBulkCopy.ColumnMappings.Add("Discount", "Discount");
+        //                //sqlBulkCopy.ColumnMappings.Add("Amount", "Amount");
+        //                //sqlBulkCopy.ColumnMappings.Add("Details", "Details");
+        //                //sqlBulkCopy.ColumnMappings.Add("ClassifyId", "ClassifyId");
+        //                //sqlBulkCopy.ColumnMappings.Add("BrachId", "BrachId");
+        //                //sqlBulkCopy.ColumnMappings.Add("ProviderId", "ProviderId");
+        //                //sqlBulkCopy.ColumnMappings.Add("Image1", "Image1");
+        //                //sqlBulkCopy.ColumnMappings.Add("Image2", "Image2");
+        //                //sqlBulkCopy.ColumnMappings.Add("Image3", "Image3");
+        //                con.Open();
+        //                sqlBulkCopy.WriteToServer(dt);
+        //                con.Close();
+        //            }
+        //        }
+        //    }
+        //    //if the code reach here means everthing goes fine and excel data is imported into database
+        //    ViewBag.Success = "File Imported and excel data saved into database";
+
+        //    return View();
+        //}
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult ImportFromExcel(HttpPostedFileBase postedFile)
         {
-            string filePath = string.Empty;
-            if (file != null)
+            if (ModelState.IsValid)
             {
-                string path = Server.MapPath("~/Uploads/");
-                if (!Directory.Exists(path))
+                if (postedFile != null && postedFile.ContentLength > (1024 * 1024 * 50))  // 50MB limit  
                 {
-                    Directory.CreateDirectory(path);
+                    ModelState.AddModelError("postedFile", "Your file is to large. Maximum size allowed is 50MB !");
                 }
 
-                filePath = path + Path.GetFileName(file.FileName);
-                string extension = Path.GetExtension(file.FileName);
-                file.SaveAs(filePath);
-
-                string conString = string.Empty;
-
-                switch (extension)
+                else
                 {
-                    //case ".xls": //Excel 97-03.
-                    //    conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
-                    //    break;
-                    //case ".xlsx": //Excel 07 and above.
-                    //    conString = ConfigurationManager.ConnectionStrings["Excel07ConString"].ConnectionString;
-                    //    break;
-
-
-                    //case ".xls": //Excel 97-03.
-                    //    conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=(localdb)/MSSQLLocalDB;Extended Properties='Excel 8.0;HDR=YES'";
-                    //    break;
-                    //case ".xlsx": //Excel 07 and above.     cái cũ Microsoft.ACE.OLEDB.12.0
-                    //    conString = "Provider=Microsoft.ACE.OLEDB.15.0;Data Source=(localdb)/MSSQLLocalDB;Extended Properties='Excel 8.0;HDR=YES'";
-                    //    break;
-
-                    case ".xls": //Excel 97-03.
-                        conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES',providerName=System.Data.OleDb ";
-                        break;
-                    case ".xlsx": //Excel 07 and above.
-                        conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES', providerName=System.Data.OleDb";
-                        break;
-                }
-
-                DataTable dt = new DataTable();
-                conString = string.Format(conString, filePath);
-
-                using (OleDbConnection connExcel = new OleDbConnection(conString))
-                {
-                    using (OleDbCommand cmdExcel = new OleDbCommand())
+                    string filePath = string.Empty;
+                    string path = Server.MapPath("~/Uploads/");
+                    if (!Directory.Exists(path))
                     {
-                        using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+                        Directory.CreateDirectory(path);
+                    }
+
+                    filePath = path + Path.GetFileName(postedFile.FileName);
+                    string extension = Path.GetExtension(postedFile.FileName);
+                    postedFile.SaveAs(filePath);
+
+                    string conString = string.Empty;
+                    switch (extension)
+                    {
+                        case ".xls": //Excel 97-03.
+                            conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES',providerName=System.Data.OleDb ";
+                            break;
+                        case ".xlsx": //Excel 07 and above.
+                            conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES', providerName=System.Data.OleDb";
+                            break;
+                            //case ".xls": //For Excel 97-03.  
+                            //    conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
+                            //    break;
+                            //case ".xlsx": //For Excel 07 and above.  
+                            //    conString = ConfigurationManager.ConnectionStrings["Excel07ConString"].ConnectionString;
+                            //    break;
+                    }
+
+                    try
+                    {
+                        DataTable dt = new DataTable();
+                        conString = string.Format(conString, filePath);
+
+                        using (OleDbConnection connExcel = new OleDbConnection(conString))
                         {
-                            cmdExcel.Connection = connExcel;
+                            using (OleDbCommand cmdExcel = new OleDbCommand())
+                            {
+                                using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+                                {
+                                    cmdExcel.Connection = connExcel;
 
-                            //Get the name of First Sheet.
-                            connExcel.Open();
-                            DataTable dtExcelSchema;
-                            dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                            string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
-                            connExcel.Close();
+                                    //Get the name of First Sheet.  
+                                    connExcel.Open();
+                                    DataTable dtExcelSchema;
+                                    dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                                    string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+                                    connExcel.Close();
 
-                            //Read Data from First Sheet.
-                            connExcel.Open();
-                            cmdExcel.CommandText = "SELECT * From [" + sheetName + "]";
-                            odaExcel.SelectCommand = cmdExcel;
-                            odaExcel.Fill(dt);
-                            connExcel.Close();
+                                    //Read Data from First Sheet.  
+                                    connExcel.Open();
+                                    cmdExcel.CommandText = "SELECT * From [" + sheetName + "]";
+                                    odaExcel.SelectCommand = cmdExcel;
+                                    odaExcel.Fill(dt);
+                                    connExcel.Close();
+                                }
+                            }
                         }
-                    }
-                }
-                // conString = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+                        foreach (var item in dt.AsEnumerable())
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                Area luutru = new Area();
+                                luutru.Id = item.Field<string>("Id");
+                                luutru.Name = item.Field<string>("Name");
 
-                conString = @"Server=(localdb)\MSSQLLocalDB;Database=BachHoaXanhMVC;Trusted_Connection=True; providerName=ystem.Data.OleDb";
-                using (SqlConnection con = new SqlConnection(conString))
-                {
-                    using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                                db.Areas.Add(luutru);
+                                db.SaveChanges();
+
+                            }
+
+
+                        }
+                        return RedirectToAction("Index", "Main");
+                    }
+                    catch (Exception e)
                     {
-                        //Set the database table name.
-                        sqlBulkCopy.DestinationTableName = "dbo.Areas";
-
-                        // Map the Excel columns with that of the database table, this is optional but good if you do
-                        // 
-                        sqlBulkCopy.ColumnMappings.Add("Id", "Id");
-                        sqlBulkCopy.ColumnMappings.Add("Name", "Name");
-                        //sqlBulkCopy.ColumnMappings.Add("Price", "Price");
-                        //sqlBulkCopy.ColumnMappings.Add("Discount", "Discount");
-                        //sqlBulkCopy.ColumnMappings.Add("Amount", "Amount");
-                        //sqlBulkCopy.ColumnMappings.Add("Details", "Details");
-                        //sqlBulkCopy.ColumnMappings.Add("ClassifyId", "ClassifyId");
-                        //sqlBulkCopy.ColumnMappings.Add("BrachId", "BrachId");
-                        //sqlBulkCopy.ColumnMappings.Add("ProviderId", "ProviderId");
-                        //sqlBulkCopy.ColumnMappings.Add("Image1", "Image1");
-                        //sqlBulkCopy.ColumnMappings.Add("Image2", "Image2");
-                        //sqlBulkCopy.ColumnMappings.Add("Image3", "Image3");
-                        con.Open();
-                        sqlBulkCopy.WriteToServer(dt);
-                        con.Close();
+                        return RedirectToAction("Index", "Main");
                     }
+
                 }
             }
-            //if the code reach here means everthing goes fine and excel data is imported into database
-            ViewBag.Success = "File Imported and excel data saved into database";
-
+            return Json("Bạn chưa chọn File!");
+        }
+        public ActionResult ImportExport(string DuongDan)
+        {
+            ViewBag.A = DuongDan;
             return View();
         }
-
 
     }
 }

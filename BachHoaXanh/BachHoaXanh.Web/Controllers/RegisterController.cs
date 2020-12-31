@@ -54,6 +54,7 @@ namespace BachHoaXanh.Web.Controllers
             kh.Password = password;
             kh.Email = youremail;
             kh.Points = 0;
+            kh.UserId = "4";
             if (ModelState.IsValid)
             {
                 bhx.Configuration.ValidateOnSaveEnabled = false;

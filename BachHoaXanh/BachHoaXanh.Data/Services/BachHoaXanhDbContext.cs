@@ -34,6 +34,6 @@ namespace BachHoaXanh.Data.Services
       
         public DbSet<Authorize> Authorizes { get; set; }
         public DbSet<User_Authorize> User_Authorizes { get; set; }
-        public DbSet<WorkAt> WorkAts { get; set; }
+        //public DbSet<WorkAt> WorkAts { get; set; }
     }
 }

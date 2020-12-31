@@ -1,12 +1,171 @@
-﻿
+﻿@*@model IEnumerable<BachHoaXanh.Data.Models.Product>*@
+@model PagedList.IPagedList<BachHoaXanh.Data.Models.Product>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal PriceNow = 0;
 }
+@*<form action="/Main/Index" method="get">
+            Sắp xếp theo <select name="tieuchuanloc" id="tieuchuanloc">
+                <option value="giagiam">Giá giảm dần</option>
+                <option value="giatang">Giá tăng dần</option>
+            </select>
+            <input type="submit" value="Lọc" class="btn-btn-danger">
+    </form>*@
+
+<div class="flexslider">
+    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+        <ul class="slides" style="width: 100%; transition-duration: 0.6s; transform: translate3d(-1950px, 0px, 0px);">
+            <li class="clone" style="width: 650px; float: left; display: block;">
+                <div class="w3l_banner_nav_right_banner6">
+                    <img src="~/Images/qc1.jpg" height=”473″ width=”975″>
+
+                </div>
+            </li>
+            <li style="width: 650px; float: left; display: block;" class="clone">
+                <div class="w3l_banner_nav_right_banner4">
+                    @*<h3>Make your <span>food</span> with Spicy.</h3>*@
+                    <img src="~/Images/qc2.jpg" height=”473″ width=”975″>
+                </div>
+            </li>
+            <li class="flex-active-slide" style="width: 650px; float: left; display: block;">
+                <div class="w3l_banner_nav_right_banner4">
+                    @*<h3>Make your <span>food</span> with Spicy.</h3>*@
+                    <img src="~/Images/qc3.jpg" height=”473″ width=”975″>
+                </div>
+            </li>
+        </ul>
+    </div>
+    @*<ol class="flex-control-nav flex-control-paging"><li><a class="">1</a></li><li><a class="flex-active">2</a></li><li><a class="">3</a></li></ol>
+        <ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul>*@
+</div>
+@*</section>*@
+<!-- flexSlider -->
+<link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css" media="screen" property="" />
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
+<script defer src="~/Content/js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+</script>
+<!-- //flexSlider -->
+
 
 <h2>
     <h4>Trần Phương Linh </h4>
     <h4>Nguyễn Như Bảo Phương</h4>
     Hellooo
 </h2>
+
+
+<div>
+    @Html.ActionLink("Sắp xếp theo", "Index", new { tieuchuanloc = ViewBag.PriceSortParm })  @ViewBag.tieuchuan
+</div>
+
+<ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
+    @*<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
+            <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true"><img src="images/menu1.png"></a></li>
+            <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile"><img src="images/menu.png"></a></li>
+        </ul>*@
+    <div id="myTabContent" class="tab-content">
+
+        <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+            @foreach (var item in Model)
+            {
+                //var price = item.Price - item.Discount * item.Price / 100; //LINH LÀM RỒI, TẠM BỎ
+                <div class="product-tab">
+                    <div class="col-md-4 product-tab-grid simpleCart_shelfItem">
+                        <div class="grid-arr">
+                            <div class="grid-arrival">
+                                <figure>
+                                    <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
+                                        <div class="grid-img">
+                                            <img src="@Url.Content(item.Image1)" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="grid-img">
+                                            <img src="images/p5.jpg" class="img-responsive" alt="">
+                                        </div>
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="block">
+                                <div class="starbox small ghosting"> </div>
+                                @Html.ActionLink("Xem sản phẩm", "Details", "Products", new { id = item.Id }, "")
+                                <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
+                                @*<span class="size">XL / XXL / S </span>*@
+                                @if (item.Discount != 0)
+                                {
+                                    PriceNow = item.Price * (100 - item.Discount) / 100;
+                                    <h4>$@PriceNow</h4>
+                                    <p><del>@Html.DisplayFor(modelItem => item.Price)</del><em class="item_price"> @Html.DisplayFor(modelItem => item.Discount)% </em></p>
+
+                                }
+                                else
+                                {
+                                    <h4>$@item.Price</h4>
+                                }
+
+                                @if (item.Amount > 0)
+                                {
+                                    using (Html.BeginForm("AddToCart", "Products", new { id = item.Id }, FormMethod.Post))
+                                    {
+                                        @*<a class="AddToCart">
+                                            <input type="button" class="pull-right my-cart-icon" itemid="@item.Id"/>*@
+                                        <button type="submit" class="pull-left"><i class="fa fa-shopping-cart"></i> </button>
+
+                                    }
+                                }
+
+                                else
+                                {
+                                    <a class="right" href="#"><i class="fa fa-shopping-cart"></i> </a>
+                                    <p>Hết Hàng</p>
+                                }
+
+
+                                @*@Html.DisplayFor(modelItem => item.Id)*@
+
+
+
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>*@
+                                @*@Html.Partial("ProductSummary", item);*@
+
+                                @*}*@
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+
+    </div>
+
+
+</ul>
+
+<br />
+<div class="col-md--6 col-lg-6 col-sm-6 text-right ">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page@*, tieuchuanloc = ViewBag.PriceSortParm*@}))
+
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
 

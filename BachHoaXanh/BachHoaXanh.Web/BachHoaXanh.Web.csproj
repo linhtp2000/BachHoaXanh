@@ -629,6 +629,9 @@
     <Content Include="Images\6.1.jpg" />
     <Content Include="Images\6.2.jpg" />
     <Content Include="Images\6.3.jpg" />
+    <Content Include="Images\7.1.jpg" />
+    <Content Include="Images\7.2.jpg" />
+    <Content Include="Images\7.3.jpg" />
     <Content Include="Images\8.1.jpg" />
     <Content Include="Images\8.2.jpg" />
     <Content Include="Images\8.3.jpg" />
@@ -639,6 +642,9 @@
     <Content Include="Images\cart.png" />
     <Content Include="Images\close.jpg" />
     <Content Include="Images\img-sp.png" />
+    <Content Include="Images\qc1.jpg" />
+    <Content Include="Images\qc2.jpg" />
+    <Content Include="Images\qc3.jpg" />
     <Content Include="Layouts\Login\css\main.css" />
     <Content Include="Layouts\Login\css\util.css" />
     <Content Include="Layouts\Login\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -867,6 +873,11 @@
     <Content Include="Content\CssFont\scss\_stacked.scss" />
     <Content Include="Content\CssFont\scss\_variables.scss" />
     <Content Include="Views\Login\LoiPhanQuyen.cshtml" />
+    <Content Include="Views\Admin\ListProduct.cshtml" />
+    <Content Include="Views\Admin\ProductDetails.cshtml" />
+    <Content Include="Views\Admin\ProductCreate.cshtml" />
+    <Content Include="Views\Excel\ImportExport.cshtml" />
+    <Content Include="Views\Login\ForgetPassword.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -991,7 +1002,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Authorize\" />
-    <Folder Include="Views\Excel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -31,11 +31,12 @@ namespace BachHoaXanh.Data.Models
         public string UserId { get; set; }
         public virtual User User { get; set; }
         public double Salary { get; set; }
-       // public virtual ICollection<Branch> Branch { get; set; }
-       // public virtual ICollection<Bill> Bills { get; set; }
- 
-     //   public virtual ICollection<Employee> Employee1s { get; set; }
-        public virtual ICollection<WorkAt> WorkAts { get; set; }
+        public string BranchId { get; set; }
+        public virtual ICollection<Branch> Branch { get; set; }
+        // public virtual ICollection<Bill> Bills { get; set; }
+
+        //   public virtual ICollection<Employee> Employee1s { get; set; }
+        //public virtual ICollection<WorkAt> WorkAts { get; set; }
 
 
     }

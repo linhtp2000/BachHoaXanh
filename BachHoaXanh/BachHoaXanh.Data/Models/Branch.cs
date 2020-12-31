@@ -32,7 +32,7 @@ namespace BachHoaXanh.Data.Models
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<Product> Products { get; set; }
       //  public virtual ICollection<Employee> Employees { get; set; }// list Employees are working at Branch
-        public virtual ICollection<WorkAt> WorkAts { get; set; }
+        //public virtual ICollection<WorkAt> WorkAts { get; set; }
     }
 }
 

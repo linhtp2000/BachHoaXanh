@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_ManagerOrEmployee.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Chi tiết khách hàng</h2>
@@ -17,7 +17,13 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <dt>
+            Mã khách hàng
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
         <dt>
             Số điện thoại
         </dt>
@@ -53,6 +59,9 @@
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-    @Html.ActionLink("Back to List", "ThongKe", "Products")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+
+
+    <a href="javascript: history.go(-1)">Trở về</a>
+    @*@Html.ActionLink("Back to List", "ThongKe", "Products")*@
 </p>

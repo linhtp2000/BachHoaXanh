@@ -71,9 +71,9 @@ namespace BachHoaXanh.Web.App_Start
             builder.RegisterType<SqlUser_AuthData>()
                    .As<IUser_AuthData>()
                    .InstancePerRequest();
-            builder.RegisterType<SqlWorkAtData>()
-                   .As<IWorkAtData>()
-                   .InstancePerRequest();
+            //builder.RegisterType<SqlWorkAtData>()
+            //       .As<IWorkAtData>()
+            //       .InstancePerRequest();
             builder.RegisterType<BachHoaXanhDbContext>().InstancePerRequest();
 
             var container = builder.Build();

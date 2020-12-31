@@ -56,6 +56,7 @@
         <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
             @foreach (var item in Model)
             {
+
                 //var price = item.Price - item.Discount * item.Price / 100; //LINH LÀM RỒI, TẠM BỎ
                 <div class="product-tab">
                     <div class="col-md-4 product-tab-grid simpleCart_shelfItem">
@@ -75,7 +76,7 @@
                             <div class="block">
                                 <div class="starbox small ghosting"> </div>
                                 @Html.ActionLink("Xem sản phẩm", "Details", new { id = item.Id }) |
-                                <h6><a href="Details.html">@Html.DisplayFor(modelItem => item.Name)</a></h6>
+                                <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
                                 @*<span class="size">XL / XXL / S </span>*@
                                 @if (item.Discount != 0)
                                 {
@@ -137,32 +138,25 @@
 <div id="divLoading" style="display:none;">
     <img src="#" />
 </div>
+<div class="col-md--6 col-lg-6 col-sm-6 text-right ">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page@*, tieuchuanloc = ViewBag.PriceSortParm*@}))
+
+</div>
 
 
-@if (ViewBag.All == 1)
-{<ol class="flex-control-nav flex-control-paging">
-        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-        @Html.PagedListPager(Model, page => Url.Action("Index", "Products", new { page, id = Model.FirstOrDefault().ClassifyId, tieuchuanloc = ViewBag.PriceSortParm }))
-    </ol>
-}
-else
-{
-    <ol class="flex-control-nav flex-control-paging">
-        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-        @Html.PagedListPager(Model, page => Url.Action("Index", "Products", new { page, tieuchuanloc = ViewBag.PriceSortParm }))
-    </ol>
-}
 
 @*////==================================ADD TO CART=================================////*@
 
 <script type="text/javascript">
 
-    $(".AddToCart").click(function(item) {
+    $(".AddToCart").click(function (item) {
         var itemId = $(item).attr("itemid");
         var formData = new FormData()
-            formData.append("ItemId", itemId);
+        formData.append("ItemId", itemId);
 
         $.ajax({
             async: true,
