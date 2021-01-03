@@ -37,46 +37,49 @@
                 <input type="submit" value="TÌM">
             </form>
             <div class="vertical_post check_box_agile">
-                <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CustomerId)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Datetime)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Total)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Points)
-                        </th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
+                @if (Model != null)
+                {
+                    <table class="table">
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CustomerId)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Datetime)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Total)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Points)
-                            </td>
-                            <td>
-                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
-                                @Html.ActionLink("Details", "Detail", new { id = item.Id })
-                                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                            </td>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CustomerId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Datetime)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Total)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Points)
+                            </th>
                         </tr>
-                    }
-                </table>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerId)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Datetime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Total)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Points)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                                    @Html.ActionLink("Details", "Detail", new { id = item.Id })
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
             </div>
         </div>
     </div>

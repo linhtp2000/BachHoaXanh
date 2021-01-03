@@ -38,6 +38,8 @@
                 <input type="submit" value="TÌM">
             </form>
             <div class="vertical_post check_box_agile">
+                @if (Model != null)
+                {
                 <table class="table">
                     <tr>
                         <th>
@@ -84,6 +86,7 @@
                         </tr>
                     }
                 </table>
+                }
             </div>
         </div>
     </div>

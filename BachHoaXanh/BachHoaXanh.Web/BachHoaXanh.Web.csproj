@@ -980,7 +980,6 @@
     <Content Include="Views\Order\Payment_Refund.cshtml" />
     <Content Include="Views\Order\AllOfBills.cshtml" />
     <Content Include="Views\Cart_Checkout\Payment.cshtml" />
-    <Content Include="Views\Order\GoToOrder.cshtml" />
     <Content Include="Views\Order\Payment_Refund_ChuaXuLy.cshtml" />
     <Content Include="Views\Order\Payment_Refund_DaXuLy.cshtml" />
     <Content Include="Views\Static\BillStatic.cshtml" />
