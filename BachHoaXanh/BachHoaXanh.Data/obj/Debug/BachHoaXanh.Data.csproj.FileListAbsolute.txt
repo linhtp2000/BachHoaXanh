@@ -630,3 +630,4 @@ D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHo
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.modelupp1.resources
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.ap.resources
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.GenerateResource.cache
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache

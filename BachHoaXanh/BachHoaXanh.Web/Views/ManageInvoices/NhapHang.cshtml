@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "NhapHang";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+<table>
+    <tr>
+        <div class="zmdi-navigation">
+            <h3>Featured</h3>
+            <ul>
+                <li><a href=""><i class="fa fa-dropbox"></i></a></li>
+                <li><a href="@Url.Action("Index", "ManageProducts")">Quản lý sản phẩm</a></li>
+
+            </ul>
+            <ul>
+                <li><a href=""><i class="fa fa-dropbox"></i></a></li>
+                <li><a href="@Url.Action("NhapHang", "ManageInvoices")">Nhập Hàng</a></li>
+
+            </ul>
+            <ul>
+                <li><a href=""><i class="fa fa-dropbox"></i></a></li>
+                <li><a href="#">Users</a></li>
+
+            </ul>
+            <ul>
+                <li><a href=""><i class="fa fa-dropbox"></i></a></li>
+                <li><a href="#">Favorites</a></li>
+
+            </ul>
+        </div>
+    </tr>
+</table>
+
+<input type="button" value="+" class="btn btn-success" id="btnAdd" />
+<input type="submit" value="Nhập hàng" class="btn btn-primary" id="btnNhaphang" />
+}

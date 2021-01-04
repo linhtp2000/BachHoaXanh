@@ -312,6 +312,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ManageOrdersController.cs" />
     <Compile Include="Controllers\ManageProductsController.cs" />
+    <Compile Include="Controllers\ManageInvoicesController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -889,6 +890,8 @@
     <Content Include="Views\ManageOrders\Details.cshtml" />
     <Content Include="Views\Cart_Checkout\OrderForCur.cshtml" />
     <Content Include="Views\Cart_Checkout\OrderForMem.cshtml" />
+    <Content Include="Views\ManageInvoices\Index.cshtml" />
+    <Content Include="Views\ManageInvoices\NhapHang.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
