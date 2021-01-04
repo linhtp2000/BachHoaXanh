@@ -12,12 +12,12 @@ namespace BachHoaXanh.Data.ModelView
 {
     public class ItemProduct
     {
-       
+        public string Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Discount { get; set; }
         public int Amount { get; set; }
-        
+
         public string Details { get; set; }
         public DateTime Date { get; set; }
         [NotMapped]
@@ -26,14 +26,14 @@ namespace BachHoaXanh.Data.ModelView
         public HttpPostedFileBase Image2 { get; set; }
         [NotMapped]
         public HttpPostedFileBase Image3 { get; set; }
-       
+
         // [ForeignKey("Classify")]
         public string ClassifyName { get; set; }
-      
+
         //  [ForeignKey("Branch")]
         public string BranchName { get; set; }
         // public virtual Branch Branch { get; set; }
-      
+
         //  [ForeignKey("Provider")]
         public string ProviderName { get; set; }
     }

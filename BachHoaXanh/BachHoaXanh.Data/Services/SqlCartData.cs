@@ -144,6 +144,7 @@ namespace BachHoaXanh.Data.Services
         {
             var item = cart.Find(c => c.ProductId == pid);
             cart.Remove(item);
+           
 ;          return cart;
         }
         public void EmptyCart(string cid)

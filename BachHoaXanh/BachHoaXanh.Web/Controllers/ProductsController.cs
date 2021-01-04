@@ -82,7 +82,12 @@ namespace BachHoaXanh.Web.Controllers
             model = (from sp in bhx.Products
                      where sp.ClassifyId == id
                      select sp);//.OrderBy(s => s.Name);
-            if (model.FirstOrDefault() == null) return Content("Sản phẩm sẽ được thêm vào sớm, xin lỗi quý khách vì sự bất tiện này.");
+            if (model.FirstOrDefault() == null)
+            {
+                model = (from sp in bhx.Products                       
+                         select sp);
+            }
+
             // 1. Tham số int? dùng để thể hiện null và kiểu int
             // page có thể có giá trị là null và kiểu int.
 

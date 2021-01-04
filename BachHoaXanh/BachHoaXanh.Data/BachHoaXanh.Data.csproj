@@ -217,13 +217,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202012311014463_modelupp.cs" />
-    <Compile Include="Migrations\202012311014463_modelupp.designer.cs">
-      <DependentUpon>202012311014463_modelupp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012311017236_modelupp1.cs" />
-    <Compile Include="Migrations\202012311017236_modelupp1.designer.cs">
-      <DependentUpon>202012311017236_modelupp1.cs</DependentUpon>
+    <Compile Include="Migrations\202101032351077_ap.cs" />
+    <Compile Include="Migrations\202101032351077_ap.designer.cs">
+      <DependentUpon>202101032351077_ap.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelView\AddressView.cs" />
@@ -344,11 +340,8 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012311014463_modelupp.resx">
-      <DependentUpon>202012311014463_modelupp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012311017236_modelupp1.resx">
-      <DependentUpon>202012311017236_modelupp1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101032351077_ap.resx">
+      <DependentUpon>202101032351077_ap.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

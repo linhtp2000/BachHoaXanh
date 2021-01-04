@@ -9,11 +9,11 @@ using BachHoaXanh.Data.ModelView;
 
 namespace BachHoaXanh.Web.Controllers
 {
-    //[Authorize(Roles = "QuanTri, QLDonHang")]
+    [Authorize(Roles = "XemDonHang")]
     public class OrderController : Controller
     {
         BachHoaXanhDbContext bhx = new BachHoaXanhDbContext();
-        private SqlBillData  dbBill= new SqlBillData();
+        private SqlBillData dbBill = new SqlBillData();
         private SqlDetailsOfBillData dbDetail = new SqlDetailsOfBillData();
         private SqlCartData dbcart = new SqlCartData();
 
@@ -22,7 +22,7 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Confirm()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Confirm"
+                        where bill.Status == "Confirm" && bill.CustomerId==Session["ID"].ToString()
                         select bill;
             return View(model);
         }
@@ -30,6 +30,7 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult AllOfBills()
         {
             var model = from bill in bhx.Bills
+                        where bill.CustomerId == Session["ID"].ToString()
                         select bill;
             return View(model);
         }
@@ -37,7 +38,7 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Prepare()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Prepare"
+                        where bill.Status == "Prepare" && bill.CustomerId == Session["ID"].ToString()
                         select bill;
             return View(model);
         }
@@ -45,7 +46,7 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Delivering()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Delivering"
+                        where bill.Status == "Delivering" && bill.CustomerId == Session["ID"].ToString()
                         select bill;
             return View(model);
         }
@@ -53,7 +54,7 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Deliveried()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Deliveried"
+                        where bill.Status == "Deliveried" && bill.CustomerId == Session["ID"].ToString()
                         select bill;
             return View(model);
         }
@@ -66,7 +67,7 @@ namespace BachHoaXanh.Web.Controllers
             //             on bill.Id equals detail.BillId
             //            select new { IdBill = detail.BillId, Soluong = detail.Amount };
             var model1 = from billdetail in bhx.DetailsOfBills
-                         where billdetail.BillId == id
+                         where billdetail.BillId == id && billdetail.BillId == Session["ID"].ToString()
                          select billdetail;
             //var model = from billdetail in bhx.DetailsOfBills
             //            join picture in bhx.Products
@@ -87,7 +88,7 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Declined()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Declined"
+                        where bill.Status == "Declined" && bill.CustomerId == Session["ID"].ToString()
                         select bill;
             return View(model);
         }
@@ -96,14 +97,14 @@ namespace BachHoaXanh.Web.Controllers
         public ActionResult Payment_Refund()
         {
             var model = from bill in bhx.Bills
-                        where bill.Status == "Payment" || bill.Status == "Refund"
+                        where bill.Status == "Payment" || bill.Status == "Refund" && bill.CustomerId == Session["ID"].ToString()
                         select bill;
             return View(model);
         }
         public ActionResult AgreeBackMoney(string id)
         {
             var model = (from bill in bhx.Bills
-                         where bill.Id == id
+                         where bill.Id == id && bill.CustomerId == Session["ID"].ToString()
                          select bill).FirstOrDefault();
 
             model.Status = "Refund_Roi";
@@ -113,81 +114,7 @@ namespace BachHoaXanh.Web.Controllers
 
         //============PHAN DANH CHO NHAN VIEN, QUAN TRỊ, QUAN LY===================
         //Checkout
-        [HttpGet]
-        public ActionResult OrderForMember()
-        {
-            if (Session["ID"] == null)
-            {
-                return View();
-            }
-            return View();
-
-        }
-
-        [HttpGet]
-        public ActionResult OrderForCur()
-        {
-            return View("GoToOrder");
-
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult OrderForCur(AddressView model)
-        {
-            //   TryUpdateModel(order);
-            if (String.IsNullOrEmpty(model.Address))
-            {
-                ModelState.AddModelError(nameof(model.Address), "Address is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.City))
-            {
-                ModelState.AddModelError(nameof(model.City), "City is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.Name))
-            {
-                ModelState.AddModelError(nameof(model.Name), "Full Name is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.State))
-            {
-                ModelState.AddModelError(nameof(model.State), "State is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.Email))
-            {
-                ModelState.AddModelError(nameof(model.Email), "Email is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            if (String.IsNullOrEmpty(model.Phone))
-            {
-                ModelState.AddModelError(nameof(model.Phone), "Your Phone is required");      //thong bao loi khi Name co gia tri null/ rong
-            }
-            //model.Point = 0;
-            //model.OrderDate = DateTime.Now;
-            if (ModelState.IsValid)
-            {
-                Bill newbill = new Bill();
-                newbill.Id = dbBill.GetBillId().ToString();
-                newbill.CustomerId = null;
-                newbill.Datetime = DateTime.Now;
-                newbill.Address = model.Address;
-                newbill.City = model.City;
-                newbill.CustomerName = model.Name;
-                //  newbill.Total = cart.GetTotal();
-                newbill.Points = 0;
-                //    newbill.ServiceCharge
-                newbill.Status = "Confirm";
-                newbill.Payment = false;
-                newbill.State = model.State;
-                newbill.Total = dbcart.GetTotalCurrent(Session["Cart"] as List<ItemCartView>);
-                //Save Order
-                bhx.Bills.Add(newbill);
-                bhx.SaveChanges();
-                //Save details of bill
-                dbcart.SaveDetailsOfBillCurrent(newbill, Session["Cart"] as List<ItemCartView>);
-                Session["Cart"] = null;
-                return Content("/Order/Confirm");
-            }
-            return RedirectToAction("Confirm");
-        }
-
 
     }
+
 }

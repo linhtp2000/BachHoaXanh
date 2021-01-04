@@ -515,8 +515,6 @@ D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Deb
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\EntityFramework.SqlServerCompact.dll
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\System.Data.SqlServerCe.dll
 E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\bin\Debug\EntityFramework.SqlServerCompact.xml
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.GenerateResource.cache
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csprojAssemblyReference.cache
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.dll.config
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.dll
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\bin\Debug\BachHoaXanh.Data.pdb
@@ -630,5 +628,5 @@ D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHo
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.modelupp.resources
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.GenerateResource.cache
 D:\ĐỒ ÁN WEB\BachHoaXanhMVC\BachHoaXanhUpdate\BachHoaXanh\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.modelupp1.resources
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.modelupp.resources
-E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.modelupp1.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.Migrations.ap.resources
+E:\LTWeb\BachHoaXanh_Update\BachHoaXanh\BachHoaXanh.Data\obj\Debug\BachHoaXanh.Data.csproj.GenerateResource.cache

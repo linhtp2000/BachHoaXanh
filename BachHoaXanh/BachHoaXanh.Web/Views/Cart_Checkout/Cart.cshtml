@@ -83,7 +83,7 @@
                 if (item.Status == 1)
                 {
                     stt += 1;
-                    <tr class="rem" data-id="@item.ProductId">
+                    <tr class="rem @item.ProductId">
                         <td class="invert">@stt</td>
                         <td class="invert-image"><a href="@Url.Action("Details", "Products", new { id = item.ProductId })"><img src="@Url.Content(item.Image)" class="img-responsive"></a></td>
                         <td class="invert">
@@ -122,19 +122,18 @@
 
 @if (Session["ID"] == null)
 {
-    @Html.ActionLink("Go to Order", "OrderForCur", "Order");
+    @Html.ActionLink("Go to Order >>", "OrderForCur", "Cart_Checkout")
 }
 else
 {
-    @Html.ActionLink("Go to Order", "OrderForMember", "Order")
+    @Html.ActionLink("Go to Order", "OrderForMember", "Cart_Checkout")
 }
 
 <div class="button">
-    @using (Html.BeginForm("Order", "Cart_Checkout"))
-    {
+  
 
         @Html.ActionLink("<< Shopping Continue", "Index", "Products")
-    }
+    
 </div>
 
 
@@ -144,7 +143,7 @@ else
 
 
 <script src="~/Content/js/jquery-1.11.1.min.js"></script>
-<!--quantity-->
+
 <script>
     $('.value-plus').on('click', function () {
         var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
@@ -161,8 +160,8 @@ else
             success: function (data) {
 
                 divUpd.text(newVal);
-                $('#ItemTotal').html(@ViewBag.ItemTotal);
-                $('#CartTotal').html(@ViewBag.CartTotal);
+                $("#ItemTotal").val(@ViewBag.ItemTotal);
+                $("#CartTotal").val(@ViewBag.CartTotal);
             },
             error: function (data) {
                 alert("There is some problem");
@@ -188,7 +187,7 @@ else
             success: function (data) {
                 if (newVal >= 1) {
                     divUpd.text(newVal);
-                    $('#CartTotal').text(cartVal);
+                    $("#CartTotal").text(cartVal);
                 }
             },
             error: function (data) {
@@ -200,8 +199,6 @@ else
     });
 </script>
 
-
-quantity
 <script>
         $(document).ready(function (c) {
             $('.close').on('click', function (c) {
@@ -215,9 +212,11 @@ quantity
                     data: { "pid": itemId },
                     url: '@Url.Content("RemoveCartItem")',
                     success: function (data) {
-                        $('#rem-' + itemId).fadeOut('quick', function (c) {
-                            $('#rem-' + itemId).remove();
-                    })
+                        $('.rem' + itemId).fadeOut('quick', function (c) {
+                            $('.rem' + itemId).remove();
+                        })
+                        $("#CartTotal").val(@ViewBag.CartTotal);
+
                     },
                     error: function (data) {
                     alert("There is some problem");
@@ -228,34 +227,7 @@ quantity
 </script>
 
 
-@*<script type="text/javascript">
-        $(function () {
-            // Document.ready -> link up remove event handler
-            $('.close').click(function () {
-                // Get the id from the link
-                var recordToDelete = $(this).attr("data-id");
-                if (recordToDelete != '') {
-                    // Perform the ajax post
-                    $.post("/RemoveCartItem", { "pid": recordToDelete },
-                        function (data) {
-                            // Successful requests get here
-                            // Update the page elements
-                            //if (data.) {
-                            $('#row-' + recordToDelete).fadeOut('slow');
-                            //    } else {
-                            //        $('#item-count-' + data.DeleteId).text(data.ItemCount);
-                            //    }
-                            //    $('#cart-total').text(data.CartTotal);
-                            //    $('#update-message').text(data.Message);
-                            //    $('#cart-status').text('Cart (' + data.CartCount + ')');
-                            //});
-                        });
-            }
-        });
-    </script>*@
 
-<!-- //js -->
-<!-- script-for sticky-nav -->
 <script>
     $(document).ready(function () {
         var navoffeset = $(".agileits_header").offset().top;
@@ -270,9 +242,8 @@ quantity
 
     });
 </script>
-<!-- //script-for sticky-nav -->
-<!-- start-smoth-scrolling -->
-<script type="text/javascript" src="~/Content/js/move-top.js"></script>js/move-top.js"></script>
+
+<script type="text/javascript" src="~/Content/js/move-top.js"></script>
 <script type="text/javascript" src="~/Contentjs/easing.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {

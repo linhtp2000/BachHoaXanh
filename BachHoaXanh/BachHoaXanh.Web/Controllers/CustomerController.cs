@@ -11,6 +11,7 @@ using PagedList;
 
 namespace BachHoaXanh.Web.Controllers
 {
+    [Authorize(Roles = "QuanTri, QLKhachHang, QLDonHang, XemKH")]
     public class CustomerController : Controller
     {
         // GET: Customer
@@ -20,6 +21,7 @@ namespace BachHoaXanh.Web.Controllers
         {
             this.db = db;
         }
+        [Authorize(Roles = "QuanTri, QLKhachHang, QLDonHang")]
         public ActionResult ListCustomer(int? page)
         {
 
@@ -42,6 +44,7 @@ namespace BachHoaXanh.Web.Controllers
             // 5. Trả về các Link được phân trang theo kích thước và số trang.
             return View(kh.ToPagedList(pageNumber, pageSize));
         }
+        [Authorize(Roles = "QuanTri, QLKhachHang, QLDonHang")]
         [HttpGet]
         public ActionResult Details(string id)
         {
@@ -52,7 +55,7 @@ namespace BachHoaXanh.Web.Controllers
             }
             return View(model);
         }
-
+        [Authorize(Roles = "QuanTri, QLKhachHang, QLDonHang")]
         public ActionResult Top20Customers()
         {
             var model = (from bill in bhx.Bills

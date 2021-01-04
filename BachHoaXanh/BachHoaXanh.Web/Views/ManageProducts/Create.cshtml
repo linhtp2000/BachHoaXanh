@@ -1,0 +1,185 @@
+﻿@model BachHoaXanh.Data.ModelView.ItemProduct
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    BachHoaXanh.Data.Services.BachHoaXanhDbContext db = new BachHoaXanh.Data.Services.BachHoaXanhDbContext();
+}
+@using BachHoaXanh.Data.Models
+<h2>Create</h2>
+
+@*<script type="text/javascript>
+        $(document).ready(function () {
+            $("#btnCreate").click(function)(){
+                SaveItem();
+            }
+        });
+
+        function SaveItem() {
+            var form = new FormData;
+            form.append("Id", $("Id").val());
+            form.append("BranchId", $("BranchId").val());
+            form.append("CategoryId", $("CategoryId").val());
+            form.append("ClassifyId", $("ClassifyId").val());
+            form.append("Id", $("Name").val());
+            form.append("Image", $("Image1").get(0).items[0]);
+
+            $.ajax({
+                async: true,
+                dataType: 'JSON',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                url: 'Product/Create',
+                data: form,
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert("Error")
+                }
+            })
+        }
+    </script>*@
+
+@*Sử dụng datepicker*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+</script>
+
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Products</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Discount, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Discount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBox("Date", "", new { id = "datepicker" })
+                @*<input name="Date" type="text" id="datepicker"/>*@
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Details, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Details, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Amount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClassifyName, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.ClassifyName, (IEnumerable<SelectListItem>)ViewBag.ClassifyName, new { @class = "form -control" })
+                @Html.ValidationMessageFor(model => model.ClassifyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchName, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+
+                @Html.DropDownListFor(model => model.BranchName, (IEnumerable<SelectListItem>)ViewBag.BranchName, new { @class = "form -control" })
+                @Html.ValidationMessageFor(model => model.BranchName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProviderName, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.ProviderName, (IEnumerable<SelectListItem>)ViewBag.ProviderName, new { @class = "form -control" })
+                @Html.ValidationMessageFor(model => model.ProviderName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image1, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <input type="file" id="Image1" name="Image1" accept="image/*" />
+
+                <span style="color:red;">@ViewBag.upload</span>
+                @*@Html.EditorFor(model => model.Image1, new { htmlAttributes = new { type = "file", @class = "form-control" } })*@
+                @*@Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image2, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @*@Html.EditorFor(model => model.Image2, new { htmlAttributes = new { type = "file", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
+                <input type="file" id="Image2" name="Image2" accept="image/*" />
+                <span style="color:red;">@ViewBag.upload</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image3, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <input type="file" id="Image3" name="Image3" accept="image/*" />
+
+                <span style="color:red;">@ViewBag.upload</span>
+                @*@Html.EditorFor(model => model.Image3, new { htmlAttributes = new { type = "file", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
